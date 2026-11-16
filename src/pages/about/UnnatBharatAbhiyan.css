@@ -1,0 +1,570 @@
+/* Unnat-bharat-abhiyan.css - styles for this page only. Every class starts with "uba-" so nothing here can change another page.
+   Colours, fonts and shadows are the same variables as Home (cog blue = sky, deep navy = ink, ribbon orange). */
+
+main#main.uba-page {
+  background: var(--paper, #f6f9fc);
+  overflow-x: clip;
+}
+
+/* the site has a global nowrap rule on headings, so headings here may wrap */
+main#main.uba-page h1,
+main#main.uba-page h2,
+main#main.uba-page h3 {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* ============ HERO (shorter than the Home banner on purpose) ============ */
+.uba-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  height: clamp(220px, 24vw, 320px);
+  background: linear-gradient(135deg, var(--ink-700, #0b3d6b), var(--ink-950, #031a2e));
+}
+
+/* photo fills the whole banner; if the file is missing the navy gradient stays */
+.uba-hero__photo {
+  position: absolute;
+  inset: 0;
+  background-image: var(--img), linear-gradient(135deg, var(--ink-700, #0b3d6b), var(--ink-950, #031a2e));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* soft fade at the bottom so the breadcrumb always reads */
+.uba-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(transparent, color-mix(in srgb, var(--ink-950, #031a2e) 38%, transparent));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.uba-hero__tags {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.uba-hero__tag {
+  position: absolute;
+  top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px 6px 6px;
+  border: 1px solid color-mix(in srgb, var(--white, #fff) 70%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--white, #fff) 92%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950, #031a2e) 28%, transparent);
+  color: var(--ink-900, #07294a);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+
+.uba-hero__tag-icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--white, #fff);
+}
+
+.uba-hero__tag-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.uba-hero__tag--left {
+  left: 16px;
+}
+
+.uba-hero__tag--left .uba-hero__tag-icon {
+  background: var(--orange-500, #f28c28);
+}
+
+.uba-hero__tag--right {
+  right: 16px;
+}
+
+.uba-hero__tag--right .uba-hero__tag-icon {
+  background: var(--sky-500, #1aa3d9);
+}
+
+/* breadcrumb pill, bottom-left of the photo */
+.uba-crumbs {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 32px);
+  padding: 9px 16px;
+  border-left: 3px solid var(--orange-500, #f28c28);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ink-950, #031a2e) 82%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950, #031a2e) 35%, transparent);
+  color: color-mix(in srgb, var(--white, #fff) 78%, transparent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.uba-crumbs a {
+  color: inherit;
+}
+
+.uba-crumbs a:hover {
+  color: var(--orange-400, #f7a65a);
+}
+
+.uba-crumbs svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+}
+
+.uba-crumbs [aria-current] {
+  color: var(--orange-400, #f7a65a);
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============ TITLE BLOCK (under the hero) ============ */
+.uba-intro {
+  padding-top: 0;
+}
+
+.uba-eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange-700, #c2570c);
+}
+
+main#main.uba-page .uba-intro h1 {
+  margin: 8px 0 0;
+  color: var(--ink-900, #07294a);
+  font-family: var(--font-display, inherit);
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  line-height: 1.08;
+  max-width: none;
+}
+
+main#main.uba-page .uba-intro h1::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin-top: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--sky-500, #1aa3d9) 0 60%, var(--orange-500, #f28c28) 60%);
+}
+
+.uba-intro p {
+  max-width: 62ch;
+  margin: 16px 0 0;
+  color: var(--muted, #52627a);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.6;
+}
+
+/* ============ LAYOUT: content + downloads sidebar ============ */
+.uba-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  padding-top: clamp(28px, 4vw, 48px);
+  padding-bottom: clamp(44px, 6vw, 88px);
+}
+
+.uba-content {
+  display: grid;
+  gap: clamp(32px, 5vw, 56px);
+  min-width: 0;
+}
+
+.uba-block {
+  scroll-margin-top: 150px;
+}
+
+.uba-head {
+  margin-bottom: 18px;
+}
+
+main#main.uba-page .uba-head h2 {
+  margin: 6px 0 0;
+  color: var(--ink-900, #07294a);
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.45rem, 2.8vw, 2.1rem);
+  line-height: 1.15;
+}
+
+.uba-eyebrow--dark {
+  color: var(--orange-700, #c2570c);
+}
+
+/* ============ SIDEBAR: DOWNLOADS ONLY ============ */
+.uba-side {
+  position: sticky;
+  top: 96px;
+  padding: 20px;
+  border: 1px solid var(--line, #dbe4ee);
+  border-top: 4px solid var(--orange-500, #f28c28);
+  border-radius: 18px;
+  background: var(--white, #fff);
+  box-shadow: var(--shadow-soft, 0 8px 24px rgba(3, 33, 61, 0.08));
+}
+
+main#main.uba-page .uba-side h2 {
+  margin: 0 0 14px;
+  color: var(--ink-900, #07294a);
+  font-family: var(--font-display, inherit);
+  font-size: 1.3rem;
+}
+
+.uba-side ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.uba-side a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "icon label go" "icon type go";
+  column-gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--line, #dbe4ee);
+  border-radius: 14px;
+  color: var(--ink-900, #07294a);
+  transition: background 0.25s, border-color 0.25s, transform 0.3s var(--ease, ease);
+}
+
+.uba-side a:hover,
+.uba-side a:focus-visible {
+  background: var(--sky-100, #e6f5fc);
+  border-color: color-mix(in srgb, var(--sky-500, #1aa3d9) 45%, transparent);
+  transform: translateX(4px);
+  outline: none;
+}
+
+.uba-side__icon {
+  grid-area: icon;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--sky-100, #e6f5fc);
+  color: var(--ink-900, #07294a);
+}
+
+.uba-side__label {
+  grid-area: label;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.uba-side__type {
+  grid-area: type;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted, #52627a);
+}
+
+.uba-side__go {
+  grid-area: go;
+  color: var(--orange-700, #c2570c);
+}
+
+/* ============ UNNAT BHARAT ABHIYAN: about, activities, steps, villages placeholder ============ */
+.uba-about {
+  max-width: 66ch;
+  margin: 0;
+  padding-left: 18px;
+  border-left: 4px solid var(--orange-500, #f28c28);
+  color: var(--ink-800, #0a3158);
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.5;
+}
+
+.uba-activities {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.uba-activities article {
+  position: relative;
+  padding: 24px 20px 20px;
+  overflow: hidden;
+  border-radius: 22px;
+  color: var(--white, #fff);
+  background:
+    radial-gradient(80% 60% at 100% 0%, color-mix(in srgb, var(--sky-500, #1aa3d9) 30%, transparent), transparent 70%),
+    linear-gradient(155deg, var(--ink-800, #0a3158), var(--ink-950, #031a2e));
+  box-shadow: var(--shadow-soft, 0 8px 24px rgba(3, 33, 61, 0.08));
+  transition: transform 0.3s var(--ease, ease);
+}
+
+.uba-activities article:nth-child(2),
+.uba-activities article:nth-child(3) {
+  background:
+    radial-gradient(80% 60% at 100% 0%, color-mix(in srgb, var(--orange-500, #f28c28) 28%, transparent), transparent 70%),
+    linear-gradient(155deg, var(--ink-800, #0a3158), var(--ink-950, #031a2e));
+}
+
+.uba-activities article:hover {
+  transform: translateY(-4px);
+}
+
+.uba-activities__no {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-family: var(--font-display, inherit);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--white, #fff) 30%, transparent);
+}
+
+.uba-activities__icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 12px;
+  border-radius: 14px;
+  font-size: 1.3rem;
+  color: var(--ink-950, #031a2e);
+  background: linear-gradient(135deg, var(--sky-400, #5bc0eb), var(--sky-500, #1aa3d9));
+}
+
+.uba-activities article:nth-child(2) .uba-activities__icon,
+.uba-activities article:nth-child(3) .uba-activities__icon {
+  background: linear-gradient(135deg, var(--orange-400, #f7a65a), var(--orange-500, #f28c28));
+}
+
+main#main.uba-page .uba-activities h3 {
+  margin: 0 0 6px;
+  color: var(--white, #fff);
+  font-size: 1.15rem;
+}
+
+.uba-activities p {
+  margin: 0;
+  color: color-mix(in srgb, var(--white, #fff) 82%, transparent);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.uba-steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.uba-steps::before {
+  content: "";
+  position: absolute;
+  top: 19px;
+  left: 8%;
+  right: 8%;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--sky-500, #1aa3d9), var(--orange-500, #f28c28));
+}
+
+.uba-steps li {
+  position: relative;
+  text-align: center;
+}
+
+.uba-steps__no {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 12px;
+  border: 4px solid var(--paper, #f6f9fc);
+  border-radius: 50%;
+  font-family: var(--font-display, inherit);
+  font-weight: 700;
+  color: var(--white, #fff);
+  background: var(--ink-900, #07294a);
+  box-shadow: 0 0 0 2px var(--sky-500, #1aa3d9);
+}
+
+main#main.uba-page .uba-steps h3 {
+  margin: 0 0 4px;
+  color: var(--ink-900, #07294a);
+  font-size: 1rem;
+}
+
+.uba-steps p {
+  margin: 0;
+  color: var(--muted, #52627a);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.uba-villages {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px;
+  border: 1px dashed color-mix(in srgb, var(--sky-500, #1aa3d9) 60%, transparent);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--sky-100, #e6f5fc) 60%, var(--white, #fff));
+}
+
+.uba-villages__icon {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  color: var(--white, #fff);
+  background: var(--orange-500, #f28c28);
+}
+
+main#main.uba-page .uba-villages h2 {
+  margin: 0 0 4px;
+  color: var(--ink-900, #07294a);
+  font-family: var(--font-display, inherit);
+  font-size: 1.25rem;
+}
+
+.uba-villages p {
+  margin: 0;
+  color: var(--muted, #52627a);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 800px) {
+  .uba-activities {
+    grid-template-columns: 1fr;
+  }
+
+  .uba-steps {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .uba-steps::before {
+    top: 10px;
+    bottom: 10px;
+    left: 21px;
+    right: auto;
+    width: 3px;
+    height: auto;
+    background: linear-gradient(var(--sky-500, #1aa3d9), var(--orange-500, #f28c28));
+  }
+
+  .uba-steps li {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    column-gap: 14px;
+    text-align: left;
+  }
+
+  .uba-steps__no {
+    grid-row: span 2;
+    margin: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uba-activities article {
+    transition: none;
+  }
+
+  .uba-activities article:hover {
+    transform: none;
+  }
+}
+
+/* ============ RESPONSIVE (shared parts) ============ */
+@media (max-width: 960px) {
+  .uba-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* downloads move under the content and stop sticking */
+  .uba-side {
+    position: static;
+  }
+}
+
+/* phones and tablets: a fixed wide shape (5:2), no top pills, a small breadcrumb */
+@media (max-width: 900px) {
+  .uba-hero {
+    height: auto;
+    aspect-ratio: 5 / 2;
+  }
+
+  .uba-hero__tags {
+    display: none;
+  }
+
+  .uba-crumbs {
+    left: 10px;
+    bottom: 10px;
+    padding: 6px 12px;
+    gap: 6px;
+    font-size: 0.72rem;
+  }
+
+  .uba-crumbs svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uba-side a {
+    transition: none;
+  }
+
+  .uba-side a:hover {
+    transform: none;
+  }
+}

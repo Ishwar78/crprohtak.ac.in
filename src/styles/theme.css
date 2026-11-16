@@ -1,0 +1,64 @@
+/* theme.css - central design system for Chhotu Ram Polytechnic. Palette sampled from the logo (sky #00AEEF, orange #F5821F) and the homepage mockup (navy #043764). */
+
+:root {
+  /* Deep navy - primary foundation (mockup navy) */
+  --ink-950: #03213d;
+  --ink-900: #043764;
+  --ink-800: #0a4a82;
+  --ink-700: #125fa0;
+
+  /* Sky blue - the logo's gear colour */
+  --sky-700: #00709b;
+  --sky-500: #00aeef;
+  --sky-400: #4cc6f5;
+  --sky-100: #ddf2fc;
+
+  /* Orange - the logo's ribbon */
+  --orange-700: #a84a00;
+  --orange-500: #f5821f;
+  --orange-400: #ffa04a;
+  --orange-100: #fff0e2;
+
+  /* Backgrounds and surfaces */
+  --cream: #e9f5fd;
+  --paper: #ffffff;
+  --white: #ffffff;
+  --logo-white: #f8f8f8;
+
+  /* Typography colours */
+  --ink: #10304d;
+  --muted: #4f657a;
+
+  /* Additional surface colours */
+  --surface-blue: #dff1fa;
+  --surface-blue-light: #f3f9fd;
+  --surface-orange: #fff5eb;
+  --surface-dark: #043764;
+
+  /* Borders and states */
+  --line: color-mix(in srgb, var(--ink-900) 12%, transparent);
+  --danger: #c8321f;
+
+  /* Semantic colour roles */
+  --accent-text: var(--orange-700);
+  --link-on-light: var(--sky-700);
+  --focus-on-light: var(--sky-700);
+  --focus-on-dark: var(--sky-400);
+
+  /* Typography */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Rounded corners */
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+
+  /* Shadows */
+  --shadow-soft: 0 10px 30px color-mix(in srgb, var(--ink-900) 9%, transparent);
+  --shadow-lift: 0 28px 60px color-mix(in srgb, var(--ink-900) 22%, transparent);
+  --shadow-bar: 0 8px 24px color-mix(in srgb, var(--ink-950) 30%, transparent);
+
+  /* Transitions */
+  --ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+}

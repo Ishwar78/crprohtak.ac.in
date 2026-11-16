@@ -1,0 +1,655 @@
+/* placements.css - styles for this page only. Every class starts with "plc-" so nothing here can change another page.
+   Colours, fonts and shadows are the same theme variables as Home (cog blue = sky, deep navy = ink, ribbon orange). */
+
+main#main.plc-page {
+  background: var(--paper, #fff);
+  overflow-x: clip;
+}
+
+/* the site has a global nowrap rule on headings, so headings here may wrap */
+main#main.plc-page h1,
+main#main.plc-page h2,
+main#main.plc-page h3 {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* ============ HERO (shorter than the Home banner on purpose) ============ */
+.plc-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  height: clamp(220px, 24vw, 320px);
+  background: linear-gradient(135deg, var(--ink-700), var(--ink-950));
+}
+
+/* photo fills the whole banner; if the file is missing the navy gradient stays */
+.plc-hero__photo {
+  position: absolute;
+  inset: 0;
+  background-image: var(--img), linear-gradient(135deg, var(--ink-700), var(--ink-950));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* soft fade at the bottom so the breadcrumb always reads */
+.plc-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(transparent, color-mix(in srgb, var(--ink-950) 38%, transparent));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.plc-hero__tags {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.plc-hero__tag {
+  position: absolute;
+  top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px 6px 6px;
+  border: 1px solid color-mix(in srgb, var(--white) 70%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--white) 92%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
+  color: var(--ink-900);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+
+.plc-hero__tag-icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--white);
+}
+
+.plc-hero__tag-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.plc-hero__tag--left {
+  left: 16px;
+}
+
+.plc-hero__tag--left .plc-hero__tag-icon {
+  background: var(--orange-500);
+}
+
+.plc-hero__tag--right {
+  right: 16px;
+}
+
+.plc-hero__tag--right .plc-hero__tag-icon {
+  background: var(--sky-500);
+}
+
+/* breadcrumb pill, bottom-left of the photo */
+.plc-crumbs {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 32px);
+  padding: 9px 16px;
+  border-left: 3px solid var(--orange-500);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ink-950) 82%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
+  color: color-mix(in srgb, var(--white) 78%, transparent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.plc-crumbs a {
+  color: inherit;
+}
+
+.plc-crumbs a:hover {
+  color: var(--orange-400);
+}
+
+.plc-crumbs svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+}
+
+.plc-crumbs [aria-current] {
+  color: var(--orange-400);
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============ TITLE BLOCK (level with the downloads card) ============ */
+.plc-intro {
+  padding-top: 0;
+}
+
+.plc-eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange-700);
+}
+
+main#main.plc-page .plc-intro h1 {
+  margin: 8px 0 0;
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  line-height: 1.08;
+  max-width: none;
+}
+
+main#main.plc-page .plc-intro h1::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin-top: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--sky-500) 0 60%, var(--orange-500) 60%);
+}
+
+.plc-intro p {
+  max-width: 62ch;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.6;
+}
+
+/* ============ LAYOUT: content + downloads sidebar ============ */
+.plc-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  padding-top: clamp(28px, 4vw, 48px);
+  padding-bottom: clamp(44px, 6vw, 88px);
+}
+
+.plc-content {
+  display: grid;
+  gap: clamp(32px, 5vw, 56px);
+  min-width: 0;
+}
+
+.plc-block {
+  scroll-margin-top: 150px;
+}
+
+.plc-head {
+  margin-bottom: 20px;
+}
+
+main#main.plc-page .plc-head h2 {
+  margin: 6px 0 0;
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.8vw, 2.1rem);
+  line-height: 1.15;
+}
+
+.plc-eyebrow--dark {
+  color: var(--orange-700);
+}
+
+/* ============ SIDEBAR: DOWNLOADS ONLY ============ */
+.plc-side {
+  position: sticky;
+  top: 96px;
+  margin-top: 5px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--orange-500);
+  border-radius: 18px;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+main#main.plc-page .plc-side h2 {
+  margin: 0 0 14px;
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+}
+
+.plc-side ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plc-side a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "icon label go" "icon type go";
+  column-gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--ink-900);
+  transition: background 0.25s, border-color 0.25s, transform 0.3s var(--ease);
+}
+
+.plc-side a:hover,
+.plc-side a:focus-visible {
+  background: var(--sky-100);
+  border-color: color-mix(in srgb, var(--sky-500) 45%, transparent);
+  transform: translateX(4px);
+  outline: none;
+}
+
+.plc-side__icon {
+  grid-area: icon;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--sky-100);
+  color: var(--ink-900);
+}
+
+.plc-side__label {
+  grid-area: label;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.plc-side__type {
+  grid-area: type;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.plc-side__go {
+  grid-area: go;
+  color: var(--orange-700);
+}
+
+
+/* ============ PLACEMENTS: officer, support, process, recruiters, activity ============ */
+.plc-officer {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--orange-500);
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--surface-orange), var(--white));
+  box-shadow: var(--shadow-soft);
+}
+
+.plc-officer__icon {
+  flex: none;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: var(--orange-400);
+  background: linear-gradient(150deg, var(--ink-800), var(--ink-950));
+  box-shadow: 0 0 0 6px var(--sky-100);
+}
+
+.plc-officer > div {
+  display: grid;
+  gap: 2px;
+}
+
+.plc-officer__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange-700);
+}
+
+.plc-officer strong {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--ink-900);
+}
+
+.plc-officer span:last-child {
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+/* support: six cards */
+.plc-support {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.plc-support article {
+  position: relative;
+  padding: 24px 20px 20px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(180deg, var(--white), var(--surface-blue-light));
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.plc-support article::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--sky-500), var(--orange-500));
+}
+
+.plc-support article:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+.plc-support__icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  border-radius: 16px;
+  font-size: 1.45rem;
+  color: var(--ink-950);
+  background: linear-gradient(135deg, var(--sky-400), var(--sky-500));
+  box-shadow: 0 0 0 5px var(--sky-100);
+}
+
+main#main.plc-page .plc-support h3 {
+  margin: 0 0 6px;
+  color: var(--ink-900);
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.plc-support p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* recruitment process: vertical timeline */
+.plc-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plc-steps li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 18px;
+  padding-bottom: 14px;
+}
+
+.plc-steps li:last-child {
+  padding-bottom: 0;
+}
+
+/* line joining the numbers */
+.plc-steps li:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 28px;
+  top: 58px;
+  bottom: -2px;
+  width: 2px;
+  background: repeating-linear-gradient(180deg, var(--sky-500) 0 7px, transparent 7px 13px);
+}
+
+.plc-steps__no {
+  position: relative;
+  z-index: 1;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--orange-400);
+  background: linear-gradient(150deg, var(--ink-800), var(--ink-950));
+  box-shadow: 0 0 0 5px var(--sky-100);
+}
+
+.plc-steps p {
+  align-self: center;
+  margin: 0;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  color: var(--ink);
+  font-size: 0.97rem;
+  line-height: 1.5;
+}
+
+/* recruiters: logo cards */
+.plc-recruiters {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plc-recruiters li {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  align-content: center;
+  min-height: 130px;
+  padding: 18px 14px;
+  border: 1px solid var(--line);
+  border-bottom: 3px solid var(--sky-500);
+  border-radius: 18px;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+  transition: transform 0.3s var(--ease), border-color 0.3s;
+}
+
+.plc-recruiters li:hover {
+  transform: translateY(-4px);
+  border-bottom-color: var(--orange-500);
+}
+
+.plc-recruiters img {
+  max-width: 100%;
+  max-height: 56px;
+  object-fit: contain;
+}
+
+.plc-recruiters span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* recent activity */
+.plc-activity {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plc-activity li {
+  display: grid;
+  grid-template-columns: 124px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding: 14px 20px 14px 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.plc-activity time {
+  padding: 7px 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--orange-700);
+  background: var(--orange-100);
+}
+
+.plc-activity span {
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+@media (max-width: 800px) {
+  .plc-support {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .plc-support {
+    grid-template-columns: 1fr;
+  }
+
+  .plc-steps li {
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .plc-steps li:not(:last-child)::before {
+    left: 22px;
+    top: 46px;
+  }
+
+  .plc-steps__no {
+    width: 46px;
+    height: 46px;
+    font-size: 1rem;
+  }
+
+  .plc-recruiters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .plc-activity li {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .plc-activity time {
+    justify-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plc-support article,
+  .plc-recruiters li {
+    transition: none;
+  }
+
+  .plc-support article:hover,
+  .plc-recruiters li:hover {
+    transform: none;
+  }
+}
+
+/* ============ RESPONSIVE (hero, layout, sidebar) ============ */
+@media (max-width: 960px) {
+  .plc-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* downloads move under the content and stop sticking */
+  .plc-side {
+    position: static;
+  }
+}
+
+/* phones and tablets: a fixed wide shape (5:2), no top pills, a small breadcrumb */
+@media (max-width: 900px) {
+  .plc-hero {
+    height: auto;
+    aspect-ratio: 5 / 2;
+  }
+
+  .plc-hero__tags {
+    display: none;
+  }
+
+  .plc-crumbs {
+    left: 10px;
+    bottom: 10px;
+    padding: 6px 12px;
+    gap: 6px;
+    font-size: 0.72rem;
+  }
+
+  .plc-crumbs svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plc-side a {
+    transition: none;
+  }
+
+  .plc-side a:hover {
+    transform: none;
+  }
+}

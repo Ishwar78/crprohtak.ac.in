@@ -1,0 +1,633 @@
+// Home.jsx - the complete Home page, including its content and sections.
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import * as Fi from "react-icons/fi";
+import { FaGraduationCap } from "react-icons/fa";
+import { FiMapPin, FiArrowRight, FiBell, FiArrowUpRight, FiBookOpen, FiBriefcase, FiUsers, FiAward } from "react-icons/fi";
+import "./home.css";
+
+const img = (file) => `/images/${file}`;
+
+const hero = {
+  // Banner slideshow: put your 3 landscape photos in public/images and list them here.
+  // A file that is missing is skipped automatically, so the banner never shows a broken image.
+  images: ["/images/campus-workshop.jpg", "/images/campus-2.jpg", "/images/campus-3.jpg"],
+  slideDelay: 5000, // ms each photo stays on screen
+  slideSpeed: 900, // ms the slide takes
+  since: 1956,
+  ncc: 1949,
+};
+
+const principal = {
+  eyebrow: "From the Principal's desk",
+  quote: "We do not only teach a trade - we help young people become confident, employable engineers.",
+  paragraphs: [
+    "Chhotu Ram Polytechnic began with two-year draftsman courses and has grown into one of the leading technical institutes in the region. Our strength is the link between classroom, workshop and industry.",
+    "Every student here gets practical training, industrial exposure and a placement cell that works all year. I invite you to visit the campus and see it for yourself.",
+  ],
+  name: "Dr. Sitender Kumar",
+  role: "Principal, Chhotu Ram Polytechnic",
+  photo: img("principal.png"),
+  link: { label: "Read the full message", to: "/about/principal-message" },
+};
+
+const news = {
+  tag: "Latest news",
+  title: "Students and guests at the institute's annual exhibition",
+  text: "The institute's exhibition drew students, faculty and guests, who were encouraged by the President and the Principal to keep building and presenting their work.",
+  image: img("news-1.jpg"),
+};
+
+const notices = [
+  { id: 1, kind: "tender", date: "10 Nov 2026", title: "Tender notice", isNew: true },
+  { id: 2, kind: "tender", date: "Undated", title: "Inviting tender for supply of manpower", isNew: true },
+  { id: 3, kind: "admissions", date: "Jul 2026", title: "DET and DET-L merit lists", isNew: false },
+  { id: 4, kind: "admissions", date: "Jul 2026", title: "Admission notice for the new session", isNew: false },
+  { id: 5, kind: "general", date: "Jun 2026", title: "Scholarship update for students", isNew: false },
+  { id: 6, kind: "exam", date: "Jun 2026", title: "Examination datesheet", isNew: false },
+  { id: 7, kind: "exam", date: "May 2026", title: "Result notification", isNew: false },
+  { id: 8, kind: "general", date: "Feb 2026", title: "Campus placement drive - VVDN Technologies", isNew: false },
+];
+const noticeTabs = [
+  { id: "all", label: "All" },
+  { id: "admissions", label: "Admissions" },
+  { id: "exam", label: "Exams" },
+  { id: "tender", label: "Tenders" },
+];
+const noticeLink = { label: "View all notices", to: "/notices" };
+
+const highlights = [
+  {
+    id: "events",
+    title: "Upcoming events",
+    image: img("events.jpg"),
+    items: [
+      { date: "Dec 2026", text: "Annual technical exhibition" },
+      { date: "Jan 2027", text: "Republic Day parade and NCC display" },
+      { date: "Feb 2027", text: "Cultural fest" },
+    ],
+  },
+  {
+    id: "achievements",
+    title: "Achievements",
+    image: img("achievements.jpg"),
+    items: [
+      { date: "2026", text: "NCC cadets selected for state camp" },
+      { date: "2026", text: "Students win inter-polytechnic sports meet" },
+      { date: "2025", text: "Project showcase recognised by industry guests" },
+    ],
+  },
+  {
+    id: "placement",
+    title: "Placement activities",
+    image: img("placement-activities.jpg"),
+    items: [
+      { date: "23 Feb 2026", text: "Campus drive by VVDN Technologies, Manesar, in the Conference Hall" },
+      { date: "2026", text: "Industrial visits for 3rd and 5th semester students" },
+    ],
+  },
+];
+
+// Only the five main facilities. The first one is shown as the large feature tile.
+const facilities = [
+  { name: "Hostels", size: "lg", icon: "FiHome", image: img("facility-hostels.jpg"), text: "Separate boys' and girls' hostels with spacious rooms, a kitchen and a mess." },
+  { name: "Computer labs", icon: "FiMonitor", image: img("facility-computer-labs.jpg"), text: "Five labs for software, networking and hardware." },
+  { name: "Library", icon: "FiBookOpen", image: img("facility-library.jpg"), text: "Books, journals and newspapers in a quiet, central space." },
+  { name: "Sports", icon: "FiActivity", image: img("facility-sports.jpg"), text: "Volleyball, football, basketball, badminton and kho kho." },
+  { name: "Workshop", icon: "FiTool", image: img("facility-workshop.jpg"), text: "Hands-on sessions that build practical skills and teamwork." },
+];
+
+const courses = [
+  { id: "civil", name: "Civil Engineering", icon: "FiBox", seats: 60, text: "One of the broadest engineering fields - buildings, roads, water and the structures around us." },
+  { id: "computer", name: "Computer Engineering", icon: "FiCpu", seats: 54, text: "Software development and testing, networking and hardware." },
+  { id: "electrical", name: "Electrical Engineering", icon: "FiZap", seats: 60, text: "Power, machines and control, taught with a mission of high-quality education." },
+  { id: "electronics", name: "Electronics & Communication", icon: "FiRadio", seats: 54, text: "The study and application of physics to design and operate electronic devices." },
+  { id: "mechanical", name: "Mechanical Engineering", icon: "FiSettings", seats: 60, text: "Design, development, building and testing of things that move." },
+  { id: "plastic", name: "Plastic Technology", icon: "FiDroplet", seats: 54, text: "How plastics replace everyday and engineering items - materials, moulding and processing." },
+  { id: "applied-science", name: "Applied Sciences", icon: "FiBookOpen", seats: 0, tag: "Foundation", text: "Communication skills, physics, chemistry and mathematics in the first two semesters." },
+  { id: "workshop", name: "Workshop Department", icon: "FiTool", seats: 0, tag: "Practical", text: "An intensive, short-duration hands-on learning experience." },
+];
+
+const recruiters = [
+  { name: "HCL", logo: img("recruiter-hcl.jpg") },
+  { name: "Jindal Steel & Power", logo: img("recruiter-jindal-steel-power.jpg") },
+  { name: "Tata Motors", logo: img("recruiter-tata-motors.jpg") },
+  { name: "Tech Mahindra", logo: img("recruiter-tech-mahindra.jpg") },
+];
+
+const totalSeats = courses.reduce((sum, course) => sum + course.seats, 0);
+const stats = [
+  { value: courses.filter((course) => course.seats > 0).length, label: "Diploma programmes" },
+  { value: totalSeats, label: "Approved seats" },
+  { value: `${hero.since}`, label: "Serving students since" },
+  { value: `${hero.ncc}`, label: "NCC unit instituted" },
+];
+
+const reasons = [
+  { icon: FiBookOpen, title: "Practical learning", text: "Build skills through workshops, laboratories and hands-on diploma training." },
+  { icon: FiBriefcase, title: "Industry exposure", text: "Connect classroom learning with industrial visits, training and placement activities." },
+  { icon: FiUsers, title: "A supportive campus", text: "Learn in a campus community with student activities, facilities and guidance." },
+  { icon: FiAward, title: "A proud legacy", text: "Be part of an institute with a long-standing contribution to technical education." },
+];
+
+// Leadership cards. Missing portraits fall back to initials.
+const dignitaries = [
+  {
+    name: "Deenbandhu Sir Chhotu Ram",
+    role: "The Messiah of Farmers",
+    text: "A great statesman, social reformer and the voice of the farmers. His vision for rural upliftment and education continues to inspire us.",
+    image: img("leader-chhotu-ram.jpg"),
+    initials: "CR",
+  },
+  {
+    name: "Sh. Gulab Singh",
+    role: "President, JES Society (Regd.)",
+    text: "Committed to providing better academic and infrastructure facilities for the overall growth of our students.",
+    image: img("leader-gulab-singh.jpg"),
+    initials: "GS",
+  },
+  {
+    name: principal.name,
+    role: principal.role,
+    text: "Dedicated to maintaining high standards of technical education and ensuring a bright and successful future for our students.",
+    image: principal.photo || img("leader-principal.jpg"),
+    initials: "SK",
+  },
+];
+
+function Hero() {
+  const ref = useRef(null);
+  const [broken, setBroken] = useState([]);
+  const [index, setIndex] = useState(0);
+  const [animate, setAnimate] = useState(true);
+
+  const slides = hero.images.filter((src) => !broken.includes(src));
+  const count = slides.length;
+  // the first photo is repeated at the end so the loop never slides backwards
+  const track = count > 1 ? [...slides, slides[0]] : slides;
+
+  // Big screens (above 900px): the banner fills the space left below the header.
+  // Small screens (900px and below): CSS gives the banner a fixed aspect-ratio, so no height is measured here.
+  const fit = () => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.innerWidth <= 900) {
+      el.style.height = "";
+      return;
+    }
+    const top = el.getBoundingClientRect().top + window.scrollY;
+    el.style.height = `${Math.min(Math.max(window.innerHeight - top, 300), 720)}px`;
+  };
+
+  useLayoutEffect(() => {
+    fit();
+    window.addEventListener("resize", fit);
+    window.addEventListener("load", fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    return () => {
+      window.removeEventListener("resize", fit);
+      window.removeEventListener("load", fit);
+    };
+  });
+
+  // restart from the first photo if a missing image drops out of the list
+  useEffect(() => { setIndex(0); }, [count]);
+
+  // move to the next photo every few seconds
+  useEffect(() => {
+    if (count < 2) return undefined;
+    const timer = setInterval(() => setIndex((i) => i + 1), hero.slideDelay);
+    return () => clearInterval(timer);
+  }, [count]);
+
+  // after sliding onto the repeated first photo, jump back to the real first one without animation
+  useEffect(() => {
+    if (count < 2 || index !== count) return undefined;
+    let frame;
+    const timer = setTimeout(() => {
+      setAnimate(false);
+      setIndex(0);
+      frame = requestAnimationFrame(() => { frame = requestAnimationFrame(() => setAnimate(true)); });
+    }, hero.slideSpeed + 60);
+    return () => { clearTimeout(timer); cancelAnimationFrame(frame); };
+  }, [index, count]);
+
+  return (
+    <section ref={ref} className="hero" aria-label="Chhotu Ram Polytechnic campus">
+      <div className="hero__stage">
+        <div
+          className="hero__track"
+          style={{
+            transform: `translateX(-${index * 100}%)`,
+            transition: animate ? `transform ${hero.slideSpeed}ms cubic-bezier(0.65, 0, 0.35, 1)` : "none",
+          }}
+        >
+          {track.map((src, i) => (
+            <img
+              key={`${src}-${i}`}
+              className="hero__image"
+              src={src}
+              alt={i === 0 ? "Chhotu Ram Polytechnic campus" : ""}
+              aria-hidden={i > 0 ? "true" : undefined}
+              fetchPriority={i === 0 ? "high" : undefined}
+              onLoad={fit}
+              onError={() => setBroken((list) => (list.includes(src) ? list : [...list, src]))}
+            />
+          ))}
+        </div>
+        {/* tags sit here - add more later */}
+        <div className="hero__tags">
+          <span className="hero__tag hero__tag--left">
+            <span className="hero__tag-icon"><FaGraduationCap aria-hidden="true" /></span>
+            <span className="hero__tag-text">Government Polytechnic</span>
+          </span>
+          <span className="hero__tag hero__tag--right">
+            <span className="hero__tag-icon"><FiMapPin aria-hidden="true" /></span>
+            <span className="hero__tag-text">Rohtak (Haryana)</span>
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function StatsBand() {
+  return (
+    <section className="stats on-dark" aria-label="The college in numbers">
+      <dl className="container stats__list">
+        {stats.map((stat) => (
+          <div key={stat.label}>
+            <dt>{stat.value}</dt>
+            <dd>{stat.label}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  );
+}
+
+const initials = principal.name.replace(/^(Dr|Mr|Mrs|Sh)\.?\s+/i, "").split(" ").map((word) => word[0]).join("").slice(0, 2);
+
+function PrincipalMessage() {
+  return (
+    <section className="section principal reveal">
+      <div className="container principal__grid">
+        <div className="principal__portrait">
+          <div className="principal__frame">
+            {principal.photo
+              ? <img src={principal.photo} alt={principal.name} />
+              : <span className="principal__monogram" aria-hidden="true">{initials}</span>}
+          </div>
+          <div className="principal__badge">
+            <strong>{principal.name}</strong>
+            <span>{principal.role}</span>
+          </div>
+        </div>
+        <div className="principal__text">
+          <span className="eyebrow">{principal.eyebrow}</span>
+          <blockquote>{principal.quote}</blockquote>
+          {principal.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          <Link className="btn btn--navy" to={principal.link.to}>{principal.link.label} <FiArrowRight /></Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhyChooseUs() {
+  return (
+    <section className="section why-us reveal">
+      <div className="container">
+        <div className="section-head">
+          <span className="eyebrow">The Chhotu Ram advantage</span>
+          <h2>Why choose Chhotu Ram Polytechnic?</h2>
+          <p>A learning environment that brings technical knowledge, practical experience and student growth together.</p>
+        </div>
+        <div className="why-us__grid">
+          {reasons.map((reason, index) => {
+            const Icon = reason.icon;
+            return (
+              <article className="reason-card" key={reason.title}>
+                <span className="reason-card__number">0{index + 1}</span>
+                <span className="reason-card__icon"><Icon /></span>
+                <h3>{reason.title}</h3>
+                <p>{reason.text}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Dignitaries() {
+  return (
+    <section className="section dignitaries reveal">
+      <div className="container">
+        <div className="section-head">
+          <span className="eyebrow">Our leadership</span>
+          <h2> Guided by vision and leadership </h2>
+        </div>
+        <div className="dignitaries__grid">
+          {dignitaries.map((person) => (
+            <article className="leader-card" key={person.name}>
+              <div className="leader-card__photo">
+                <span aria-hidden="true">{person.initials}</span>
+                {person.image && (
+                  <img
+                    src={person.image}
+                    alt={person.name}
+                    loading="lazy"
+                    onError={(event) => { event.currentTarget.style.display = "none"; }}
+                  />
+                )}
+              </div>
+              <div className="leader-card__body">
+                <h3>{person.name}</h3>
+                <p className="leader-card__role">{person.role}</p>
+                <p className="leader-card__text">{person.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function NoticeBoard() {
+  const [tab, setTab] = useState("all");
+  const visible = tab === "all" ? notices : notices.filter((notice) => notice.kind === tab);
+
+  return (
+    <section className="section notices reveal">
+      <div className="container">
+        <div className="section-head">
+          <span className="eyebrow">Stay informed</span>
+          <h2>News & notices</h2>
+        </div>
+        <div className="notices__grid">
+          <article className="news-card">
+            <div className="news-card__img" style={{ "--img": `url("${news.image}")` }} />
+            <div className="news-card__body">
+              <span className="news-card__tag">{news.tag}</span>
+              <h3>{news.title}</h3>
+              <p>{news.text}</p>
+            </div>
+          </article>
+          <div className="board">
+            <div className="board__tabs" role="tablist" aria-label="Notice categories">
+              {noticeTabs.map((item) => (
+                <button key={item.id} role="tab" aria-selected={tab === item.id} className={tab === item.id ? "is-active" : ""} onClick={() => setTab(item.id)}>
+                  {item.label}
+                </button>
+              ))}
+            </div>
+            <div className="board__viewport">
+              <ul className="board__list">
+                {visible.map((notice) => (
+                  <li key={notice.id}>
+                    <span className="board__icon"><FiBell /></span>
+                    <div>
+                      <p>{notice.title}{notice.isNew && <em>NEW</em>}</p>
+                      <time>{notice.date}</time>
+                    </div>
+                    <FiArrowUpRight className="board__go" />
+                  </li>
+                ))}
+                {visible.length === 0 && <li className="board__empty">No notices in this category.</li>}
+                {visible.length > 1 && visible.map((notice) => (
+                  <li key={`repeat-${notice.id}`} aria-hidden="true">
+                    <span className="board__icon"><FiBell /></span>
+                    <div><p>{notice.title}{notice.isNew && <em>NEW</em>}</p><time>{notice.date}</time></div>
+                    <FiArrowUpRight className="board__go" />
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Link className="board__all" to={noticeLink.to}>{noticeLink.label} →</Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Highlights() {
+  return (
+    <section className="section highlights reveal">
+      <div className="container">
+        <div className="section-head section-head--light">
+          <span className="eyebrow">Life at the campus</span>
+          <h2>Events, achievements & placements</h2>
+        </div>
+        <div className="panels">
+          {highlights.map((panel, index) => (
+            <article key={panel.id} className="panel" tabIndex={0} style={{ "--img": `url("${panel.image}")` }}>
+              <span className="panel__no">0{index + 1}</span>
+              <h3>{panel.title}</h3>
+              <ul className="panel__list">
+                {panel.items.map((item) => (
+                  <li key={item.text}><time>{item.date}</time><span>{item.text}</span></li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Facilities() {
+  return (
+    <section className="section facilities reveal">
+      <div className="container">
+        <div className="section-head">
+          <span className="eyebrow">Campus</span>
+          <h2>Facilities that support every student</h2>
+          <p>Hostels, labs, a library, sports and a hands-on workshop - everything a diploma student needs on one campus.</p>
+        </div>
+        <div className="bento">
+          {facilities.map((item, index) => {
+            const Icon = Fi[item.icon] || Fi.FiStar;
+            return (
+              <article
+                key={item.name}
+                tabIndex={0}
+                className={`tile${item.size ? ` tile--${item.size}` : ""}`}
+                style={{ "--img": `url("${item.image}")` }}
+              >
+                <div className="tile__shade" />
+                <span className="tile__icon"><Icon /></span>
+                <span className="tile__no">0{index + 1}</span>
+                <div className="tile__text">
+                  <h3>{item.name}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Courses() {
+  const [flipped, setFlipped] = useState(null); // card pinned open by click / keyboard (desktop)
+  const [auto, setAuto] = useState(() => new Set()); // cards flipped by scrolling (phones)
+  const [isTouch, setIsTouch] = useState(false);
+  const cardRefs = useRef([]);
+
+  // Small screens cannot hover (and a narrow desktop window should behave the same), so a card flips by itself
+  // while it sits in the middle of the screen and flips back when it moves out of that middle band.
+  useEffect(() => {
+    const small = window.matchMedia("(hover: none), (max-width: 860px)");
+    let observer;
+
+    const start = () => {
+      if (observer) observer.disconnect();
+      setAuto(new Set());
+      setIsTouch(small.matches);
+      if (!small.matches || typeof IntersectionObserver === "undefined") return;
+      observer = new IntersectionObserver(
+        (entries) => {
+          setAuto((current) => {
+            const next = new Set(current);
+            entries.forEach((entry) => {
+              const id = entry.target.dataset.id;
+              if (entry.isIntersecting) next.add(id);
+              else next.delete(id);
+            });
+            return next;
+          });
+        },
+        { rootMargin: "-22% 0px -22% 0px", threshold: 0.5 }
+      );
+      cardRefs.current.forEach((element) => element && observer.observe(element));
+    };
+
+    start();
+    small.addEventListener("change", start);
+    return () => { small.removeEventListener("change", start); if (observer) observer.disconnect(); };
+  }, []);
+
+  const toggle = (id) => {
+    if (isTouch) return; // small screens: the scroll position decides
+    setFlipped((current) => (current === id ? null : id));
+  };
+
+  return (
+    <section id="courses" className="section courses">
+      <div className="container">
+        <div className="section-head">
+          <span className="eyebrow">Programmes</span>
+          <h2>Our courses</h2>
+          <p>Six three-year diplomas approved by DTE Haryana and AICTE, supported by two foundation departments.</p>
+        </div>
+        <div className="flip-grid">
+          {courses.map((course, index) => {
+            const Icon = Fi[course.icon] || Fi.FiBookOpen;
+            const isOpen = auto.has(course.id) || (!isTouch && flipped === course.id);
+            return (
+              <div
+                key={course.id}
+                ref={(element) => { cardRefs.current[index] = element; }}
+                data-id={course.id}
+                className={`flip${isOpen ? " is-flipped" : ""}`}
+                tabIndex={0}
+                role="button"
+                aria-pressed={isOpen}
+                onClick={() => toggle(course.id)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    toggle(course.id);
+                  }
+                }}
+              >
+                <div className="flip__inner">
+                  <div className="flip__face flip__front">
+                    <span className="flip__num">0{index + 1}</span>
+                    <span className="flip__icon"><Icon /></span>
+                    <h3>{course.name}</h3>
+                    <div className="flip__foot">
+                      <span className="flip__seats">{course.seats ? `${course.seats} seats` : course.tag}</span>
+                      <span className="flip__hint">Details <FiArrowRight aria-hidden="true" /></span>
+                    </div>
+                  </div>
+                  <div className="flip__face flip__back">
+                    <h3>{course.name}</h3>
+                    <p>{course.text}</p>
+                    <Link to={`/departments/${course.id}`} onClick={(event) => event.stopPropagation()}>Explore department →</Link>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Recruiters() {
+  const loop = [...recruiters, ...recruiters];
+  return (
+    <section className="section recruiters reveal">
+      <div className="container">
+        <div className="section-head">
+          <span className="eyebrow">Placements</span>
+          <h2>Our recruiters</h2>
+        </div>
+      </div>
+      <div className="marquee" aria-label="Recruiting companies">
+        <ul className="marquee__track">
+          {loop.map((company, index) => (
+            <li key={index} aria-hidden={index >= recruiters.length}>
+              {company.logo ? <img src={company.logo} alt={company.name} /> : <span>{company.name}</span>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+export default function Home() {
+  useEffect(() => {
+    const sections = document.querySelectorAll("main#main .reveal");
+    if (typeof IntersectionObserver === "undefined") {
+      sections.forEach((section) => section.classList.add("is-visible"));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <main id="main">
+      <Hero />
+      <StatsBand />
+      <WhyChooseUs />
+      <PrincipalMessage />
+      <Dignitaries />
+      <NoticeBoard />
+      <Highlights />
+      <Facilities />
+      <Courses />
+      <Recruiters />
+    </main>
+  );
+}

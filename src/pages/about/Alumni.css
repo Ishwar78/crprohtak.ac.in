@@ -1,0 +1,596 @@
+/* alumni.css - styles for this page only. Every class starts with "al-" so nothing here can change another page.
+   Colours, fonts and shadows are the same variables as Home (cog blue = sky, deep navy = ink, ribbon orange). */
+
+main#main.al-page {
+  background: var(--paper, #f6f9fc);
+  overflow-x: clip;
+}
+
+/* the site has a global nowrap rule on headings, so headings here may wrap */
+main#main.al-page h1,
+main#main.al-page h2,
+main#main.al-page h3 {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* ============ HERO (shorter than the Home banner on purpose) ============ */
+.al-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  height: clamp(220px, 24vw, 320px);
+  background: linear-gradient(135deg, var(--ink-700, #0b3d6b), var(--ink-950, #031a2e));
+}
+
+/* photo fills the whole banner; if the file is missing the navy gradient stays */
+.al-hero__photo {
+  position: absolute;
+  inset: 0;
+  background-image: var(--img), linear-gradient(135deg, var(--ink-700, #0b3d6b), var(--ink-950, #031a2e));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* soft fade at the bottom so the breadcrumb always reads */
+.al-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(transparent, color-mix(in srgb, var(--ink-950, #031a2e) 38%, transparent));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.al-hero__tags {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.al-hero__tag {
+  position: absolute;
+  top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px 6px 6px;
+  border: 1px solid color-mix(in srgb, var(--white, #fff) 70%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--white, #fff) 92%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950, #031a2e) 28%, transparent);
+  color: var(--ink-900, #07294a);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+
+.al-hero__tag-icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--white, #fff);
+}
+
+.al-hero__tag-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.al-hero__tag--left {
+  left: 16px;
+}
+
+.al-hero__tag--left .al-hero__tag-icon {
+  background: var(--orange-500, #f28c28);
+}
+
+.al-hero__tag--right {
+  right: 16px;
+}
+
+.al-hero__tag--right .al-hero__tag-icon {
+  background: var(--sky-500, #1aa3d9);
+}
+
+/* breadcrumb pill, bottom-left of the photo */
+.al-crumbs {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 32px);
+  padding: 9px 16px;
+  border-left: 3px solid var(--orange-500, #f28c28);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ink-950, #031a2e) 82%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950, #031a2e) 35%, transparent);
+  color: color-mix(in srgb, var(--white, #fff) 78%, transparent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.al-crumbs a {
+  color: inherit;
+}
+
+.al-crumbs a:hover {
+  color: var(--orange-400, #f7a65a);
+}
+
+.al-crumbs svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+}
+
+.al-crumbs [aria-current] {
+  color: var(--orange-400, #f7a65a);
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============ TITLE BLOCK (under the hero) ============ */
+.al-intro {
+  padding-top: 0;
+}
+
+.al-eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange-700, #c2570c);
+}
+
+main#main.al-page .al-intro h1 {
+  margin: 8px 0 0;
+  color: var(--ink-900, #07294a);
+  font-family: var(--font-display, inherit);
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  line-height: 1.08;
+  max-width: none;
+}
+
+main#main.al-page .al-intro h1::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin-top: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--sky-500, #1aa3d9) 0 60%, var(--orange-500, #f28c28) 60%);
+}
+
+.al-intro p {
+  max-width: 62ch;
+  margin: 16px 0 0;
+  color: var(--muted, #52627a);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.6;
+}
+
+/* ============ LAYOUT: content + downloads sidebar ============ */
+.al-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  padding-top: clamp(28px, 4vw, 48px);
+  padding-bottom: clamp(44px, 6vw, 88px);
+}
+
+.al-content {
+  display: grid;
+  gap: clamp(32px, 5vw, 56px);
+  min-width: 0;
+}
+
+.al-block {
+  scroll-margin-top: 150px;
+}
+
+.al-head {
+  margin-bottom: 18px;
+}
+
+main#main.al-page .al-head h2 {
+  margin: 6px 0 0;
+  color: var(--ink-900, #07294a);
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.45rem, 2.8vw, 2.1rem);
+  line-height: 1.15;
+}
+
+.al-eyebrow--dark {
+  color: var(--orange-700, #c2570c);
+}
+
+/* ============ SIDEBAR: DOWNLOADS ONLY ============ */
+.al-side {
+  position: sticky;
+  top: 96px;
+  margin-top: 5px;
+  padding: 20px;
+  border: 1px solid var(--line, #dbe4ee);
+  border-top: 4px solid var(--orange-500, #f28c28);
+  border-radius: 18px;
+  background: var(--white, #fff);
+  box-shadow: var(--shadow-soft, 0 8px 24px rgba(3, 33, 61, 0.08));
+}
+
+main#main.al-page .al-side h2 {
+  margin: 0 0 14px;
+  color: var(--ink-900, #07294a);
+  font-family: var(--font-display, inherit);
+  font-size: 1.3rem;
+}
+
+.al-side ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.al-side a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "icon label go" "icon type go";
+  column-gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--line, #dbe4ee);
+  border-radius: 14px;
+  color: var(--ink-900, #07294a);
+  transition: background 0.25s, border-color 0.25s, transform 0.3s var(--ease, ease);
+}
+
+.al-side a:hover,
+.al-side a:focus-visible {
+  background: var(--sky-100, #e6f5fc);
+  border-color: color-mix(in srgb, var(--sky-500, #1aa3d9) 45%, transparent);
+  transform: translateX(4px);
+  outline: none;
+}
+
+.al-side__icon {
+  grid-area: icon;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--sky-100, #e6f5fc);
+  color: var(--ink-900, #07294a);
+}
+
+.al-side__label {
+  grid-area: label;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.al-side__type {
+  grid-area: type;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted, #52627a);
+}
+
+.al-side__go {
+  grid-area: go;
+  color: var(--orange-700, #c2570c);
+}
+
+/* ============ ALUMNI: welcome, two doors, voices, stay connected ============ */
+.al-welcome {
+  max-width: 66ch;
+  margin: 0;
+  padding-left: 18px;
+  border-left: 4px solid var(--orange-500, #f28c28);
+  color: var(--ink-800, #0a3158);
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1.45;
+}
+
+.al-doors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.al-door {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 24px 22px;
+  overflow: hidden;
+  border-radius: 22px;
+  color: var(--white, #fff);
+  background:
+    radial-gradient(80% 60% at 100% 0%, color-mix(in srgb, var(--sky-500, #1aa3d9) 32%, transparent), transparent 70%),
+    linear-gradient(155deg, var(--ink-800, #0a3158), var(--ink-950, #031a2e));
+  box-shadow: var(--shadow-lift, 0 18px 40px rgba(3, 33, 61, 0.22));
+  transition: transform 0.35s var(--ease, ease);
+}
+
+.al-door:nth-child(2) {
+  background:
+    radial-gradient(80% 60% at 100% 0%, color-mix(in srgb, var(--orange-500, #f28c28) 30%, transparent), transparent 70%),
+    linear-gradient(155deg, var(--ink-800, #0a3158), var(--ink-950, #031a2e));
+}
+
+.al-door:hover,
+.al-door:focus-visible {
+  transform: translateY(-5px);
+  outline: none;
+}
+
+.al-door__icon {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 16px;
+  border-radius: 15px;
+  font-size: 1.4rem;
+  color: var(--ink-950, #031a2e);
+  background: linear-gradient(135deg, var(--sky-400, #5bc0eb), var(--sky-500, #1aa3d9));
+}
+
+.al-door:nth-child(2) .al-door__icon {
+  background: linear-gradient(135deg, var(--orange-400, #f7a65a), var(--orange-500, #f28c28));
+}
+
+main#main.al-page .al-door h3 {
+  margin: 0 0 8px;
+  color: var(--white, #fff);
+  font-size: 1.3rem;
+}
+
+.al-door p {
+  flex: 1;
+  margin: 0 0 16px;
+  color: color-mix(in srgb, var(--white, #fff) 82%, transparent);
+  font-size: 0.93rem;
+  line-height: 1.55;
+}
+
+.al-door__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--orange-400, #f7a65a);
+}
+
+.al-voices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.al-voices figure {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 22px 20px;
+  border: 1px solid var(--line, #dbe4ee);
+  border-radius: 20px;
+  background: var(--white, #fff);
+  box-shadow: var(--shadow-soft, 0 8px 24px rgba(3, 33, 61, 0.08));
+}
+
+.al-voices blockquote {
+  flex: 1;
+  margin: 0;
+  color: var(--ink-900, #07294a);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.al-voices blockquote::before {
+  content: "\201C";
+  display: block;
+  font-family: var(--font-display, inherit);
+  font-size: 3rem;
+  line-height: 0.6;
+  color: var(--orange-500, #f28c28);
+}
+
+.al-voices figcaption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.al-voices__avatar {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: var(--font-display, inherit);
+  font-weight: 700;
+  color: var(--ink-950, #031a2e);
+  background: linear-gradient(135deg, var(--sky-400, #5bc0eb), var(--sky-500, #1aa3d9));
+}
+
+.al-voices figcaption span:last-child {
+  display: grid;
+  min-width: 0;
+}
+
+.al-voices strong {
+  color: var(--ink-900, #07294a);
+  font-size: 0.92rem;
+}
+
+.al-voices em {
+  color: var(--muted, #52627a);
+  font-size: 0.78rem;
+  font-style: normal;
+}
+
+.al-contributions {
+  padding: 22px 24px;
+  border: 1px solid var(--line, #dbe4ee);
+  border-radius: 20px;
+  background: var(--white, #fff);
+  box-shadow: var(--shadow-soft, 0 8px 24px rgba(3, 33, 61, 0.08));
+}
+
+.al-contributions p {
+  margin: 0 0 12px;
+  color: var(--muted, #52627a);
+  line-height: 1.6;
+}
+
+.al-contributions ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 22px;
+  color: var(--ink-800, #0a3158);
+  line-height: 1.55;
+}
+
+.al-connect {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 26px 28px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--sky-100, #e6f5fc), #fff0df);
+  border: 1px solid var(--line, #dbe4ee);
+}
+
+main#main.al-page .al-connect h2 {
+  margin: 0 0 4px;
+  color: var(--ink-900, #07294a);
+  font-family: var(--font-display, inherit);
+  font-size: 1.4rem;
+}
+
+.al-connect p {
+  max-width: 46ch;
+  margin: 0;
+  color: var(--muted, #52627a);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.al-connect__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--white, #fff);
+  background: var(--ink-900, #07294a);
+  overflow-wrap: anywhere;
+  transition: background 0.25s, transform 0.3s var(--ease, ease);
+}
+
+.al-connect__btn:hover {
+  background: var(--orange-700, #c2570c);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 800px) {
+  .al-doors,
+  .al-voices {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .al-door,
+  .al-connect__btn {
+    transition: none;
+  }
+
+  .al-door:hover,
+  .al-connect__btn:hover {
+    transform: none;
+  }
+}
+
+/* ============ RESPONSIVE (shared parts) ============ */
+@media (max-width: 960px) {
+  .al-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* downloads move under the content and stop sticking */
+  .al-side {
+    position: static;
+  }
+}
+
+/* phones and tablets: a fixed wide shape (5:2), no top pills, a small breadcrumb */
+@media (max-width: 900px) {
+  .al-hero {
+    height: auto;
+    aspect-ratio: 5 / 2;
+  }
+
+  .al-hero__tags {
+    display: none;
+  }
+
+  .al-crumbs {
+    left: 10px;
+    bottom: 10px;
+    padding: 6px 12px;
+    gap: 6px;
+    font-size: 0.72rem;
+  }
+
+  .al-crumbs svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .al-side a {
+    transition: none;
+  }
+
+  .al-side a:hover {
+    transform: none;
+  }
+}

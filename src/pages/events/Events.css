@@ -1,0 +1,748 @@
+/* Events.css - styles for the Events page only. Every class starts with "evt-" so nothing here can change another page.
+   Colours, fonts and shadows are the shared theme variables (sky blue, deep navy, ribbon orange).
+   Type rule: body text 16px or more, small text never under 12px. */
+
+/* ============ HERO ============ */
+.evt-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  height: clamp(220px, 24vw, 320px);
+  background:
+    radial-gradient(65% 125% at 82% 0%, color-mix(in srgb, var(--sky-500) 30%, transparent), transparent 68%),
+    radial-gradient(42% 100% at 4% 100%, color-mix(in srgb, var(--orange-500) 20%, transparent), transparent 72%),
+    linear-gradient(135deg, var(--ink-700), var(--ink-950));
+}
+
+/* the real photo sits on top; if the file is missing, the glows and dot grid underneath show */
+.evt-hero__photo {
+  position: absolute;
+  inset: 0;
+  background-image:
+    var(--img),
+    radial-gradient(55% 130% at 88% 0%, color-mix(in srgb, var(--sky-500) 40%, transparent), transparent 66%),
+    radial-gradient(38% 100% at 0% 100%, color-mix(in srgb, var(--orange-500) 24%, transparent), transparent 70%),
+    radial-gradient(circle, color-mix(in srgb, var(--surface-blue-light) 17%, transparent) 1.2px, transparent 1.7px),
+    linear-gradient(135deg, var(--ink-700), var(--ink-950));
+  background-size: cover, auto, auto, 26px 26px, auto;
+  background-position: center, 0 0, 0 0, 0 0, 0 0;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat, no-repeat;
+}
+
+.evt-hero__tags {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.evt-hero__tag {
+  position: absolute;
+  top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px 6px 6px;
+  border: 1px solid color-mix(in srgb, var(--surface-blue-light) 70%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-blue-light) 92%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
+  color: var(--ink-900);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.evt-hero__tag--left { left: 16px; }
+.evt-hero__tag--right { right: 16px; }
+
+.evt-hero__tag-icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--surface-blue-light);
+}
+
+.evt-hero__tag-icon svg { width: 15px; height: 15px; }
+.evt-hero__tag--left .evt-hero__tag-icon { background: var(--orange-500); }
+.evt-hero__tag--right .evt-hero__tag-icon { background: var(--sky-500); }
+
+/* breadcrumb pill, bottom-left of the banner */
+.evt-crumbs {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 32px);
+  padding: 9px 16px;
+  border-left: 3px solid var(--orange-500);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ink-950) 84%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
+  color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.evt-crumbs a { color: inherit; transition: color 0.2s; }
+.evt-crumbs a:hover { color: var(--orange-400); }
+.evt-crumbs svg { flex: none; width: 14px; height: 14px; opacity: 0.7; }
+.evt-crumbs [aria-current] { color: var(--orange-400); font-weight: 700; }
+
+/* phones and tablets: a fixed wide banner (5:2), no top pills, a small breadcrumb */
+@media (max-width: 900px) {
+  .evt-hero { height: auto; aspect-ratio: 5 / 2; }
+  .evt-hero__tags { display: none; }
+  .evt-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.78rem; }
+  .evt-crumbs svg { width: 12px; height: 12px; }
+}
+
+main#main.evt-page {
+  background:
+    radial-gradient(60% 36% at 100% 0%, color-mix(in srgb, var(--sky-500) 9%, transparent), transparent 70%),
+    var(--surface-orange);
+  overflow-x: clip;
+}
+
+/* the site has a global nowrap rule on headings, so headings here may wrap */
+main#main.evt-page h1,
+main#main.evt-page h2,
+main#main.evt-page h3 {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.evt-wrap {
+  display: grid;
+  gap: clamp(36px, 5vw, 64px);
+  padding-top: clamp(14px, 2vw, 28px);
+  padding-bottom: clamp(48px, 6vw, 84px);
+}
+
+.evt-block {
+  scroll-margin-top: 130px;
+}
+
+.evt-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange-700);
+}
+
+.evt-eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange-500);
+}
+
+.evt-eyebrow--line::before {
+  width: 32px;
+  height: 2px;
+  border-radius: 2px;
+}
+
+/* ============ BUTTONS ============ */
+.evt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.evt-btn svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+.evt-btn:hover {
+  transform: translateY(-3px);
+}
+
+.evt-btn:focus-visible {
+  outline: 3px solid var(--sky-700);
+  outline-offset: 3px;
+}
+
+.evt-btn--primary {
+  background: linear-gradient(135deg, var(--orange-400), var(--orange-500));
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--orange-500) 34%, transparent);
+  color: var(--ink-950);
+}
+
+.evt-btn--ghost {
+  border-color: color-mix(in srgb, var(--white) 38%, transparent);
+  background: color-mix(in srgb, var(--white) 8%, transparent);
+  color: var(--white);
+}
+
+.evt-btn--ghost:hover {
+  background: var(--white);
+  color: var(--ink-900);
+}
+
+/* ============ TOP: title (left) + navy card (right) ============ */
+.evt-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(20px, 3vw, 44px);
+  align-items: center;
+}
+
+main#main.evt-page .evt-intro h1 {
+  margin: 10px 0 0;
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 4.2vw, 3rem);
+  line-height: 1.08;
+  max-width: none;
+}
+
+main#main.evt-page .evt-intro h1::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin-top: 14px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--sky-500) 0 60%, var(--orange-500) 60%);
+}
+
+.evt-intro p {
+  max-width: 48ch;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  line-height: 1.65;
+}
+
+/* ============ SECTION HEADINGS ============ */
+.evt-head {
+  margin-bottom: clamp(18px, 2.2vw, 26px);
+}
+
+main#main.evt-page .evt-head h2 {
+  margin: 8px 0 0;
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  line-height: 1.12;
+}
+
+main#main.evt-page .evt-head h2 span {
+  color: var(--orange-500);
+}
+
+/* ============ NOTICE (sky left edge, like the other info cards) ============ */
+.evt-notice {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: clamp(20px, 2.8vw, 30px);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--sky-500);
+  border-radius: 24px;
+  background: linear-gradient(180deg, var(--white), var(--surface-blue-light));
+  box-shadow: var(--shadow-soft);
+}
+
+.evt-notice__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: linear-gradient(150deg, var(--ink-800), var(--ink-950));
+  color: var(--orange-400);
+  font-size: 1.5rem;
+}
+
+main#main.evt-page .evt-notice h2 {
+  margin: 0 0 6px;
+  color: var(--ink-900);
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  line-height: 1.25;
+}
+
+.evt-notice p {
+  max-width: 70ch;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* ============ RELATED STUDENT PAGES ============ */
+.evt-related {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 18px;
+}
+
+.evt-related__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 26px;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--sky-500);
+  border-radius: 22px;
+  background: linear-gradient(180deg, var(--white), var(--surface-blue-light));
+  box-shadow: var(--shadow-soft);
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-left-color 0.3s;
+}
+
+.evt-related__item strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.evt-related__item svg {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--sky-700);
+  transition: transform 0.3s var(--ease), color 0.3s;
+}
+
+.evt-related__item:hover,
+.evt-related__item:focus-visible {
+  transform: translateY(-4px);
+  border-left-color: var(--orange-500);
+  box-shadow: var(--shadow-lift);
+}
+
+.evt-related__item:hover svg {
+  transform: translateX(4px);
+  color: var(--orange-500);
+}
+
+.evt-related__item:focus-visible {
+  outline: 3px solid var(--sky-700);
+  outline-offset: 3px;
+}
+
+/* ============ HELP STRIP ============ */
+.evt-help {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px 36px;
+  padding: clamp(26px, 3.6vw, 44px);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 30px;
+  color: var(--white);
+  background:
+    radial-gradient(60% 140% at 0% 0%, color-mix(in srgb, var(--sky-500) 30%, transparent), transparent 70%),
+    radial-gradient(40% 120% at 100% 100%, color-mix(in srgb, var(--orange-500) 26%, transparent), transparent 70%),
+    linear-gradient(130deg, var(--ink-800), var(--ink-950));
+  box-shadow: var(--shadow-lift);
+}
+
+main#main.evt-page .evt-help h2 {
+  color: var(--white);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  line-height: 1.15;
+}
+
+.evt-help p {
+  max-width: 46ch;
+  margin-top: 8px;
+  color: color-mix(in srgb, var(--white) 84%, transparent);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.evt-help__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ============ NAVY COUNT CARD ============ */
+/* compact: icon beside the number and label, the note pill underneath */
+.evt-count {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 18px;
+  row-gap: 2px;
+  width: 100%;
+  max-width: 440px;
+  justify-self: end;
+  padding: clamp(20px, 2.4vw, 28px);
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid color-mix(in srgb, var(--sky-400) 22%, transparent);
+  border-radius: 22px;
+  color: var(--white);
+  background:
+    radial-gradient(70% 110% at 0% 0%, color-mix(in srgb, var(--sky-500) 26%, transparent), transparent 70%),
+    radial-gradient(45% 90% at 100% 100%, color-mix(in srgb, var(--orange-500) 18%, transparent), transparent 70%),
+    linear-gradient(135deg, var(--ink-700), var(--ink-900) 55%, var(--ink-950));
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--ink-900) 22%, transparent);
+}
+
+.evt-count::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle, color-mix(in srgb, var(--white) 8%, transparent) 1.2px, transparent 1.7px) 0 0 / 22px 22px;
+  mask-image: linear-gradient(135deg, transparent 40%, var(--ink-950));
+  -webkit-mask-image: linear-gradient(135deg, transparent 40%, var(--ink-950));
+}
+
+.evt-count__icon {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--orange-400), var(--orange-500));
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--orange-500) 30%, transparent);
+  color: var(--ink-950);
+  font-size: 1.25rem;
+}
+
+.evt-count__number {
+  margin: 0;
+  color: var(--orange-400);
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 4.6vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.evt-count__label {
+  margin: 0;
+  color: color-mix(in srgb, var(--white) 92%, transparent);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.evt-count__note {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin: 14px 0 0;
+  padding: 5px 14px;
+  border: 1px solid color-mix(in srgb, var(--white) 22%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--white) 9%, transparent);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ============ PHOTO (and its placeholder) ============ */
+.evt-photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-blue);
+}
+
+/* the picture fills its frame and never decides the frame's size, so a tall photo cannot stretch a card */
+.evt-photo img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.evt-photo--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: color-mix(in srgb, var(--ink-900) 60%, transparent);
+  font-size: 1rem;
+  font-weight: 700;
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--ink-900) 12%, transparent) 1.2px, transparent 1.7px) 0 0 / 22px 22px,
+    linear-gradient(135deg, var(--surface-blue), var(--surface-blue-light));
+}
+
+.evt-photo--empty svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* ============ FEATURED EVENT ============ */
+.evt-featured {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: linear-gradient(180deg, var(--white), var(--surface-blue-light));
+  box-shadow: var(--shadow-soft);
+}
+
+.evt-featured .evt-photo {
+  min-height: clamp(220px, 26vw, 330px);
+}
+
+.evt-featured__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: clamp(22px, 3vw, 38px);
+}
+
+main#main.evt-page .evt-featured h2 {
+  margin: 0;
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  line-height: 1.15;
+}
+
+.evt-featured__body p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* date and place lines */
+.evt-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink-900);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.evt-facts:empty { display: none; }
+
+.evt-facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.evt-facts svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--orange-500);
+}
+
+/* ============ EVENT CARDS (same size) ============ */
+/* 3 columns on desktop, 2 on tablet, 1 on mobile (breakpoints in RESPONSIVE below).
+   Rows size themselves, so any number of events just flows onto new rows. */
+.evt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.evt-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(180deg, var(--white), var(--surface-blue-light));
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s;
+}
+
+.evt-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 1;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sky-500), var(--orange-500));
+}
+
+.evt-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--sky-500) 40%, transparent);
+  box-shadow: 0 16px 36px color-mix(in srgb, var(--ink-900) 15%, transparent);
+}
+
+/* every photo has the same shape, whatever the original picture size */
+.evt-card .evt-photo {
+  flex: none;
+  aspect-ratio: 16 / 10;
+}
+
+.evt-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 18px 20px 22px;
+}
+
+.evt-card__kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: var(--orange-100);
+  color: var(--orange-700);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.evt-card__kind svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* long titles and texts stop at 3 lines so every card keeps its alignment */
+main#main.evt-page .evt-card h3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  margin: 0;
+  overflow: hidden;
+  color: var(--ink-900);
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+.evt-card__body p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  margin: 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.evt-card .evt-facts {
+  gap: 4px 16px;
+  font-size: 0.95rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .evt-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .evt-top {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .evt-count {
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  .evt-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .evt-featured .evt-photo {
+    min-height: 0;
+    aspect-ratio: 2 / 1;
+  }
+}
+
+@media (max-width: 620px) {
+  .evt-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .evt-featured .evt-photo {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 640px) {
+  .evt-notice {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .evt-related__item {
+    padding: 18px 20px;
+  }
+
+  .evt-help__actions .evt-btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .evt-btn,
+  .evt-card,
+  .evt-related__item,
+  .evt-related__item svg {
+    transition: none;
+  }
+
+  .evt-btn:hover,
+  .evt-card:hover,
+  .evt-related__item:hover {
+    transform: none;
+  }
+}

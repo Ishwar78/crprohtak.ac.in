@@ -1,0 +1,577 @@
+/* Extracurricular.css - styles for this page only. Every class starts with "ext-" so nothing here can change another page.
+   Colours, fonts and shadows are the same variables as Home (cog blue = sky, deep navy = ink, ribbon orange). */
+
+main#main.ext-page {
+  background: var(--paper, #f6f9fc);
+  overflow-x: clip;
+}
+
+/* the site has a global nowrap rule on headings, so headings here may wrap */
+main#main.ext-page h1,
+main#main.ext-page h2,
+main#main.ext-page h3 {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* ============ HERO (shorter than the Home banner on purpose) ============ */
+.ext-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  height: clamp(220px, 24vw, 320px);
+  background: linear-gradient(135deg, var(--ink-700, #0b3d6b), var(--ink-950, #031a2e));
+}
+
+/* photo fills the whole banner; if the file is missing the navy gradient stays */
+.ext-hero__photo {
+  position: absolute;
+  inset: 0;
+  background-image: var(--img), linear-gradient(135deg, var(--ink-700, #0b3d6b), var(--ink-950, #031a2e));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* soft fade at the bottom so the breadcrumb always reads */
+.ext-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(transparent, color-mix(in srgb, var(--ink-950, #031a2e) 38%, transparent));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ext-hero__tags {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ext-hero__tag {
+  position: absolute;
+  top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px 6px 6px;
+  border: 1px solid color-mix(in srgb, var(--white, #fff) 70%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--white, #fff) 92%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950, #031a2e) 28%, transparent);
+  color: var(--ink-900, #07294a);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+
+.ext-hero__tag-icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--white, #fff);
+}
+
+.ext-hero__tag-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.ext-hero__tag--left {
+  left: 16px;
+}
+
+.ext-hero__tag--left .ext-hero__tag-icon {
+  background: var(--orange-500, #f28c28);
+}
+
+.ext-hero__tag--right {
+  right: 16px;
+}
+
+.ext-hero__tag--right .ext-hero__tag-icon {
+  background: var(--sky-500, #1aa3d9);
+}
+
+/* breadcrumb pill, bottom-left of the photo */
+.ext-crumbs {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 32px);
+  padding: 9px 16px;
+  border-left: 3px solid var(--orange-500, #f28c28);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ink-950, #031a2e) 82%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950, #031a2e) 35%, transparent);
+  color: color-mix(in srgb, var(--white, #fff) 78%, transparent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ext-crumbs a {
+  color: inherit;
+}
+
+.ext-crumbs a:hover {
+  color: var(--orange-400, #f7a65a);
+}
+
+.ext-crumbs svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+}
+
+.ext-crumbs [aria-current] {
+  color: var(--orange-400, #f7a65a);
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============ TITLE BLOCK (under the hero) ============ */
+.ext-intro {
+  padding-top: 0;
+}
+
+.ext-eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange-700, #c2570c);
+}
+
+main#main.ext-page .ext-intro h1 {
+  margin: 8px 0 0;
+  color: var(--ink-900, #07294a);
+  font-family: var(--font-display, inherit);
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  line-height: 1.08;
+  max-width: none;
+}
+
+main#main.ext-page .ext-intro h1::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin-top: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--sky-500, #1aa3d9) 0 60%, var(--orange-500, #f28c28) 60%);
+}
+
+.ext-intro p {
+  max-width: 62ch;
+  margin: 16px 0 0;
+  color: var(--muted, #52627a);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.6;
+}
+
+/* ============ LAYOUT: content + downloads sidebar ============ */
+.ext-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  padding-top: clamp(28px, 4vw, 48px);
+  padding-bottom: clamp(44px, 6vw, 88px);
+}
+
+.ext-content {
+  display: grid;
+  gap: clamp(32px, 5vw, 56px);
+  min-width: 0;
+}
+
+.ext-block {
+  scroll-margin-top: 150px;
+}
+
+.ext-head {
+  margin-bottom: 18px;
+}
+
+main#main.ext-page .ext-head h2 {
+  margin: 6px 0 0;
+  color: var(--ink-900, #07294a);
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.45rem, 2.8vw, 2.1rem);
+  line-height: 1.15;
+}
+
+.ext-eyebrow--dark {
+  color: var(--orange-700, #c2570c);
+}
+
+/* ============ SIDEBAR: DOWNLOADS ONLY ============ */
+.ext-side {
+  position: sticky;
+  top: 96px;
+  padding: 20px;
+  border: 1px solid var(--line, #dbe4ee);
+  border-top: 4px solid var(--orange-500, #f28c28);
+  border-radius: 18px;
+  background: var(--white, #fff);
+  box-shadow: var(--shadow-soft, 0 8px 24px rgba(3, 33, 61, 0.08));
+}
+
+main#main.ext-page .ext-side h2 {
+  margin: 0 0 14px;
+  color: var(--ink-900, #07294a);
+  font-family: var(--font-display, inherit);
+  font-size: 1.3rem;
+}
+
+.ext-side ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ext-side a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "icon label go" "icon type go";
+  column-gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--line, #dbe4ee);
+  border-radius: 14px;
+  color: var(--ink-900, #07294a);
+  transition: background 0.25s, border-color 0.25s, transform 0.3s var(--ease, ease);
+}
+
+.ext-side a:hover,
+.ext-side a:focus-visible {
+  background: var(--sky-100, #e6f5fc);
+  border-color: color-mix(in srgb, var(--sky-500, #1aa3d9) 45%, transparent);
+  transform: translateX(4px);
+  outline: none;
+}
+
+.ext-side__icon {
+  grid-area: icon;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--sky-100, #e6f5fc);
+  color: var(--ink-900, #07294a);
+}
+
+.ext-side__label {
+  grid-area: label;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.ext-side__type {
+  grid-area: type;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted, #52627a);
+}
+
+.ext-side__go {
+  grid-area: go;
+  color: var(--orange-700, #c2570c);
+}
+
+/* ============ EXTRACURRICULAR: NCC band, sports + culture, achievements, upcoming ============ */
+.ext-eyebrow--light {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--orange-400, #f7a65a);
+}
+
+.ext-ncc {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 32px);
+  align-items: center;
+  padding: clamp(20px, 3vw, 30px);
+  border-radius: 26px;
+  color: var(--white, #fff);
+  background:
+    radial-gradient(80% 60% at 100% 0%, color-mix(in srgb, var(--sky-500, #1aa3d9) 30%, transparent), transparent 70%),
+    linear-gradient(155deg, var(--ink-800, #0a3158), var(--ink-950, #031a2e));
+  box-shadow: var(--shadow-lift, 0 18px 40px rgba(3, 33, 61, 0.22));
+}
+
+.ext-ncc__year {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  aspect-ratio: 1;
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--white, #fff) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--white, #fff) 20%, transparent);
+}
+
+.ext-ncc__year span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sky-400, #5bc0eb);
+}
+
+.ext-ncc__year strong {
+  font-family: var(--font-display, inherit);
+  font-size: 2.6rem;
+  line-height: 1.1;
+  color: var(--orange-400, #f7a65a);
+}
+
+main#main.ext-page .ext-ncc h2 {
+  margin: 8px 0 8px;
+  color: var(--white, #fff);
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+}
+
+.ext-ncc p {
+  margin: 0;
+  color: color-mix(in srgb, var(--white, #fff) 84%, transparent);
+  line-height: 1.65;
+}
+
+.ext-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.ext-pair section {
+  padding: 22px;
+  border: 1px solid var(--line, #dbe4ee);
+  border-radius: 22px;
+  background: linear-gradient(180deg, var(--white, #fff), var(--cream, #fdf8f1));
+  box-shadow: var(--shadow-soft, 0 8px 24px rgba(3, 33, 61, 0.08));
+}
+
+.ext-pair__icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 12px;
+  border-radius: 14px;
+  font-size: 1.3rem;
+  color: var(--ink-950, #031a2e);
+  background: linear-gradient(135deg, var(--sky-400, #5bc0eb), var(--sky-500, #1aa3d9));
+}
+
+.ext-culture .ext-pair__icon {
+  background: linear-gradient(135deg, var(--orange-400, #f7a65a), var(--orange-500, #f28c28));
+}
+
+main#main.ext-page .ext-pair h2 {
+  margin: 0 0 10px;
+  color: var(--ink-900, #07294a);
+  font-family: var(--font-display, inherit);
+  font-size: 1.3rem;
+}
+
+.ext-sports ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ext-sports li {
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--ink-800, #0a3158);
+  background: var(--sky-100, #e6f5fc);
+}
+
+.ext-culture p {
+  margin: 0;
+  color: var(--muted, #52627a);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.ext-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ext-list li {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 18px 14px 14px;
+  border-left: 4px solid var(--orange-500, #f28c28);
+  border-radius: 16px;
+  background: var(--white, #fff);
+  box-shadow: var(--shadow-soft, 0 8px 24px rgba(3, 33, 61, 0.08));
+}
+
+.ext-list__icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  font-size: 1.25rem;
+  color: var(--white, #fff);
+  background: var(--orange-500, #f28c28);
+}
+
+.ext-list time {
+  color: var(--orange-700, #c2570c);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.ext-list p {
+  margin: 2px 0 0;
+  color: var(--ink-900, #07294a);
+  font-weight: 600;
+}
+
+.ext-upcoming {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ext-upcoming li {
+  padding: 16px;
+  border-radius: 18px;
+  color: var(--white, #fff);
+  background: linear-gradient(155deg, var(--ink-800, #0a3158), var(--ink-950, #031a2e));
+  box-shadow: var(--shadow-soft, 0 8px 24px rgba(3, 33, 61, 0.08));
+}
+
+.ext-upcoming li:nth-child(even) {
+  background:
+    radial-gradient(80% 60% at 100% 0%, color-mix(in srgb, var(--sky-500, #1aa3d9) 28%, transparent), transparent 70%),
+    linear-gradient(155deg, var(--ink-800, #0a3158), var(--ink-950, #031a2e));
+}
+
+.ext-upcoming__date {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--orange-400, #f7a65a);
+}
+
+.ext-upcoming p {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+@media (max-width: 800px) {
+  .ext-ncc {
+    grid-template-columns: 1fr;
+  }
+
+  .ext-ncc__year {
+    width: 130px;
+    aspect-ratio: auto;
+    padding: 14px;
+  }
+
+  .ext-pair,
+  .ext-upcoming {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============ RESPONSIVE (shared parts) ============ */
+@media (max-width: 960px) {
+  .ext-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* downloads move under the content and stop sticking */
+  .ext-side {
+    position: static;
+  }
+}
+
+/* phones and tablets: a fixed wide shape (5:2), no top pills, a small breadcrumb */
+@media (max-width: 900px) {
+  .ext-hero {
+    height: auto;
+    aspect-ratio: 5 / 2;
+  }
+
+  .ext-hero__tags {
+    display: none;
+  }
+
+  .ext-crumbs {
+    left: 10px;
+    bottom: 10px;
+    padding: 6px 12px;
+    gap: 6px;
+    font-size: 0.72rem;
+  }
+
+  .ext-crumbs svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ext-side a {
+    transition: none;
+  }
+
+  .ext-side a:hover {
+    transform: none;
+  }
+}
