@@ -75,7 +75,7 @@ main#main.fac-page h4 {
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
   color: var(--ink-900);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -132,7 +132,7 @@ main#main.fac-page h4 {
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
   color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -338,7 +338,7 @@ main#main.fac-page .fac-head h2 span {
 
 .fac-tab__label {
   display: block;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 700;
   line-height: 1.25;
   white-space: normal;
@@ -422,7 +422,7 @@ main#main.fac-page .fac-head h2 span {
   border-radius: 999px;
   background: var(--surface-orange);
   color: var(--orange-700);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -589,7 +589,7 @@ main#main.fac-page .fac-panel h3 {
 }
 
 .fac-photo__empty span {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -664,7 +664,7 @@ main#main.fac-page .fac-subhead::before {
 }
 
 .fac-facts dt {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -723,7 +723,7 @@ main#main.fac-page .fac-subhead::before {
 .fac-strip dd {
   margin: 0;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.3;
 }
 
@@ -822,7 +822,7 @@ main#main.fac-page .fac-subhead::before {
     bottom: 10px;
     padding: 6px 12px;
     gap: 6px;
-    font-size: 0.78rem;
+    font-size: 0.95rem;
   }
 
   .fac-crumbs svg {
@@ -863,7 +863,7 @@ main#main.fac-page .fac-subhead::before {
   }
 
   .fac-tab__label {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     white-space: nowrap;
   }
 
@@ -885,7 +885,7 @@ main#main.fac-page .fac-subhead::before {
   }
 
   .fac-stats dd {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
 
   /* institute stats become a 2 x 2 grid so the labels stay readable */
@@ -911,7 +911,7 @@ main#main.fac-page .fac-subhead::before {
   }
 
   .fac-strip dd {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
 }
 

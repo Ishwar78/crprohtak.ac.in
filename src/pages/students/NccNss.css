@@ -60,7 +60,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
   color: var(--ink-900);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -102,7 +102,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
   color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -117,7 +117,7 @@
 @media (max-width: 900px) {
   .ncc-hero { height: auto; aspect-ratio: 5 / 2; }
   .ncc-hero__tags { display: none; }
-  .ncc-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.78rem; }
+  .ncc-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.95rem; }
   .ncc-crumbs svg { width: 12px; height: 12px; }
 }
 
@@ -309,7 +309,7 @@ main#main.ncc-page .ncc-intro h1::after {
   border: 1px solid color-mix(in srgb, var(--white) 24%, transparent);
   border-radius: 999px;
   background: color-mix(in srgb, var(--white) 10%, transparent);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -522,7 +522,7 @@ main#main.ncc-page .ncc-help h2 {
 .ncc-glance dd {
   margin: 0;
   color: color-mix(in srgb, var(--white) 82%, transparent);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   line-height: 1.3;
 }
 
@@ -564,7 +564,7 @@ main#main.ncc-page .ncc-help h2 {
 
 .ncc-facts dt {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -624,7 +624,7 @@ main#main.ncc-page .ncc-help h2 {
 }
 
 .ncc-photo__empty span {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -740,7 +740,7 @@ main#main.ncc-page .ncc-help h2 {
   border-radius: 999px;
   background: var(--surface-orange);
   color: var(--orange-700);
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.06em;
 }

@@ -65,7 +65,7 @@ main#main.crs-page h3 {
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
   color: var(--ink-900);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -122,7 +122,7 @@ main#main.crs-page h3 {
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
   color: color-mix(in srgb, var(--white) 78%, transparent);
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -157,7 +157,7 @@ main#main.crs-page h3 {
 
 .crs-eyebrow {
   display: inline-block;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -289,14 +289,14 @@ main#main.crs-page .crs-side h2 {
 
 .crs-side__label {
   grid-area: label;
-  font-size: 0.92rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.3;
 }
 
 .crs-side__type {
   grid-area: type;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--muted);
@@ -343,7 +343,7 @@ main#main.crs-page .crs-side h2 {
 
 .crs-summary dd {
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   color: color-mix(in srgb, var(--white) 84%, transparent);
 }
 
@@ -416,7 +416,7 @@ main#main.crs-page .crs-card h3 {
 .crs-card p {
   margin: 0 0 18px;
   color: var(--muted);
-  font-size: 0.93rem;
+  font-size: 1rem;
   line-height: 1.55;
 }
 
@@ -434,7 +434,7 @@ main#main.crs-page .crs-card h3 {
 .crs-card__seats {
   padding: 6px 14px;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--orange-700);
   background: var(--orange-100);
@@ -444,7 +444,7 @@ main#main.crs-page .crs-card h3 {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--sky-700);
 }
@@ -516,7 +516,7 @@ main#main.crs-page .crs-found h3 {
 .crs-found p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   line-height: 1.5;
 }
 
@@ -594,7 +594,7 @@ main#main.crs-page .crs-adm h3 {
   }
 
   .crs-summary dd {
-    font-size: 0.74rem;
+    font-size: 0.95rem;
     line-height: 1.3;
   }
 }
@@ -643,7 +643,7 @@ main#main.crs-page .crs-adm h3 {
     bottom: 10px;
     padding: 6px 12px;
     gap: 6px;
-    font-size: 0.72rem;
+    font-size: 0.95rem;
   }
 
   .crs-crumbs svg {

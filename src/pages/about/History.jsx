@@ -48,7 +48,7 @@ const mission = [
 const downloads = [
   { label: "Extension of Approval, 2025-26", href: "/docs/extension-of-approval-2025-26.pdf", type: "PDF" },
   { label: "Affiliation, 2024-25", href: "/docs/affiliation-2024-25.pdf", type: "PDF" },
-  { label: "Mandatory Disclosure, 2025", href: "/docs/mandatory-disclosure-2025.pdf", type: "PDF" },
+  { label: "Mandatory Disclosure, 2025", href: "/docs/mandatory-disclosure-by-2025.docx", type: "DOCX" },
 ];
 
 export default function History() {

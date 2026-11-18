@@ -60,7 +60,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
   color: var(--ink-900);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -102,7 +102,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
   color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -117,7 +117,7 @@
 @media (max-width: 900px) {
   .app-hero { height: auto; aspect-ratio: 5 / 2; }
   .app-hero__tags { display: none; }
-  .app-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.78rem; }
+  .app-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.95rem; }
   .app-crumbs svg { width: 12px; height: 12px; }
 }
 
@@ -309,7 +309,7 @@ main#main.app-page .app-intro h1::after {
   border: 1px solid color-mix(in srgb, var(--white) 24%, transparent);
   border-radius: 999px;
   background: color-mix(in srgb, var(--white) 10%, transparent);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -593,7 +593,7 @@ main#main.app-page .app-trade h3 {
   margin-top: auto;
   padding-top: 6px;
   color: var(--orange-700);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 700;
 }
 

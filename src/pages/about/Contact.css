@@ -50,7 +50,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
   color: var(--ink-900);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -92,7 +92,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
   color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -107,7 +107,7 @@
 @media (max-width: 900px) {
   .cnt-hero { height: auto; aspect-ratio: 5 / 2; }
   .cnt-hero__tags { display: none; }
-  .cnt-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.78rem; }
+  .cnt-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.95rem; }
   .cnt-crumbs svg { width: 12px; height: 12px; }
 }
 
@@ -436,7 +436,7 @@ main#main.cnt-page .cnt-place h2 {
   place-items: center;
   width: 50px;
   height: 50px;
-  border-radius: 16px;
+  border-radius: 10px;
   background: linear-gradient(150deg, var(--ink-800), var(--ink-950));
   color: var(--orange-400);
   font-size: 1.3rem;
@@ -776,7 +776,7 @@ main#main.cnt-page .cnt-modal__head h2 {
 
 .cnt-field__error {
   color: var(--danger);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
 }
 
@@ -853,4 +853,171 @@ main#main.cnt-page .cnt-modal__done h3 {
   .cnt-form:hover {
     transform: none;
   }
+}
+
+/* ============ INLINE MESSAGE FORM ============ */
+/* Reuses the exact popup header, fields and buttons; only the container is now in normal page flow. */
+.cnt-message-section {
+  scroll-margin-top: 130px;
+}
+
+.cnt-inline-form {
+  width: min(100%, 760px);
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: var(--shadow-soft);
+}
+
+.cnt-inline-form .cnt-modal__panel {
+  max-height: none;
+}
+
+.cnt-inline-form .cnt-modal__body {
+  overflow: visible;
+}
+
+/* ============ PREMIUM INLINE MESSAGE FORM ============ */
+/* .cnt-wrap is a CSS grid with a 36–64px row gap. Cancel that gap only
+   after this form so Online forms sits close without changing other sections. */
+.cnt-message-section {
+  scroll-margin-top: 130px;
+  margin-bottom: calc(-1 * clamp(36px, 5vw, 64px) + 18px);
+}
+
+.cnt-inline-form {
+  width: 100%;
+  margin-inline: auto;
+  position: relative;
+  overflow: hidden;
+  border: 1.5px solid color-mix(in srgb, var(--sky-700) 34%, var(--line));
+  border-top: 5px solid var(--orange-500);
+  border-radius: 20px;
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 18px 48px color-mix(in srgb, var(--ink-950) 13%, transparent);
+}
+
+.cnt-inline-form .cnt-modal__head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 17px 24px;
+  text-align: center;
+  background: linear-gradient(120deg, var(--ink-800), var(--ink-950));
+}
+
+.cnt-inline-form .cnt-modal__head::after {
+  display: none;
+}
+
+main#main.cnt-page .cnt-inline-form .cnt-modal__head h2 {
+  margin: 0;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.cnt-inline-form .cnt-modal__body {
+  gap: 22px;
+  padding: 26px 30px 28px;
+  background: linear-gradient(180deg, var(--white) 0%, var(--surface-blue-light) 100%);
+}
+
+.cnt-inline-form .cnt-fields {
+  gap: 20px 22px;
+}
+
+.cnt-inline-form .cnt-form-intro {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--sky-700) 18%, var(--line));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--sky-500) 7%, var(--white));
+}
+
+.cnt-form-intro__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: var(--ink-800);
+  color: var(--white);
+}
+
+.cnt-form-intro__icon svg { width: 18px; height: 18px; }
+.cnt-form-intro > div { display: grid; gap: 3px; min-width: 0; }
+.cnt-form-intro strong { color: var(--ink-900); font-size: .98rem; }
+.cnt-form-intro > div span { color: var(--muted); font-size: 0.95rem; line-height: 1.4; }
+.cnt-form-intro__required { margin-left: auto; color: var(--muted); font-size: 0.95rem; white-space: nowrap; }
+
+
+.cnt-inline-form .cnt-field {
+  gap: 8px;
+}
+
+.cnt-inline-form .cnt-field label {
+  font-size: .96rem;
+  letter-spacing: .01em;
+}
+
+.cnt-inline-form .cnt-field input,
+.cnt-inline-form .cnt-field select,
+.cnt-inline-form .cnt-field textarea {
+  min-height: 50px;
+  padding: 13px 15px;
+  border: 1px solid color-mix(in srgb, var(--ink-900) 18%, transparent);
+  border-radius: 10px;
+  background: var(--white);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--ink-950) 6%, transparent);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.cnt-inline-form .cnt-field textarea {
+  min-height: 132px;
+}
+
+.cnt-inline-form .cnt-modal__actions {
+  padding-top: 18px;
+  border-top: 1px solid color-mix(in srgb, var(--ink-900) 12%, transparent);
+}
+
+.cnt-inline-form .cnt-modal__actions .cnt-btn {
+  min-width: 150px;
+}
+
+@media (max-width: 700px) {
+  .cnt-message-section { margin-bottom: calc(-1 * clamp(36px, 5vw, 64px) + 16px); }
+  .cnt-inline-form { border-radius: 18px; }
+  .cnt-inline-form .cnt-modal__head { padding: 14px 18px; }
+  .cnt-inline-form .cnt-modal__head::after { display: none; }
+  .cnt-inline-form .cnt-modal__body { padding: 22px 20px 24px; }
+  .cnt-inline-form .cnt-fields { gap: 16px; }
+  .cnt-form-intro { align-items: flex-start !important; flex-wrap: wrap; }
+  .cnt-form-intro__required { margin-left: 53px; }
+}
+
+@media (max-width: 560px) {
+  .cnt-message-section { margin-bottom: calc(-1 * clamp(36px, 5vw, 64px) + 14px); }
+  .cnt-inline-form .cnt-modal__actions .cnt-btn { width: 100%; }
+  .cnt-inline-form .cnt-form-intro { padding: 12px; }
+  .cnt-form-intro__required { margin-left: 0; }
+}
+
+.cnt-inline-form .cnt-field input:focus,
+.cnt-inline-form .cnt-field select:focus,
+.cnt-inline-form .cnt-field textarea:focus {
+  outline: none;
+  border-color: var(--sky-700);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sky-500) 18%, transparent);
 }

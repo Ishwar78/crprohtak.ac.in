@@ -68,7 +68,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
   color: var(--ink-900);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -148,7 +148,7 @@
 
 .stats dd {
   margin: 0;
-  font-size: 0.86rem;
+  font-size: 0.95rem;
   color: var(--muted);
 }
 
@@ -222,7 +222,7 @@ main#main > .section.principal {
 }
 
 .principal__badge span {
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: var(--muted);
 }
 
@@ -312,7 +312,7 @@ main#main > .section.principal {
 
 .reason-card p {
   color: var(--muted);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   line-height: 1.5;
 }
 
@@ -409,14 +409,14 @@ main#main > .section.principal {
 .leader-card__role {
   margin: 5px 0 9px;
   color: var(--orange-700);
-  font-size: 0.86rem;
+  font-size: 0.95rem;
   font-weight: 700;
   line-height: 1.35;
 }
 
 .leader-card__text {
   color: var(--muted);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   line-height: 1.55;
 }
 
@@ -470,7 +470,7 @@ main#main > .section.principal {
   display: inline-block;
   padding: 6px 14px;
   border-radius: 999px;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -600,7 +600,7 @@ main#main > .section.principal {
   padding: 2px 8px;
   border-radius: 6px;
   font-style: normal;
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   background: var(--danger);
@@ -609,7 +609,7 @@ main#main > .section.principal {
 }
 
 .board__list time {
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: var(--muted);
 }
 
@@ -724,14 +724,14 @@ main#main > .section.principal {
   gap: 9px;
   padding: 9px 0;
   border-top: 1px solid color-mix(in srgb, var(--white) 18%, transparent);
-  font-size: 0.86rem;
+  font-size: 0.95rem;
   color: color-mix(in srgb, var(--white) 90%, transparent);
 }
 
 .panel__list time {
   color: var(--orange-400);
   font-weight: 600;
-  font-size: 0.76rem;
+  font-size: 0.95rem;
   padding-top: 2px;
 }
 
@@ -839,7 +839,7 @@ main#main > .section.principal {
 .tile p {
   margin-top: 7px;
   max-width: 460px;
-  font-size: 0.86rem;
+  font-size: 0.95rem;
   line-height: 1.5;
   color: color-mix(in srgb, var(--white) 86%, transparent);
 }
@@ -958,7 +958,7 @@ main#main > .section.principal {
 .flip__seats {
   padding: 6px 14px;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--orange-700);
   background: color-mix(in srgb, var(--orange-500) 14%, var(--white));
@@ -968,7 +968,7 @@ main#main > .section.principal {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--muted);
 }
@@ -998,7 +998,7 @@ main#main > .section.principal {
 
 .flip__back p {
   color: color-mix(in srgb, var(--white) 84%, transparent);
-  font-size: 0.93rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -1257,7 +1257,7 @@ main#main .section-head p {
   }
 
   .leader-card__text {
-    font-size: 0.84rem;
+    font-size: 0.95rem;
   }
 
   .board {
@@ -1266,7 +1266,7 @@ main#main .section-head p {
 
   .board__tabs button {
     padding: 8px 12px;
-    font-size: 0.8rem;
+    font-size: 0.95rem;
   }
 
   .board__viewport {
@@ -1345,7 +1345,7 @@ main#main .section-head p {
 main#main h1,
 main#main h2,
 main#main h3 {
-  white-space: nowrap;
+  white-space: normal;
 }
 
 main#main .section-head {
@@ -1362,7 +1362,7 @@ main#main .hero__content h1 {
 }
 
 main#main h3 {
-  font-size: clamp(0.9rem, 1.3vw, 1.15rem);
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
 }
 /* highlights panels: photo fills the whole panel, dark fade keeps text readable */
 .highlights .panels .panel {
@@ -1418,7 +1418,7 @@ main#main .leader-card__body h3 { white-space: normal; overflow-wrap: anywhere; 
   .stats__list > div:nth-child(-n+2) { border-bottom: 0; border-right: 1px solid var(--line); flex-direction: column; align-items: center; gap: 2px; text-align: center; padding: 14px 4px; }
   .stats__list > div:last-child { border-right: 0; }
   .stats dt { font-size: clamp(1.15rem, 5vw, 1.6rem); }
-  .stats dd { font-size: clamp(0.6rem, 2.2vw, 0.8rem); line-height: 1.25; }
+  .stats dd { font-size: clamp(0.95rem, 2.2vw, 0.95rem); line-height: 1.25; }
 }
 
 /* ---- 3. WHY CHOOSE US: 2 cards per row on phones ---- */
@@ -1427,8 +1427,8 @@ main#main .leader-card__body h3 { white-space: normal; overflow-wrap: anywhere; 
   .reason-card { padding: 14px 12px; min-height: 0; border-radius: 16px; }
   .reason-card__icon { width: 36px; height: 36px; margin-bottom: 10px; border-radius: 11px; font-size: 1.05rem; }
   .reason-card__number { top: 8px; right: 10px; font-size: 1.05rem; }
-  main#main .reason-card h3 { font-size: 0.92rem; margin-bottom: 5px; }
-  .reason-card p { font-size: 0.78rem; line-height: 1.45; }
+  main#main .reason-card h3 { font-size: 1rem; margin-bottom: 5px; }
+  .reason-card p { font-size: 0.95rem; line-height: 1.45; }
 }
 
 /* ---- 4. PRINCIPAL: steady, centred layout on small screens ---- */
@@ -1439,7 +1439,7 @@ main#main .leader-card__body h3 { white-space: normal; overflow-wrap: anywhere; 
   .principal__portrait::before { inset: 12px -10px -10px 12px; }
   .principal__badge { left: 50%; bottom: -22px; transform: translateX(-50%); width: max-content; max-width: 92%; padding: 10px 16px; text-align: center; }
   .principal__badge strong { font-size: 0.98rem; }
-  .principal__badge span { font-size: 0.74rem; }
+  .principal__badge span { font-size: 0.95rem; }
   .principal__text { padding-top: 6px; }
   .principal__text blockquote { margin: 14px 0 18px; font-size: clamp(1.3rem, 5.6vw, 1.8rem); line-height: 1.28; }
   .principal__text blockquote::before { font-size: 3.4rem; }
@@ -1454,7 +1454,7 @@ main#main .leader-card__body h3 { white-space: normal; overflow-wrap: anywhere; 
   .news-card { min-height: 360px; }
   .news-card__body { padding: 20px 18px; }
   main#main .news-card h3 { margin: 12px 0 8px; font-size: clamp(1.1rem, 4.8vw, 1.4rem); }
-  .news-card p { font-size: 0.9rem; line-height: 1.5; }
+  .news-card p { font-size: 0.95rem; line-height: 1.5; }
 }
 
 /* ---- 6. EVENTS / ACHIEVEMENTS / PLACEMENTS: photo on top with NO text or filter on it, text below (phones + tablets) ---- */
@@ -1476,7 +1476,7 @@ main#main .leader-card__body h3 { white-space: normal; overflow-wrap: anywhere; 
 }
 
 /* ---- 8. RECRUITERS: logo cards scale with the screen ---- */
-.marquee__track li { min-width: clamp(120px, 34vw, 210px); height: clamp(60px, 17vw, 86px); padding: 8px clamp(10px, 3vw, 22px); font-size: clamp(0.85rem, 2.6vw, 1.05rem); border-radius: clamp(12px, 3vw, 16px); }
+.marquee__track li { min-width: clamp(120px, 34vw, 210px); height: clamp(60px, 17vw, 86px); padding: 8px clamp(10px, 3vw, 22px); font-size: clamp(0.95rem, 2.6vw, 1.05rem); border-radius: clamp(12px, 3vw, 16px); }
 .marquee__track img { max-height: clamp(32px, 9vw, 54px); max-width: 100%; }
 @media (max-width: 560px) {
   .marquee__track { gap: 10px; animation-duration: 30s; }
@@ -1490,4 +1490,140 @@ main#main .leader-card__body h3 { white-space: normal; overflow-wrap: anywhere; 
 /* tags are not shown on phones and tablets */
 @media (max-width: 900px) {
   .hero__tags { display: none; }
+}
+/* ======================================================================
+   HOME RESPONSIVE FIXES - keep this block at the very END of the file
+   ====================================================================== */
+
+/* ---- 1. HEADINGS: the old clamp() rules above made every section title only 16px on phones (smaller than the text under it).
+        These later rules win and give readable, scaling sizes. ---- */
+main#main .section-head h2 {
+  font-size: clamp(1.6rem, 4.2vw, 2.5rem);
+  line-height: 1.15;
+}
+
+main#main h3 {
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+}
+
+main#main .leader-card__body h3 {
+  font-size: clamp(1.1rem, 1.6vw, 1.2rem);
+}
+
+/* ---- 2. STATS: labels never touch or overlap the next cell ---- */
+.stats dd {
+  overflow-wrap: anywhere;
+}
+
+/* all four numbers sit on the same line; a label with 3 lines no longer pushes its number up */
+@media (max-width: 860px) {
+  .stats__list > div,
+  .stats__list > div:nth-child(2),
+  .stats__list > div:nth-child(-n+2) {
+    justify-content: flex-start;
+  }
+
+  .stats dt {
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+}
+
+@media (max-width: 430px) {
+  .stats__list > div,
+  .stats__list > div:nth-child(2),
+  .stats__list > div:nth-child(-n+2) {
+    padding: 14px 3px;
+  }
+
+  .stats dd {
+    font-size: 0.9rem;
+  }
+}
+
+/* very small phones: 2 x 2 grid so every label has room */
+@media (max-width: 380px) {
+  .stats__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stats__list > div,
+  .stats__list > div:nth-child(2),
+  .stats__list > div:nth-child(-n+2) {
+    padding: 14px 8px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stats__list > div:nth-child(2n),
+  .stats__list > div:last-child {
+    border-right: 0;
+  }
+
+  .stats__list > div:nth-last-child(-n+2) {
+    border-bottom: 0;
+  }
+
+  .stats dd {
+    font-size: 0.95rem;
+  }
+}
+
+/* ---- 3. NOTICE TABS: one row, scrolls sideways instead of wrapping into a second row ---- */
+@media (max-width: 860px) {
+  /* the single column must be allowed to shrink, otherwise the scrolling tabs widen the whole page */
+  .notices__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .news-card,
+  .board {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .board__tabs {
+    flex-wrap: nowrap;
+    align-self: stretch;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .board__tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .board__tabs button {
+    flex: none;
+    white-space: nowrap;
+  }
+}
+
+/* ---- 4. small phones: tighter spacing so nothing is squeezed ---- */
+@media (max-width: 380px) {
+  .why-us__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .leader-card {
+    grid-template-columns: 78px minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .leader-card__photo {
+    width: 78px;
+    height: 100px;
+  }
+
+  .news-card__body {
+    padding: 16px 14px;
+  }
+
+  .flip {
+    height: 250px;
+  }
 }

@@ -1,4 +1,3 @@
-
 /* AntiRagging.css and AntiSexualHarassment.css */
 
 .pol-page {
@@ -51,7 +50,7 @@
     border-radius: 30px;
     background: rgba(239, 247, 252, .92);
     color: var(--ink-900);
-    font-size: .78rem;
+    font-size: 0.8rem;
     font-weight: 750;
     letter-spacing: .04em;
     text-transform: uppercase
@@ -76,7 +75,7 @@
     border-radius: 9px;
     background: rgba(5, 25, 48, .86);
     color: #e8f1f8;
-    font-size: .84rem;
+    font-size: 0.95rem;
     font-weight: 650;
     white-space: nowrap;
     overflow: hidden
@@ -109,7 +108,7 @@
 .pol-kicker {
     display: inline-block;
     color: var(--crp-blue);
-    font-size: .76rem;
+    font-size: 0.8rem;
     font-weight: 850;
     letter-spacing: .13em;
     text-transform: uppercase
@@ -259,7 +258,7 @@
     right: 20px;
     top: 22px;
     color: #b7c9d7;
-    font-size: .78rem;
+    font-size: 0.8rem;
     font-weight: 850;
     letter-spacing: .08em
 }
@@ -273,7 +272,7 @@
 .pol-card p {
     margin: 0;
     color: var(--muted);
-    font-size: .94rem;
+    font-size: 0.95rem;
     line-height: 1.7
 }
 
@@ -361,7 +360,7 @@
     margin: 0;
     color: #586b7b;
     line-height: 1.65;
-    font-size: .94rem
+    font-size: 0.95rem
 }
 
 .pol-bottom {
@@ -377,7 +376,7 @@
 .pol-bottom>span {
     margin-right: auto;
     color: var(--muted);
-    font-size: .9rem;
+    font-size: 0.95rem;
     font-weight: 700
 }
 
@@ -390,7 +389,7 @@
     border-radius: 8px;
     background: #fff;
     color: var(--ink-900);
-    font-size: .86rem;
+    font-size: 0.95rem;
     font-weight: 700;
     transition: .2s
 }
@@ -431,7 +430,7 @@
         bottom: 10px;
         padding: 7px 10px;
         gap: 6px;
-        font-size: .75rem
+        font-size: 0.95rem
     }
 
     .pol-feature {
@@ -517,14 +516,14 @@
     display: grid;
     gap: 8px;
     color: var(--ink-900);
-    font-size: .9rem;
+    font-size: 0.95rem;
     font-weight: 750
 }
 
 .pol-report__grid label>span {
     display: inline;
     color: var(--muted);
-    font-size: .8rem;
+    font-size: 0.95rem;
     font-weight: 500
 }
 
@@ -539,7 +538,7 @@
     background: #fbfdff;
     color: var(--ink-900);
     font: inherit;
-    font-size: .93rem;
+    font-size: 1rem;
     outline: none;
     transition: border-color .2s, box-shadow .2s
 }
@@ -570,7 +569,7 @@
     border-radius: 9px;
     background: #f1f7fb;
     color: #526879;
-    font-size: .88rem;
+    font-size: 0.95rem;
     line-height: 1.6
 }
 
@@ -611,7 +610,7 @@
     border-radius: 7px;
     background: #fff8e9;
     color: var(--ink-900);
-    font-size: .9rem;
+    font-size: 0.95rem;
     line-height: 1.6
 }
 
@@ -631,5 +630,728 @@
 
     .pol-report__submit {
         width: 100%
+    }
+}
+/* ===== RESPONSIVE FIXES ===== */
+/* paragraph under the heading inside the dark navy box was grey on navy: make it light */
+.pol-process .pol-section__head p {
+    color: color-mix(in srgb, var(--white) 86%, transparent);
+}
+
+/* an odd last card or step no longer sits alone on tablets */
+@media (min-width: 601px) and (max-width: 900px) {
+    .pol-process li:last-child:nth-child(odd),
+    .pol-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+}
+
+/* "Explore another policy" links: bigger touch targets, one per row on phones */
+.pol-bottom a {
+    min-height: 44px;
+    font-size: 0.95rem;
+}
+
+.pol-bottom > span {
+    font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+    .pol-bottom a {
+        flex: 1 1 100%;
+        justify-content: space-between;
+    }
+
+    .pol-crumbs {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .pol-wrap h1 {
+        font-size: clamp(1.9rem, 9vw, 2.4rem);
+    }
+
+    .pol-card,
+    .pol-note {
+        padding: 16px;
+    }
+}/* AntiRagging.css and AntiSexualHarassment.css */
+
+.pol-page {
+    background: radial-gradient(55% 30% at 0 20%, color-mix(in srgb, var(--sky-500) 10%, transparent), transparent 72%), var(--surface-orange);
+    overflow-x: clip;
+    color: var(--ink-900)
+}
+
+.pol-hero {
+    position: relative;
+    height: clamp(210px, 23vw, 300px);
+    overflow: hidden;
+    background: linear-gradient(125deg, var(--ink-700), var(--ink-950))
+}
+
+.pol-hero:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--pol-img), linear-gradient(125deg, transparent 30%, color-mix(in srgb, var(--sky-500) 24%, transparent)), radial-gradient(circle, color-mix(in srgb, var(--surface-blue-light) 18%, transparent) 1px, transparent 1.7px);
+    background-size: cover, auto, 24px 24px;
+    background-position: center;
+    background-repeat: no-repeat
+}
+
+.pol-hero:after {
+    content: "";
+    position: absolute;
+    inset: 45% 0 0;
+    background: linear-gradient(transparent, color-mix(in srgb, var(--ink-950) 48%, transparent));
+    pointer-events: none
+}
+
+.pol-hero__tags {
+    position: absolute;
+    z-index: 1;
+    inset: 16px 16px auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    pointer-events: none
+}
+
+.pol-hero__tags span {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 14px;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 30px;
+    background: rgba(239, 247, 252, .92);
+    color: var(--ink-900);
+    font-size: 0.8rem;
+    font-weight: 750;
+    letter-spacing: .04em;
+    text-transform: uppercase
+}
+
+.pol-hero__tags svg {
+    color: var(--crp-blue);
+    font-size: 1.1rem
+}
+
+.pol-crumbs {
+    position: absolute;
+    z-index: 2;
+    left: max(16px, calc((100% - 1200px)/2));
+    bottom: 17px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    max-width: calc(100% - 32px);
+    padding: 9px 15px;
+    border-left: 3px solid var(--orange-500);
+    border-radius: 9px;
+    background: rgba(5, 25, 48, .86);
+    color: #e8f1f8;
+    font-size: 0.95rem;
+    font-weight: 650;
+    white-space: nowrap;
+    overflow: hidden
+}
+
+.pol-crumbs a {
+    color: inherit
+}
+
+.pol-crumbs svg {
+    flex: none;
+    opacity: .7
+}
+
+.pol-crumbs [aria-current] {
+    color: var(--orange-400)
+}
+
+.pol-wrap {
+    padding-top: clamp(38px, 5vw, 66px);
+    padding-bottom: clamp(52px, 7vw, 90px)
+}
+
+.pol-intro {
+    max-width: 790px;
+    margin-bottom: 34px
+}
+
+.pol-eyebrow,
+.pol-kicker {
+    display: inline-block;
+    color: var(--crp-blue);
+    font-size: 0.8rem;
+    font-weight: 850;
+    letter-spacing: .13em;
+    text-transform: uppercase
+}
+
+.pol-intro h1 {
+    margin: 9px 0 12px;
+    color: var(--ink-950);
+    font-family: var(--font-display, Georgia, serif);
+    font-size: clamp(2.35rem, 5vw, 4.2rem);
+    line-height: 1.08;
+    letter-spacing: -.035em
+}
+
+.pol-intro h1 em {
+    color: var(--crp-blue);
+    font-style: normal
+}
+
+.pol-intro>p {
+    max-width: 690px;
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(1rem, 1.5vw, 1.12rem);
+    line-height: 1.8
+}
+
+.pol-feature {
+    position: relative;
+    display: grid;
+    grid-template-columns: 74px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 24px;
+    padding: clamp(24px, 4vw, 42px);
+    border: 1px solid color-mix(in srgb, var(--sky-500) 22%, white);
+    border-radius: 18px;
+    background: linear-gradient(115deg, #fff 0%, #f3f9fd 100%);
+    box-shadow: 0 16px 40px rgba(9, 42, 75, .07);
+    overflow: hidden
+}
+
+.pol-feature:after {
+    content: "";
+    position: absolute;
+    right: -55px;
+    top: -95px;
+    width: 230px;
+    height: 230px;
+    border: 1px solid rgba(20, 136, 207, .13);
+    border-radius: 50%;
+    box-shadow: 0 0 0 24px rgba(20, 136, 207, .035), 0 0 0 50px rgba(20, 136, 207, .025)
+}
+
+.pol-feature__mark {
+    width: 70px;
+    height: 70px;
+    display: grid;
+    place-items: center;
+    border-radius: 17px;
+    background: var(--ink-900);
+    color: white;
+    font-size: 1.8rem;
+    box-shadow: inset 0 -4px 0 var(--orange-500)
+}
+
+.pol-feature h2 {
+    margin: 6px 0 8px;
+    color: var(--ink-950);
+    font-size: clamp(1.35rem, 2.5vw, 1.9rem)
+}
+
+.pol-feature p {
+    max-width: 760px;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.75
+}
+
+.pol-feature__number {
+    position: relative;
+    z-index: 1;
+    color: rgba(20, 136, 207, .18);
+    font-family: var(--font-display, Georgia, serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 800
+}
+
+.pol-section {
+    margin-top: clamp(48px, 6vw, 76px)
+}
+
+.pol-section__head {
+    max-width: 720px;
+    margin-bottom: 24px
+}
+
+.pol-section__head h2 {
+    margin: 8px 0;
+    color: var(--ink-950);
+    font-family: var(--font-display, Georgia, serif);
+    font-size: clamp(1.75rem, 3.3vw, 2.55rem);
+    line-height: 1.2
+}
+
+.pol-section__head p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7
+}
+
+.pol-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px
+}
+
+.pol-card {
+    position: relative;
+    min-width: 0;
+    padding: 24px 21px 25px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(10, 42, 72, .045);
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease
+}
+
+.pol-card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--sky-500) 45%, white);
+    box-shadow: 0 15px 30px rgba(10, 42, 72, .09)
+}
+
+.pol-card__icon {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--surface-blue-light);
+    color: var(--crp-blue);
+    font-size: 1.3rem
+}
+
+.pol-card__no {
+    position: absolute;
+    right: 20px;
+    top: 22px;
+    color: #b7c9d7;
+    font-size: 0.8rem;
+    font-weight: 850;
+    letter-spacing: .08em
+}
+
+.pol-card h3 {
+    margin: 19px 0 9px;
+    color: var(--ink-950);
+    font-size: 1.08rem
+}
+
+.pol-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7
+}
+
+.pol-process {
+    padding: clamp(24px, 4vw, 38px);
+    border-radius: 17px;
+    background: var(--ink-900);
+    color: white
+}
+
+.pol-process .pol-eyebrow {
+    color: var(--orange-400)
+}
+
+.pol-process .pol-section__head h2 {
+    color: white
+}
+
+.pol-process ol {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none
+}
+
+.pol-process li {
+    position: relative;
+    min-height: 130px;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .055)
+}
+
+.pol-process li>span {
+    color: var(--orange-400);
+    font-size: .8rem;
+    font-weight: 850;
+    letter-spacing: .1em
+}
+
+.pol-process li p {
+    margin: 12px 0 0;
+    color: #eef5fa;
+    font-weight: 650;
+    line-height: 1.55
+}
+
+.pol-process li>svg {
+    position: absolute;
+    right: -15px;
+    top: 48%;
+    z-index: 1;
+    color: var(--sky-400);
+    font-size: 1.2rem
+}
+
+.pol-note {
+    display: flex;
+    gap: 15px;
+    margin-top: 28px;
+    padding: 20px 22px;
+    border: 1px solid #e9d8ad;
+    border-left: 4px solid var(--orange-500);
+    border-radius: 12px;
+    background: #fffaf0;
+    color: var(--ink-900)
+}
+
+.pol-note>svg {
+    flex: none;
+    margin-top: 2px;
+    color: #a56a13;
+    font-size: 1.35rem
+}
+
+.pol-note strong {
+    display: block;
+    margin-bottom: 5px
+}
+
+.pol-note p {
+    margin: 0;
+    color: #586b7b;
+    line-height: 1.65;
+    font-size: 0.95rem
+}
+
+.pol-bottom {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line)
+}
+
+.pol-bottom>span {
+    margin-right: auto;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 700
+}
+
+.pol-bottom a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 13px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--ink-900);
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: .2s
+}
+
+.pol-bottom a:hover {
+    border-color: var(--crp-blue);
+    color: var(--crp-blue);
+    transform: translateY(-2px)
+}
+
+@media(max-width:900px) {
+    .pol-card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+
+    .pol-process ol {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+
+    .pol-process li>svg {
+        display: none
+    }
+}
+
+@media(max-width:600px) {
+    .pol-hero {
+        height: auto;
+        aspect-ratio: 5/2;
+        min-height: 170px
+    }
+
+    .pol-hero__tags {
+        display: none
+    }
+
+    .pol-crumbs {
+        left: 10px;
+        bottom: 10px;
+        padding: 7px 10px;
+        gap: 6px;
+        font-size: 0.95rem
+    }
+
+    .pol-feature {
+        grid-template-columns: 1fr;
+        gap: 15px
+    }
+
+    .pol-feature__number {
+        position: absolute;
+        right: 18px;
+        top: 14px;
+        font-size: 3rem
+    }
+
+    .pol-card-grid {
+        grid-template-columns: 1fr
+    }
+
+    .pol-card {
+        padding: 20px
+    }
+
+    .pol-process ol {
+        grid-template-columns: 1fr
+    }
+
+    .pol-process li {
+        min-height: 0
+    }
+
+    .pol-bottom {
+        align-items: stretch
+    }
+
+    .pol-bottom>span {
+        width: 100%;
+        margin: 0 0 4px
+    }
+
+    .pol-bottom a {
+        flex: 1;
+        justify-content: space-between
+    }
+
+    .pol-note {
+        padding: 16px
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    .pol-card,
+    .pol-bottom a {
+        transition: none
+    }
+}
+
+/* Always-visible complaint form */
+.pol-report {
+    padding: clamp(22px, 4vw, 38px);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 14px 38px rgba(9, 42, 75, .06)
+}
+
+.pol-report .pol-section__head {
+    margin-bottom: 25px
+}
+
+.pol-report__form {
+    display: grid;
+    gap: 20px
+}
+
+.pol-report__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px
+}
+
+.pol-report__grid label {
+    display: grid;
+    gap: 8px;
+    color: var(--ink-900);
+    font-size: 0.95rem;
+    font-weight: 750
+}
+
+.pol-report__grid label>span {
+    display: inline;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 500
+}
+
+.pol-report__grid input,
+.pol-report__grid select,
+.pol-report__grid textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 13px;
+    border: 1px solid #cbd8e2;
+    border-radius: 8px;
+    background: #fbfdff;
+    color: var(--ink-900);
+    font: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s
+}
+
+.pol-report__grid textarea {
+    resize: vertical;
+    min-height: 130px;
+    line-height: 1.6
+}
+
+.pol-report__grid input:focus,
+.pol-report__grid select:focus,
+.pol-report__grid textarea:focus {
+    border-color: var(--crp-blue);
+    box-shadow: 0 0 0 3px rgba(20, 136, 207, .13)
+}
+
+.pol-report__wide {
+    grid-column: 1/-1
+}
+
+.pol-report__privacy {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0;
+    padding: 14px 16px;
+    border-radius: 9px;
+    background: #f1f7fb;
+    color: #526879;
+    font-size: 0.95rem;
+    line-height: 1.6
+}
+
+.pol-report__privacy svg {
+    flex: none;
+    margin-top: 2px;
+    color: var(--crp-blue);
+    font-size: 1.1rem
+}
+
+.pol-report__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: max-content;
+    max-width: 100%;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--ink-900);
+    color: #fff;
+    font: inherit;
+    font-weight: 750;
+    cursor: pointer;
+    transition: background .2s, transform .2s
+}
+
+.pol-report__submit:hover {
+    background: var(--crp-blue);
+    transform: translateY(-2px)
+}
+
+.pol-report__notice {
+    margin: 0;
+    padding: 13px 15px;
+    border-left: 4px solid var(--orange-500);
+    border-radius: 7px;
+    background: #fff8e9;
+    color: var(--ink-900);
+    font-size: 0.95rem;
+    line-height: 1.6
+}
+
+@media(max-width:600px) {
+    .pol-report {
+        padding: 20px 16px
+    }
+
+    .pol-report__grid {
+        grid-template-columns: 1fr;
+        gap: 14px
+    }
+
+    .pol-report__wide {
+        grid-column: auto
+    }
+
+    .pol-report__submit {
+        width: 100%
+    }
+}
+/* ===== RESPONSIVE FIXES ===== */
+/* paragraph under the heading inside the dark navy box was grey on navy: make it light */
+.pol-process .pol-section__head p {
+    color: color-mix(in srgb, var(--white) 86%, transparent);
+}
+
+/* an odd last card or step no longer sits alone on tablets */
+@media (min-width: 601px) and (max-width: 900px) {
+    .pol-process li:last-child:nth-child(odd),
+    .pol-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+}
+
+/* "Explore another policy" links: bigger touch targets, one per row on phones */
+.pol-bottom a {
+    min-height: 44px;
+    font-size: 0.95rem;
+}
+
+.pol-bottom > span {
+    font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+    .pol-bottom a {
+        flex: 1 1 100%;
+        justify-content: space-between;
+    }
+
+    .pol-crumbs {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .pol-wrap h1 {
+        font-size: clamp(1.9rem, 9vw, 2.4rem);
+    }
+
+    .pol-card,
+    .pol-note {
+        padding: 16px;
     }
 }

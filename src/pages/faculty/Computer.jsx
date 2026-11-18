@@ -25,7 +25,7 @@ import { Link } from "react-router-dom";
 import { FaGraduationCap } from "react-icons/fa";
 import {
   FiChevronRight, FiMapPin, FiSearch, FiX, FiImage, FiInfo, FiLayers, FiBriefcase, FiMonitor, FiAward,
-  FiTrendingUp, FiCheckCircle, FiFileText, FiUsers, FiClock, FiUser, FiCalendar, FiBookOpen, FiMail,
+  FiTrendingUp, FiCheckCircle, FiFileText, FiUsers, FiClock, FiUser, FiCalendar, FiBookOpen, FiMail, FiChevronDown,
 } from "react-icons/fi";
 import "./Computer.css";
 
@@ -46,7 +46,8 @@ const dept = {
   imageAlt: "Computer Engineering department",
 };
 
-// All eight departments in one row. The same list is repeated in every department file on purpose.
+// All eight departments. Wide screens show them as a row of pills, small screens as a dropdown.
+// The same list is repeated in every department file on purpose.
 const switcher = [
   { label: "Civil", to: "/departments/civil" },
   { label: "Computer", to: "/departments/computer" },
@@ -56,8 +57,10 @@ const switcher = [
   { label: "Plastic", to: "/departments/plastic" },
   { label: "Applied Sciences", to: "/departments/applied-science" },
   { label: "Workshop", to: "/departments/workshop" },
+  { label: "Administrative", to: "/departments/administrative" },
 ];
 const CURRENT = "/departments/computer";
+const currentLabel = switcher.find((item) => item.to === CURRENT)?.label;
 
 // Two small pictures on top, one wide picture below (the layout of the About card).
 const collage = [
@@ -259,17 +262,30 @@ export default function Computer() {
   const [tab, setTab] = useState("about");
   const [query, setQuery] = useState("");
   const tabRefs = useRef({});
-  const listRef = useRef(null);
+  const menuRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const q = query.trim().toLowerCase();
 
-  // Scroll the current department pill into view inside the row (sideways only, the page does not jump).
+  // The department dropdown (small screens) closes when you click outside it or press Escape.
   useEffect(() => {
-    const list = listRef.current;
-    const current = list?.querySelector("[aria-current='page']");
-    if (!list || !current) return;
-    list.scrollLeft = current.offsetLeft - (list.clientWidth - current.offsetWidth) / 2;
-  }, []);
+    if (!menuOpen) return undefined;
+    const onClick = (event) => {
+      if (!menuRef.current?.contains(event.target)) setMenuOpen(false);
+    };
+    const onKey = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuRef.current?.querySelector("button")?.focus();
+      }
+    };
+    document.addEventListener("mousedown", onClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
 
   const pickTab = (id, focus = false) => {
     setTab(id);
@@ -339,9 +355,9 @@ export default function Computer() {
           </div>
         </header>
 
-        {/* ---- department switcher: all eight in one row ---- */}
+        {/* ---- department switcher: pills on wide screens, a dropdown on small screens ---- */}
         <nav className="cse-switch" aria-label="Departments">
-          <ul className="cse-switch__list" ref={listRef}>
+          <ul className="cse-switch__list">
             {switcher.map((item) => {
               const isCurrent = item.to === CURRENT;
               return (
@@ -353,6 +369,39 @@ export default function Computer() {
               );
             })}
           </ul>
+
+          <div className="cse-switch__menu" ref={menuRef}>
+            <button
+              type="button"
+              className="cse-switch__button"
+              aria-expanded={menuOpen}
+              aria-controls="cse-switch-panel"
+              onClick={() => setMenuOpen((open) => !open)}
+            >
+              <span className="cse-switch__label">Department</span>
+              <span className="cse-switch__current">{currentLabel}</span>
+              <FiChevronDown aria-hidden="true" />
+            </button>
+            {menuOpen && (
+              <ul id="cse-switch-panel" className="cse-switch__panel">
+                {switcher.map((item) => {
+                  const isCurrent = item.to === CURRENT;
+                  return (
+                    <li key={item.to}>
+                      <Link
+                        to={item.to}
+                        className={`cse-switch__link${isCurrent ? " is-current" : ""}`}
+                        aria-current={isCurrent ? "page" : undefined}
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
         </nav>
 
         {/* ---- search + tabs ---- */}

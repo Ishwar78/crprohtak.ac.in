@@ -31,6 +31,13 @@ import NccNss from "./pages/students/NccNss";
 import StudentHelpline from "./pages/students/StudentHelpline";
 import GrievanceRedressal from "./pages/students/GrievanceRedressal";
 import EServices from "./pages/students/EServices";
+import ComputerResources from "./pages/students/ComputerResources";
+import PlasticResources from "./pages/students/PlasticResources";
+import AppliedSciencesResources from "./pages/students/AppliedSciencesResources";
+import CivilResources from "./pages/students/CivilResources";
+import ElectricalResources from "./pages/students/ElectricalResources";
+import ElectronicsResources from "./pages/students/ElectronicsResources";
+import MechanicalResources from "./pages/students/MechanicalResources";
 import Notices from "./pages/notices/Notices";
 import Events from "./pages/events/Events";
 import Contact from "./pages/about/Contact";
@@ -41,6 +48,14 @@ import ServiceRules from "./pages/faculty/ServiceRules";
 import IQAC from "./pages/faculty/IQAC";
 import FacultyEServices from "./pages/faculty/FacultyEServices";
 import Computer from "./pages/faculty/Computer";
+import Electrical from "./pages/faculty/Electrical";
+import Civil from "./pages/faculty/Civil";
+import Electronics from "./pages/faculty/Electronics";
+import AppliedSciences from "./pages/faculty/AppliedSciences";
+import Mechanical from "./pages/faculty/Mechanical";
+import Plastic from "./pages/faculty/Plastic";
+import Workshop from "./pages/faculty/Workshop";
+import Administrative from "./pages/faculty/Administrative";
 
 const routeLabels = {
   "/about/mandatory-disclosure": "Mandatory disclosure",
@@ -83,6 +98,13 @@ export default function App() {
         <Route path="/students/helpline" element={<StudentHelpline />} />
         <Route path="/students/grievance" element={<GrievanceRedressal />} />
         <Route path="/students/e-services" element={<EServices />} />
+        <Route path="/students/departments/computer" element={<ComputerResources />} />
+        <Route path="/students/departments/plastic" element={<PlasticResources />} />
+        <Route path="/students/departments/applied-science" element={<AppliedSciencesResources />} />
+        <Route path="/students/departments/civil" element={<CivilResources />} />
+        <Route path="/students/departments/electrical" element={<ElectricalResources />} />
+        <Route path="/students/departments/electronics" element={<ElectronicsResources />} />
+        <Route path="/students/departments/mechanical" element={<MechanicalResources />} />
         <Route path="/notices" element={<Notices />} />
         <Route path="/events" element={<Events />} />
         <Route path="/about/contact" element={<Contact />} />
@@ -93,6 +115,14 @@ export default function App() {
         <Route path="/faculty/iqac" element={<IQAC />} />
         <Route path="/faculty/e-services" element={<FacultyEServices />} />
         <Route path="/departments/computer" element={<Computer />} />
+        <Route path="/departments/electrical" element={<Electrical />} />
+        <Route path="/departments/civil" element={<Civil />} />
+        <Route path="/departments/electronics" element={<Electronics />} />
+        <Route path="/departments/applied-science" element={<AppliedSciences />} />
+        <Route path="/departments/mechanical" element={<Mechanical />} />
+        <Route path="/departments/plastic" element={<Plastic />} />
+        <Route path="/departments/workshop" element={<Workshop />} />
+        <Route path="/departments/administrative" element={<Administrative />} />
         {placeholderPaths.map((path) => <Route key={path} path={path} element={<Placeholder routeLabels={routeLabels} />} />)}
         <Route path="/departments/:id" element={<Placeholder routeLabels={routeLabels} />} />
         <Route path="*" element={<Placeholder notFound routeLabels={routeLabels} />} />

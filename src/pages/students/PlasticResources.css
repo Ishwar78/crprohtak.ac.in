@@ -1,0 +1,892 @@
+/* PlasticResources.css - styles for the Plastic Technology study-resources page only. Every class starts with "rpla-" so nothing here
+   can change another page. Colours, fonts and shadows are the shared theme variables (sky blue, deep navy, ribbon orange).
+   Type rule: body text 16px or more, small text never under 12px. */
+
+/* ============ HERO ============ */
+.rpla-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  height: clamp(220px, 24vw, 320px);
+  background:
+    radial-gradient(65% 125% at 82% 0%, color-mix(in srgb, var(--sky-500) 30%, transparent), transparent 68%),
+    radial-gradient(42% 100% at 4% 100%, color-mix(in srgb, var(--orange-500) 20%, transparent), transparent 72%),
+    linear-gradient(135deg, var(--ink-700), var(--ink-950));
+}
+
+/* the real photo sits on top; if the file is missing, the glows and dot grid underneath show */
+.rpla-hero__photo {
+  position: absolute;
+  inset: 0;
+  background-image:
+    var(--img),
+    radial-gradient(55% 130% at 88% 0%, color-mix(in srgb, var(--sky-500) 40%, transparent), transparent 66%),
+    radial-gradient(38% 100% at 0% 100%, color-mix(in srgb, var(--orange-500) 24%, transparent), transparent 70%),
+    radial-gradient(circle, color-mix(in srgb, var(--surface-blue-light) 17%, transparent) 1.2px, transparent 1.7px),
+    linear-gradient(135deg, var(--ink-700), var(--ink-950));
+  background-size: cover, auto, auto, 26px 26px, auto;
+  background-position: center, 0 0, 0 0, 0 0, 0 0;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat, no-repeat;
+}
+
+.rpla-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 50%;
+  background: linear-gradient(transparent, color-mix(in srgb, var(--ink-950) 45%, transparent));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.rpla-hero__tags {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.rpla-hero__tag {
+  position: absolute;
+  top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px 6px 6px;
+  border: 1px solid color-mix(in srgb, var(--surface-blue-light) 70%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-blue-light) 92%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
+  color: var(--ink-900);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.rpla-hero__tag--left { left: 16px; }
+.rpla-hero__tag--right { right: 16px; }
+
+.rpla-hero__tag-icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--surface-blue-light);
+}
+
+.rpla-hero__tag-icon svg { width: 15px; height: 15px; }
+.rpla-hero__tag--left .rpla-hero__tag-icon { background: var(--orange-500); }
+.rpla-hero__tag--right .rpla-hero__tag-icon { background: var(--sky-500); }
+
+/* breadcrumb pill, bottom-left of the banner */
+.rpla-crumbs {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 32px);
+  padding: 9px 16px;
+  border-left: 3px solid var(--orange-500);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ink-950) 84%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
+  color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.rpla-crumbs a { color: inherit; transition: color 0.2s; }
+.rpla-crumbs a:hover { color: var(--orange-400); }
+.rpla-crumbs svg { flex: none; width: 14px; height: 14px; opacity: 0.7; }
+.rpla-crumbs [aria-current] { color: var(--orange-400); font-weight: 700; }
+
+/* phones and tablets: a fixed wide banner (5:2), no top pills, a small breadcrumb */
+@media (max-width: 900px) {
+  .rpla-hero { height: auto; aspect-ratio: 5 / 2; }
+  .rpla-hero__tags { display: none; }
+  .rpla-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.78rem; }
+  .rpla-crumbs svg { width: 12px; height: 12px; }
+}
+
+main#main.rpla-page {
+  background:
+    radial-gradient(60% 34% at 100% 0%, color-mix(in srgb, var(--sky-500) 9%, transparent), transparent 70%),
+    var(--surface-orange);
+  overflow-x: clip;
+}
+
+/* the site has a global nowrap rule on headings, so headings here may wrap */
+main#main.rpla-page h1,
+main#main.rpla-page h2 {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.rpla-wrap {
+  display: grid;
+  gap: clamp(28px, 4vw, 48px);
+  padding-top: clamp(28px, 3.6vw, 48px);
+  padding-bottom: clamp(56px, 7vw, 100px);
+}
+
+.rpla-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange-700);
+}
+
+.rpla-eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange-500);
+}
+
+/* ============ BUTTON ============ */
+.rpla-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--orange-400), var(--orange-500));
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--orange-500) 34%, transparent);
+  color: var(--ink-950);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.rpla-btn svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+.rpla-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px color-mix(in srgb, var(--orange-500) 46%, transparent);
+}
+
+.rpla-btn:focus-visible,
+.rpla-tab:focus-visible,
+.rpla-chip:focus-visible,
+.rpla-switch__link:focus-visible,
+.rpla-file__go:focus-visible,
+.rpla-related__item:focus-visible,
+.rpla-panel:focus-visible {
+  outline: 3px solid var(--sky-700);
+  outline-offset: 3px;
+}
+
+/* ============ TOP: title + navy count card ============ */
+.rpla-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(22px, 3.4vw, 52px);
+  align-items: center;
+}
+
+main#main.rpla-page .rpla-intro h1 {
+  margin: 10px 0 0;
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 5vw, 3.3rem);
+  line-height: 1.06;
+  max-width: none;
+  white-space: nowrap;
+}
+
+.rpla-intro h1 small {
+  display: block;
+  margin-top: 8px;
+  color: var(--sky-700);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+main#main.rpla-page .rpla-intro h1::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin-top: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--sky-500) 0 60%, var(--orange-500) 60%);
+}
+
+.rpla-intro p {
+  max-width: 54ch;
+  margin: 18px 0 24px;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.7;
+}
+
+.rpla-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 26px;
+  color: var(--white);
+  background:
+    radial-gradient(60% 120% at 0% 0%, color-mix(in srgb, var(--sky-500) 30%, transparent), transparent 70%),
+    radial-gradient(50% 100% at 100% 100%, color-mix(in srgb, var(--orange-500) 24%, transparent), transparent 70%),
+    linear-gradient(130deg, var(--ink-800), var(--ink-950));
+  box-shadow: var(--shadow-lift);
+}
+
+.rpla-stats > div {
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  padding: clamp(20px, 2.8vw, 30px) clamp(18px, 2.4vw, 28px);
+  border-right: 1px solid color-mix(in srgb, var(--white) 14%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--white) 14%, transparent);
+}
+
+.rpla-stats > div:nth-child(2n) {
+  border-right: 0;
+}
+
+.rpla-stats > div:nth-child(n + 3) {
+  border-bottom: 0;
+}
+
+.rpla-stats dt {
+  color: var(--orange-400);
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 4vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.rpla-stats dd {
+  margin: 0;
+  color: color-mix(in srgb, var(--white) 86%, transparent);
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+/* ============ DEPARTMENT ROW ============ */
+.rpla-switch {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+/* all seven fit on a desktop; on small screens the row swipes sideways */
+.rpla-switch ul {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 2px;
+  overflow-x: auto;
+  list-style: none;
+  scrollbar-width: none;
+}
+
+.rpla-switch ul::-webkit-scrollbar {
+  display: none;
+}
+
+.rpla-switch li {
+  flex: 1 0 auto;
+}
+
+.rpla-switch__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 20px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--ink-900);
+  font-size: 0.95rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.rpla-switch__link:hover {
+  border-color: color-mix(in srgb, var(--orange-500) 55%, transparent);
+  background: var(--surface-orange);
+}
+
+.rpla-switch__link.is-current {
+  border-color: transparent;
+  background: linear-gradient(160deg, var(--ink-700), var(--ink-950));
+  color: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+/* ============ SEARCH, TABS, CHIPS ============ */
+.rpla-toolbar {
+  display: grid;
+  gap: 16px;
+  padding: clamp(16px, 2.2vw, 22px);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--orange-500);
+  border-radius: 24px;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.rpla-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 6px;
+  border-radius: 18px;
+  background: var(--surface-orange);
+}
+
+.rpla-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--ink-900);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+}
+
+.rpla-tab svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--sky-700);
+}
+
+.rpla-tab:hover {
+  background: var(--white);
+}
+
+.rpla-tab.is-active {
+  background: linear-gradient(160deg, var(--ink-700), var(--ink-950));
+  box-shadow: var(--shadow-soft);
+  color: var(--white);
+}
+
+.rpla-tab.is-active svg {
+  color: var(--orange-400);
+}
+
+.rpla-tab__n {
+  min-width: 26px;
+  padding: 1px 9px;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--orange-700);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.rpla-tab.is-active .rpla-tab__n {
+  background: var(--orange-500);
+  color: var(--ink-950);
+}
+
+.rpla-toolbar__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+}
+
+.rpla-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1 1 280px;
+  max-width: 440px;
+}
+
+.rpla-search > svg {
+  position: absolute;
+  left: 16px;
+  width: 18px;
+  height: 18px;
+  color: var(--sky-700);
+  pointer-events: none;
+}
+
+.rpla-search input {
+  width: 100%;
+  padding: 13px 46px 13px 44px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-blue-light);
+  color: var(--ink-900);
+  font: inherit;
+  font-size: 1rem;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.rpla-search input::placeholder {
+  color: var(--muted);
+}
+
+.rpla-search input:focus {
+  outline: none;
+  border-color: var(--sky-500);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--sky-500) 22%, transparent);
+}
+
+.rpla-search__clear {
+  position: absolute;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--sky-100);
+  color: var(--ink-900);
+  cursor: pointer;
+}
+
+.rpla-search__clear:hover {
+  background: var(--orange-500);
+}
+
+.rpla-count {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.rpla-count b {
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+}
+
+.rpla-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rpla-chip {
+  padding: 9px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--white), var(--surface-blue-light));
+  color: var(--ink-900);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.rpla-chip:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--orange-500) 55%, transparent);
+}
+
+.rpla-chip.is-active {
+  border-color: transparent;
+  background: linear-gradient(160deg, var(--ink-700), var(--ink-950));
+  color: var(--white);
+}
+
+/* ============ FILE LIST ============ */
+.rpla-panel {
+  margin-top: 20px;
+  animation: rpla-rise 0.45s var(--ease) both;
+}
+
+.rpla-files {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rpla-files li {
+  display: flex;
+}
+
+.rpla-file {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 92px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--sky-500);
+  border-radius: 20px;
+  background: linear-gradient(180deg, var(--white), var(--surface-blue-light));
+  box-shadow: var(--shadow-soft);
+  color: var(--ink-900);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-left-color 0.3s;
+}
+
+.rpla-file:hover {
+  transform: translateY(-4px);
+  border-left-color: var(--orange-500);
+  box-shadow: var(--shadow-lift);
+}
+
+.rpla-file__type {
+  flex: none;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  width: 64px;
+  padding: 10px 0 8px;
+  border-radius: 14px;
+  background: linear-gradient(150deg, var(--ink-800), var(--ink-950));
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.rpla-file__type svg {
+  width: 22px;
+  height: 22px;
+  color: var(--orange-400);
+}
+
+.rpla-file__type--docx svg {
+  color: var(--sky-400);
+}
+
+.rpla-file__type--pptx svg {
+  color: var(--white);
+}
+
+.rpla-file__text {
+  display: grid;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.rpla-file__text strong {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.rpla-file__text small {
+  color: var(--orange-700);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.rpla-file__actions {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rpla-file__go {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid color-mix(in srgb, var(--orange-500) 40%, transparent);
+  border-radius: 999px;
+  background: var(--surface-orange);
+  color: var(--orange-700);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  transition: transform 0.25s var(--ease), background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.rpla-file__go svg {
+  flex: none;
+  width: 17px;
+  height: 17px;
+}
+
+.rpla-file__go--view {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--orange-400), var(--orange-500));
+  color: var(--ink-950);
+}
+
+.rpla-file__go:hover {
+  transform: translateY(-2px);
+  border-color: transparent;
+  background: var(--orange-500);
+  color: var(--ink-950);
+}
+
+.rpla-more {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.rpla-more > span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.rpla-none {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  max-width: 520px;
+  margin: 8px auto 0;
+  padding: clamp(30px, 5vw, 48px) 24px;
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--orange-500);
+  border-radius: 24px;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.rpla-none__icon {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 20px;
+  background: linear-gradient(150deg, var(--ink-800), var(--ink-950));
+  color: var(--orange-400);
+  font-size: 1.6rem;
+}
+
+main#main.rpla-page .rpla-none h2 {
+  margin: 6px 0 0;
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+}
+
+.rpla-none p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* ============ RELATED LINKS ============ */
+.rpla-related {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: clamp(18px, 2.4vw, 26px);
+  border-radius: 28px;
+  background:
+    radial-gradient(60% 140% at 0% 0%, color-mix(in srgb, var(--sky-500) 28%, transparent), transparent 70%),
+    radial-gradient(40% 120% at 100% 100%, color-mix(in srgb, var(--orange-500) 24%, transparent), transparent 70%),
+    linear-gradient(130deg, var(--ink-800), var(--ink-950));
+  box-shadow: var(--shadow-lift);
+}
+
+.rpla-related__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid color-mix(in srgb, var(--white) 16%, transparent);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--white) 7%, transparent);
+  color: color-mix(in srgb, var(--white) 84%, transparent);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  transition: transform 0.3s var(--ease), background 0.3s, border-color 0.3s;
+}
+
+.rpla-related__item strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+.rpla-related__item svg {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--orange-400);
+}
+
+.rpla-related__item:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--orange-400) 60%, transparent);
+  background: color-mix(in srgb, var(--white) 13%, transparent);
+}
+
+.rpla-related__item:focus-visible {
+  outline-color: var(--orange-400);
+}
+
+@keyframes rpla-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1000px) {
+  .rpla-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rpla-related {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .rpla-top {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
+@media (max-width: 760px) {
+  .rpla-files {
+    grid-template-columns: 1fr;
+  }
+
+  /* the chips become one swipeable row */
+  .rpla-chips {
+    flex-wrap: nowrap;
+    margin: 0 -4px;
+    padding: 2px 4px 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .rpla-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rpla-chip {
+    flex: none;
+  }
+}
+
+/* two columns but narrow cards (761-1100px), and phones: the buttons drop under the name, side by side */
+@media (min-width: 761px) and (max-width: 1100px), (max-width: 520px) {
+  .rpla-file {
+    flex-wrap: wrap;
+  }
+
+  .rpla-file__actions {
+    width: 100%;
+  }
+
+  .rpla-file__go {
+    flex: 1;
+  }
+}
+
+@media (max-width: 520px) {
+  .rpla-search {
+    flex-basis: 100%;
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rpla-panel {
+    animation: none;
+  }
+
+  .rpla-btn,
+  .rpla-chip,
+  .rpla-file,
+  .rpla-file__go,
+  .rpla-related__item {
+    transition: none;
+  }
+
+  .rpla-btn:hover,
+  .rpla-chip:hover,
+  .rpla-file:hover,
+  .rpla-file__go:hover,
+  .rpla-related__item:hover {
+    transform: none;
+  }
+}
+/* ===== RESPONSIVE FIX: nothing may be wider than the screen ===== */
+/* grid columns may shrink below their content, otherwise one long line widens the whole page and the right side is cut off */
+.rpla-wrap {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.rpla-top > * {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .rpla-top {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* the title may wrap on phones (it is forced onto one line on wide screens) */
+@media (max-width: 760px) {
+  main#main.rpla-page .rpla-intro h1 {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}

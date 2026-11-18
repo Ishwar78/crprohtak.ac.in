@@ -1563,3 +1563,167 @@
     padding: 2px 13px !important;
   }
 }
+
+
+/* ===== Title always on one line (all screens) ===== */
+.navbar__title-main {
+  white-space: nowrap;
+}
+
+/* phones and tablets: the name keeps one line; "ROHTAK, HARYANA" drops under it if there is no room */
+@media (max-width: 1099px) {
+  .navbar__title-name {
+    flex-wrap: wrap;
+    row-gap: 2px;
+    font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  }
+}
+
+/* the font shrinks with the screen so "CHHOTU RAM POLYTECHNIC" stays on one line beside the logo and the menu button */
+@media (max-width: 760px) {
+  .navbar__title-name {
+    font-size: clamp(0.68rem, calc((100vw - 160px) / 14.8), 1.1rem);
+  }
+}
+
+/* ===== Social icons in the top strip ===== */
+.topstrip__social {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+}
+
+.topstrip .topstrip__social a {
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  gap: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.topstrip .topstrip__social a svg {
+  color: #fff;
+  font-size: 0.72rem;
+}
+
+.topstrip .topstrip__social a:hover {
+  border-color: var(--crp-orange);
+  background: var(--crp-orange);
+  transform: translateY(-1px);
+}
+
+.topstrip .topstrip__social a:hover svg {
+  color: var(--crp-navy-deep);
+}
+
+/* phones: only the phone number and the icons stay in the strip (the divider before the icons is hidden) */
+@media (max-width: 760px) {
+  .topstrip__divider--social {
+    display: none;
+  }
+
+  .topstrip__contact {
+    gap: 14px;
+  }
+}
+
+/* desktop: keep the one-line title clear of the Pay Online Fee button on wide screens */
+@media (min-width: 1251px) {
+  .navbar__title-name {
+    font-size: clamp(1.25rem, 1.55vw, 1.5rem);
+  }
+}
+
+/* ===== Drawer footer: buttons use the full width, contact details fill the bottom ===== */
+.drawer__foot {
+  justify-items: stretch;
+  gap: 12px;
+  padding: 18px 22px 24px;
+}
+
+.drawer__foot .pay-fee,
+.drawer__foot .btn {
+  width: 100%;
+  max-width: none;
+  justify-content: center;
+}
+
+.drawer__foot .pay-fee {
+  justify-content: flex-start;
+}
+
+.drawer__foot .pay-fee > svg {
+  margin-left: auto;
+}
+
+.drawer__contact {
+  display: grid;
+  gap: 12px;
+  margin-top: 6px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.drawer__contact > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+
+.drawer__contact > a svg {
+  flex: none;
+  color: var(--crp-orange);
+}
+
+.drawer__social {
+  margin: 4px 0 0;
+  padding: 12px 0 0;
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.drawer__social a {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.drawer__social a:hover {
+  border-color: var(--crp-orange);
+  background: var(--crp-orange);
+  color: var(--crp-navy-deep);
+}
+
+/* social icons in the drawer: centred and white (beats the generic drawer link rules above) */
+.drawer__foot .drawer__social a:not(.btn):not(.pay-fee) {
+  display: grid;
+  place-items: center;
+  gap: 0;
+}
+
+.drawer__foot .drawer__social a:not(.btn):not(.pay-fee) svg {
+  color: #fff;
+}
+
+.drawer__foot .drawer__social a:not(.btn):not(.pay-fee):hover svg {
+  color: var(--crp-navy-deep);
+}

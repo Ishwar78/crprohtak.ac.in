@@ -60,7 +60,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
   color: var(--ink-900);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -102,7 +102,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
   color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -117,7 +117,7 @@
 @media (max-width: 900px) {
   .grv-hero { height: auto; aspect-ratio: 5 / 2; }
   .grv-hero__tags { display: none; }
-  .grv-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.78rem; }
+  .grv-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.95rem; }
   .grv-crumbs svg { width: 12px; height: 12px; }
 }
 
@@ -231,9 +231,11 @@ main#main.grv-page .grv-intro h1 {
   margin: 10px 0 0;
   color: var(--ink-900);
   font-family: var(--font-display);
-  font-size: clamp(2.3rem, 5vw, 3.6rem);
+  font-size: clamp(2rem, 4.5vw, 3.6rem);
   line-height: 1.06;
   max-width: none;
+  white-space: nowrap;
+  overflow-wrap: normal;
 }
 
 main#main.grv-page .grv-intro h1::after {
@@ -579,6 +581,10 @@ main#main.grv-page .grv-committee h3 {
 }
 
 @media (max-width: 560px) {
+  main#main.grv-page .grv-intro h1 {
+    font-size: clamp(1.2rem, 6vw, 2.2rem);
+  }
+
   .grv-form {
     padding: 26px 22px 24px;
   }

@@ -300,7 +300,7 @@ function WhyChooseUs() {
       <div className="container">
         <div className="section-head">
           <span className="eyebrow">The Chhotu Ram advantage</span>
-          <h2>Why choose Chhotu Ram Polytechnic?</h2>
+          <h2>Why choose Us?</h2>
           <p>A learning environment that brings technical knowledge, practical experience and student growth together.</p>
         </div>
         <div className="why-us__grid">

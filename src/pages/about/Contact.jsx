@@ -10,19 +10,19 @@
 //
 // ADMIN-READY: all text is in the lists below - `contact`, `forms` and `social`. Change them and the page follows.
 //
-// CONTACT FORM: the "Send a message" button opens a popup form (MessageDialog below). The page itself stays clean.
+// CONTACT FORM: the message form is displayed directly on the page, above the three online forms.
 //   `formConfig.endpoint` is empty, so sending opens the visitor's email app with the message already written, addressed
 //   to the institute email. To send from the site instead, put the address of a server that accepts a POST with JSON
 //   ({ name, phone, email, topic, message }) in `endpoint`, and nothing else needs to change.
 //
 // NO FILES TO COPY: this page uses no pictures except the shared banner (public/images/pages-banner.png).
 // The map is an embedded Google Map (the only thing loaded from outside). If it cannot load, the "Get directions" button still works.
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGraduationCap, FaFacebookF, FaInstagram } from "react-icons/fa";
 import {
   FiMapPin, FiChevronRight as FiCrumbArrow, FiPhone, FiMail, FiNavigation, FiExternalLink, FiUsers, FiMessageSquare,
-  FiEdit3, FiArrowRight, FiSend, FiX, FiCheckCircle,
+  FiEdit3, FiArrowRight, FiSend, FiCheckCircle,
 } from "react-icons/fi";
 import "./Contact.css";
 
@@ -64,7 +64,7 @@ const formConfig = {
   topics: ["Admissions", "Courses and fees", "Results and exams", "Something else"],
 };
 
-const emptyForm = { name: "", phone: "", email: "", topic: formConfig.topics[0], message: "" };
+const emptyForm = { name: "", phone: "", email: "", role: "Prospective student", department: "Not sure yet", topic: formConfig.topics[0], message: "" };
 
 function validate(values) {
   const errors = {};
@@ -76,36 +76,12 @@ function validate(values) {
   return errors;
 }
 
-// The popup. It uses the browser's own <dialog>, so Esc closes it, Tab stays inside it and focus returns to the button.
-function MessageDialog({ open, onClose }) {
-  const dialogRef = useRef(null);
+// The message form is embedded directly in the page, above the online feedback forms.
+function InlineMessageForm() {
+  const formRef = useRef(null);
   const [values, setValues] = useState(emptyForm);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle"); // idle | sending | sent | failed
-
-  // open or close the native dialog when `open` changes; the page behind does not scroll while it is open
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return undefined;
-    if (open && !dialog.open) {
-      dialog.showModal();
-      document.body.style.overflow = "hidden";
-    } else if (!open && dialog.open) {
-      dialog.close();
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
-  const close = () => {
-    if (status === "sent") {
-      setValues(emptyForm);
-      setErrors({});
-      setStatus("idle");
-    }
-    onClose();
-  };
 
   const change = (name) => (event) => {
     setValues((prev) => ({ ...prev, [name]: event.target.value }));
@@ -128,13 +104,19 @@ function MessageDialog({ open, onClose }) {
   const fieldError = (name) =>
     errors[name] ? <span className="cnt-field__error" id={`cnt-f-${name}-error`}>{errors[name]}</span> : null;
 
+  const reset = () => {
+    setValues(emptyForm);
+    setErrors({});
+    setStatus("idle");
+  };
+
   const submit = async (event) => {
     event.preventDefault();
     const found = validate(values);
     setErrors(found);
     const first = Object.keys(found)[0];
     if (first) {
-      dialogRef.current.querySelector(`[name="${first}"]`)?.focus();
+      formRef.current?.querySelector(`[name="${first}"]`)?.focus();
       return;
     }
 
@@ -154,9 +136,9 @@ function MessageDialog({ open, onClose }) {
       return;
     }
 
-    // no server yet: open the visitor's email app with the message written out
+    // No server is configured yet: prepare the message in the visitor's email app.
     const subject = `${values.topic} - message from ${values.name.trim()}`;
-    const lines = [`Name: ${values.name.trim()}`, `Phone: ${values.phone.trim()}`];
+    const lines = [`Name: ${values.name.trim()}`, `Phone: ${values.phone.trim()}`, `I am a: ${values.role}`, `Department / course: ${values.department}`];
     if (values.email.trim()) lines.push(`Email: ${values.email.trim()}`);
     lines.push(`Topic: ${values.topic}`, "", values.message.trim());
     const body = lines.join("\n");
@@ -167,24 +149,12 @@ function MessageDialog({ open, onClose }) {
   };
 
   return (
-    <dialog
-      ref={dialogRef}
-      className="cnt-modal"
-      aria-labelledby="cnt-msg-title"
-      onClose={close}
-      onClick={(event) => {
-        if (event.target === dialogRef.current) close(); // a click on the dark area around the popup
-      }}
-    >
-      <div className="cnt-modal__panel">
+    <section className="cnt-block cnt-message-section" id="cnt-message-form" aria-labelledby="cnt-msg-title">
+      <div className="cnt-inline-form">
         <div className="cnt-modal__head">
           <div>
             <h2 id="cnt-msg-title">Send us a message</h2>
-            <p>Write to the institute office. Fields marked * are required.</p>
           </div>
-          <button type="button" className="cnt-modal__close" onClick={close} aria-label="Close the message form">
-            <FiX aria-hidden="true" />
-          </button>
         </div>
 
         {status === "sent" ? (
@@ -198,10 +168,15 @@ function MessageDialog({ open, onClose }) {
               {!formConfig.endpoint && <a href={`mailto:${contact.email}`}>{contact.email}</a>}
               {!formConfig.endpoint && "."}
             </p>
-            <button type="button" className="cnt-btn cnt-btn--primary" onClick={close}>Close</button>
+            <button type="button" className="cnt-btn cnt-btn--primary" onClick={reset}>Send another message</button>
           </div>
         ) : (
-          <form className="cnt-modal__body" onSubmit={submit} noValidate>
+          <form ref={formRef} className="cnt-modal__body" onSubmit={submit} noValidate>
+            <div className="cnt-form-intro">
+              <span className="cnt-form-intro__icon"><FiSend aria-hidden="true" /></span>
+              <div><strong>College enquiry form</strong><span>Share your details so we can direct your message to the right place.</span></div>
+              <span className="cnt-form-intro__required">* Required fields</span>
+            </div>
             <div className="cnt-fields">
               <div className="cnt-field">
                 <label htmlFor="cnt-f-name">Your name <span className="cnt-field__req" aria-hidden="true">*</span></label>
@@ -219,7 +194,33 @@ function MessageDialog({ open, onClose }) {
                 {fieldError("email")}
               </div>
               <div className="cnt-field">
-                <label htmlFor="cnt-f-topic">Topic</label>
+                <label htmlFor="cnt-f-role">I am contacting as</label>
+                <select {...fieldProps("role")}>
+                  <option>Prospective student</option>
+                  <option>Current student</option>
+                  <option>Parent / guardian</option>
+                  <option>Alumnus / alumna</option>
+                  <option>Faculty / staff</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div className="cnt-field">
+                <label htmlFor="cnt-f-department">Department / course</label>
+                <select {...fieldProps("department")}>
+                  <option>Not sure yet</option>
+                  <option>Computer Engineering</option>
+                  <option>Civil Engineering</option>
+                  <option>Electrical Engineering</option>
+                  <option>Electronics Engineering</option>
+                  <option>Mechanical Engineering</option>
+                  <option>Plastic Technology</option>
+                  <option>Applied Sciences</option>
+                  <option>Workshop</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div className="cnt-field">
+                <label htmlFor="cnt-f-topic">Enquiry topic</label>
                 <select {...fieldProps("topic")}>
                   {formConfig.topics.map((topic) => (
                     <option key={topic} value={topic}>{topic}</option>
@@ -240,7 +241,7 @@ function MessageDialog({ open, onClose }) {
             )}
 
             <div className="cnt-modal__actions">
-              <button type="button" className="cnt-btn cnt-btn--quiet" onClick={close}>Cancel</button>
+              <button type="button" className="cnt-btn cnt-btn--quiet" onClick={reset}>Clear form</button>
               <button type="submit" className="cnt-btn cnt-btn--primary" disabled={status === "sending"}>
                 <FiSend aria-hidden="true" />
                 {status === "sending" ? "Sending..." : "Send message"}
@@ -249,13 +250,11 @@ function MessageDialog({ open, onClose }) {
           </form>
         )}
       </div>
-    </dialog>
+    </section>
   );
 }
 
 export default function Contact() {
-  const [formOpen, setFormOpen] = useState(false);
-
   return (
     <main id="main" className="cnt-page">
       <section className="cnt-hero" aria-label="Contact us" style={{ "--img": `url("${hero.image}")` }}>
@@ -317,10 +316,6 @@ export default function Contact() {
               <span className="cnt-eyebrow cnt-eyebrow--line">Find us</span>
               <h2 id="cnt-find-title">Get in <span>touch</span></h2>
             </div>
-            <button type="button" className="cnt-btn cnt-btn--primary" onClick={() => setFormOpen(true)}>
-              <FiSend aria-hidden="true" />
-              Send a message
-            </button>
           </header>
           <div className="cnt-find">
             <ul className="cnt-details">
@@ -362,6 +357,9 @@ export default function Contact() {
             </div>
           </div>
         </section>
+
+        {/* ---- inline message form, directly above the existing online forms ---- */}
+        <InlineMessageForm />
 
         {/* ---- the three forms (same size) ---- */}
         <section className="cnt-block" aria-labelledby="cnt-forms-title">
@@ -415,7 +413,6 @@ export default function Contact() {
         </section>
       </div>
 
-      <MessageDialog open={formOpen} onClose={() => setFormOpen(false)} />
     </main>
   );
 }

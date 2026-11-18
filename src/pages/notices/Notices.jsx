@@ -20,12 +20,12 @@
 // To add a notice by hand: add a row at the TOP of `notices` and save the file in public/docs/notices/.
 //
 // FILES TO COPY: save every file in notice-files-list.txt into public/docs/notices/ with the SAME name.
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGraduationCap } from "react-icons/fa";
 import {
   FiMapPin, FiChevronRight as FiCrumbArrow, FiSearch, FiFileText, FiImage, FiGrid, FiExternalLink, FiClock,
-  FiBell, FiPhone, FiMail, FiArrowRight,
+  FiBell, FiPhone, FiMail, FiArrowRight, FiChevronDown,
 } from "react-icons/fi";
 import "./Notices.css";
 
@@ -139,6 +139,18 @@ export default function Notices() {
   const [category, setCategory] = useState("all");
   const [query, setQuery] = useState("");
   const [shown, setShown] = useState(PAGE_SIZE);
+  const [pickOpen, setPickOpen] = useState(false); // the category dropdown on small screens
+  const pickRef = useRef(null);
+
+  // close the dropdown on an outside click or Escape
+  useEffect(() => {
+    if (!pickOpen) return undefined;
+    const onDown = (event) => { if (pickRef.current && !pickRef.current.contains(event.target)) setPickOpen(false); };
+    const onKey = (event) => { if (event.key === "Escape") setPickOpen(false); };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("mousedown", onDown); document.removeEventListener("keydown", onKey); };
+  }, [pickOpen]);
 
   const source = tab === "notices" ? notices : activities;
 
@@ -155,7 +167,7 @@ export default function Notices() {
   const latest = sortRows(notices)[0];
 
   const changeTab = (next) => { setTab(next); setCategory("all"); setShown(PAGE_SIZE); };
-  const changeCategory = (next) => { setCategory(next); setShown(PAGE_SIZE); };
+  const changeCategory = (next) => { setCategory(next); setShown(PAGE_SIZE); setPickOpen(false); };
   const changeQuery = (value) => { setQuery(value); setShown(PAGE_SIZE); };
 
   return (
@@ -247,6 +259,32 @@ export default function Notices() {
                   {item.label}
                 </button>
               ))}
+            </div>
+          )}
+
+          {/* small screens: "All" stays outside, the other categories are in a dropdown (two per row) */}
+          {tab === "notices" && (
+            <div className="ntc-pick" ref={pickRef} role="group" aria-label="Filter by category">
+              <button type="button" className="ntc-pick__all" aria-pressed={category === "all"} onClick={() => changeCategory("all")}>All</button>
+              <button
+                type="button"
+                className={`ntc-pick__btn${category !== "all" ? " is-set" : ""}`}
+                aria-expanded={pickOpen}
+                aria-controls="ntc-pick-panel"
+                onClick={() => setPickOpen((open) => !open)}
+              >
+                <span>{category === "all" ? "Choose a category" : categoryLabel(category)}</span>
+                <FiChevronDown aria-hidden="true" />
+              </button>
+              {pickOpen && (
+                <div id="ntc-pick-panel" className="ntc-pick__panel">
+                  {categories.map((item) => (
+                    <button key={item.id} type="button" aria-pressed={category === item.id} onClick={() => changeCategory(item.id)}>
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 

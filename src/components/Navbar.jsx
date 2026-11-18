@@ -12,6 +12,7 @@ import {
   FiArrowRight,
   FiArrowUpRight,
 } from "react-icons/fi";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import "./Navbar.css";
 
 const site = {
@@ -22,6 +23,12 @@ const site = {
   email: "crprohtak@hry.nic.in",
   map: { url: "https://www.google.com/maps?q=28.885496,76.617082" },
 };
+
+// REAL - the institute's social pages (shown in the top strip). Add a row to show another icon.
+const social = [
+  { icon: FaFacebookF, label: "Facebook", href: "https://www.facebook.com/C.R.POLYTECHNIC.ROHTAK" },
+  { icon: FaInstagram, label: "Instagram", href: "https://www.instagram.com/crprohtak/" },
+];
 
 const link = (label, to) => ({ label, to });
 const external = (label, href) => ({ label, href });
@@ -35,7 +42,11 @@ const departments = [
   link("Plastic Technology", "/departments/plastic"),
   link("Applied Sciences", "/departments/applied-science"),
   link("Workshop Department", "/departments/workshop"),
+  link("Administrative", "/departments/administrative"),
 ];
+
+// "Pay Online Fee" opens the institute's SBI Collect fee page in a new tab.
+const payFeeUrl = "https://sbcollect.sbi.bank.in/sbicollect/icollecthome.htm";
 
 const navCta = { label: "Admissions Open", to: "/admissions" };
 
@@ -80,12 +91,16 @@ const navItems = [
     match: ["/students"],
     columns: [
       {
-        title: "Admissions & exams",
+        title: "Admissions & student support",
         items: [
           link("Academic calendar", "/students/academic-calendar"),
           link("Admissions", "/students/admissions"),
           external("Exams (HSBTE)", "https://hsbte.org.in"),
           link("Online learning portals", "/students/online-learning"),
+          external("Code of conduct", "/docs/code-of-conduct-for-students.pdf"),
+          link("Student helpline", "/students/helpline"),
+          link("Grievance redressal", "/students/grievance"),
+          link("E-services", "/students/e-services"),
         ],
       },
       {
@@ -99,12 +114,15 @@ const navItems = [
         ],
       },
       {
-        title: "Support",
+        title: "Departments",
         items: [
-          external("Code of conduct", "/docs/code-of-conduct-for-students.pdf"),
-          link("Student helpline", "/students/helpline"),
-          link("Grievance redressal", "/students/grievance"),
-          link("E-services", "/students/e-services"),
+          link("Applied Science Department", "/students/departments/applied-science"),
+          link("Civil Department", "/students/departments/civil"),
+          link("Computer Department", "/students/departments/computer"),
+          link("Electrical Department", "/students/departments/electrical"),
+          link("Electronics Department", "/students/departments/electronics"),
+          link("Mechanical Department", "/students/departments/mechanical"),
+          link("Plastic Department", "/students/departments/plastic"),
         ],
       },
     ],
@@ -196,11 +214,12 @@ function MenuLink({ item, onNavigate }) {
 /* "Pay Online Fee" call-to-action (header on desktop, drawer on mobile). */
 function PayFee({ className = "", onNavigate }) {
   return (
-    <Link className={`pay-fee ${className}`} to="/students/e-services" onClick={onNavigate}>
+    <a className={`pay-fee ${className}`} href={payFeeUrl} target="_blank" rel="noopener noreferrer" onClick={onNavigate}>
       <span className="pay-fee__icon" aria-hidden="true">&#8377;</span>
       <span className="pay-fee__label">Pay Online Fee</span>
       <FiArrowRight aria-hidden="true" />
-    </Link>
+      <span className="sr-only">(opens in a new tab)</span>
+    </a>
   );
 }
 
@@ -365,6 +384,22 @@ export default function Navbar() {
                 <FiMail aria-hidden="true" />
                 {site.email}
               </a>
+
+              <span className="topstrip__divider topstrip__divider--social" aria-hidden="true" />
+
+              <ul className="topstrip__social" aria-label="Social media">
+                {social.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <li key={item.label}>
+                      <a href={item.href} target="_blank" rel="noopener noreferrer" aria-label={item.label}>
+                        <Icon aria-hidden="true" />
+                        <span className="sr-only">(opens in a new tab)</span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </div>
@@ -574,10 +609,29 @@ export default function Navbar() {
             <FiArrowRight aria-hidden="true" />
           </Link>
 
-          <a href={`tel:${site.phones[0].replace(/-/g, "")}`}>
-            <FiPhone aria-hidden="true" />
-            {site.phones[0]}
-          </a>
+          <div className="drawer__contact">
+            <a href={`tel:${site.phones[0].replace(/-/g, "")}`}>
+              <FiPhone aria-hidden="true" />
+              {site.phones[0]}
+            </a>
+            <a href={`mailto:${site.email}`}>
+              <FiMail aria-hidden="true" />
+              {site.email}
+            </a>
+            <ul className="drawer__social" aria-label="Social media">
+              {social.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <li key={item.label}>
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" aria-label={item.label}>
+                      <Icon aria-hidden="true" />
+                      <span className="sr-only">(opens in a new tab)</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </div>
     </>

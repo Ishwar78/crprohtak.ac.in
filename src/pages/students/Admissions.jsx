@@ -1,6 +1,6 @@
 // Admissions.jsx - Students > Admissions (routes: /students/admissions and /admissions).
 // Page order: hero -> title + "apply" card -> 4 admission steps -> programmes and seats -> notices, downloads and merit lists -> FAQ -> help strip.
-// Own hero, own styles (Admissions.css, every class starts with "adm-").
+// Own hero, own styles (Admissions.css, every class starts with "ads-").
 //
 // HOW THE COLLEGE UPDATES THIS PAGE EACH YEAR - everything is a list at the top of this file:
 //   session     the admission year shown in the title and the apply card
@@ -62,7 +62,7 @@ const steps = [
 ];
 
 const posters = [
-  { src: "/images/admission/admission-2026.jpeg", label: `Admissions open ${session}` },
+  { src: "/images/admission/admission-2026.jpeg", label: `Admissions open ${session.replace("-", "\u2011")}` },
   { src: "/images/admission/admission-notice-2026.jpeg", label: "Official admission notice" },
 ];
 
@@ -95,10 +95,10 @@ const topSeats = Math.max(...courses.map((course) => course.seats));
 function Poster({ src, label }) {
   const [failed, setFailed] = useState(false);
   return (
-    <a className="adm-poster" href={src} target="_blank" rel="noopener noreferrer">
-      <span className="adm-poster__frame">
+    <a className="ads-poster" href={src} target="_blank" rel="noopener noreferrer">
+      <span className="ads-poster__frame">
         {failed ? (
-          <span className="adm-poster__empty" aria-hidden="true">
+          <span className="ads-poster__empty" aria-hidden="true">
             <FiImage />
             <span>Notice coming soon</span>
           </span>
@@ -106,7 +106,7 @@ function Poster({ src, label }) {
           <img src={src} alt={label} loading="lazy" decoding="async" onError={() => setFailed(true)} />
         )}
       </span>
-      <span className="adm-poster__label">
+      <span className="ads-poster__label">
         {label}
         <small>
           View full size
@@ -119,20 +119,20 @@ function Poster({ src, label }) {
 
 export default function Admissions() {
   return (
-    <main id="main" className="adm-page">
-      <section className="adm-hero" aria-label="Admissions" style={{ "--img": `url("${hero.image}")` }}>
-        <div className="adm-hero__photo" />
-        <div className="adm-hero__tags">
-          <span className="adm-hero__tag adm-hero__tag--left">
-            <span className="adm-hero__tag-icon"><FaGraduationCap aria-hidden="true" /></span>
+    <main id="main" className="ads-page">
+      <section className="ads-hero" aria-label="Admissions" style={{ "--img": `url("${hero.image}")` }}>
+        <div className="ads-hero__photo" />
+        <div className="ads-hero__tags">
+          <span className="ads-hero__tag ads-hero__tag--left">
+            <span className="ads-hero__tag-icon"><FaGraduationCap aria-hidden="true" /></span>
             Government Polytechnic
           </span>
-          <span className="adm-hero__tag adm-hero__tag--right">
-            <span className="adm-hero__tag-icon"><FiMapPin aria-hidden="true" /></span>
+          <span className="ads-hero__tag ads-hero__tag--right">
+            <span className="ads-hero__tag-icon"><FiMapPin aria-hidden="true" /></span>
             Rohtak (Haryana)
           </span>
         </div>
-        <nav className="adm-crumbs" aria-label="Breadcrumb">
+        <nav className="ads-crumbs" aria-label="Breadcrumb">
           <Link to="/">Home</Link>
           <FiCrumbArrow aria-hidden="true" />
           <span>Students</span>
@@ -141,29 +141,29 @@ export default function Admissions() {
         </nav>
       </section>
 
-      <div className="container adm-wrap">
+      <div className="container ads-wrap">
         {/* ---- title + apply card ---- */}
-        <div className="adm-top">
-          <header className="adm-intro">
-            <span className="adm-eyebrow">{intro.eyebrow}</span>
+        <div className="ads-top">
+          <header className="ads-intro">
+            <span className="ads-eyebrow">{intro.eyebrow}</span>
             <h1>{intro.title}</h1>
             <p>{intro.lead}</p>
-            <div className="adm-intro__actions">
-              <a className="adm-btn adm-btn--primary" href={portalUrl} target="_blank" rel="noopener noreferrer">
+            <div className="ads-intro__actions">
+              <a className="ads-btn ads-btn--primary" href={portalUrl} target="_blank" rel="noopener noreferrer">
                 Apply on the state portal
                 <FiArrowUpRight aria-hidden="true" />
                 <span className="sr-only">(opens in a new tab)</span>
               </a>
-              <a className="adm-btn adm-btn--line" href="#adm-notices">
+              <a className="ads-btn ads-btn--line" href="#ads-notices">
                 Dates and downloads
                 <FiArrowRight aria-hidden="true" />
               </a>
             </div>
           </header>
 
-          <aside className="adm-apply" aria-label="Admissions at a glance">
-            <span className="adm-apply__pill"><i aria-hidden="true" /> Admissions open</span>
-            <p className="adm-apply__session">Session <strong>{session}</strong></p>
+          <aside className="ads-apply" aria-label="Admissions at a glance">
+            <span className="ads-apply__pill"><i aria-hidden="true" /> Admissions open</span>
+            <p className="ads-apply__session">Session <strong>{session}</strong></p>
             <dl>
               <div><dt>{courses.length}</dt><dd>Diploma programmes</dd></div>
               <div><dt>{totalSeats}</dt><dd>Approved seats</dd></div>
@@ -173,18 +173,18 @@ export default function Admissions() {
         </div>
 
         {/* ---- four steps ---- */}
-        <section className="adm-block" aria-labelledby="adm-steps-title">
-          <header className="adm-head">
-            <span className="adm-eyebrow adm-eyebrow--line">How it works</span>
-            <h2 id="adm-steps-title">Your admission in <span>4 steps</span></h2>
+        <section className="ads-block" aria-labelledby="ads-steps-title">
+          <header className="ads-head">
+            <span className="ads-eyebrow ads-eyebrow--line">How it works</span>
+            <h2 id="ads-steps-title">Your admission in <span>4 steps</span></h2>
           </header>
-          <ol className="adm-steps">
+          <ol className="ads-steps">
             {steps.map((step, index) => {
               const Icon = step.icon;
               return (
-                <li key={step.title} className="adm-step">
-                  <span className="adm-step__no" aria-hidden="true">{index + 1}</span>
-                  <span className="adm-step__icon"><Icon aria-hidden="true" /></span>
+                <li key={step.title} className="ads-step">
+                  <span className="ads-step__no" aria-hidden="true">{index + 1}</span>
+                  <span className="ads-step__icon"><Icon aria-hidden="true" /></span>
                   <h3>{step.title}</h3>
                   <p>{step.text}</p>
                 </li>
@@ -194,24 +194,24 @@ export default function Admissions() {
         </section>
 
         {/* ---- programmes and seats ---- */}
-        <section className="adm-block" aria-labelledby="adm-prog-title">
-          <header className="adm-head">
-            <span className="adm-eyebrow adm-eyebrow--line">Programmes</span>
-            <h2 id="adm-prog-title">Choose your <span>branch</span></h2>
+        <section className="ads-block" aria-labelledby="ads-prog-title">
+          <header className="ads-head">
+            <span className="ads-eyebrow ads-eyebrow--line">Programmes</span>
+            <h2 id="ads-prog-title">Choose your <span>branch</span></h2>
           </header>
-          <ul className="adm-prog">
+          <ul className="ads-prog">
             {courses.map((course) => {
               const Icon = course.icon;
               return (
                 <li key={course.id}>
-                  <Link className="adm-prog__card" to={`/departments/${course.id}`}>
-                    <span className="adm-prog__icon"><Icon aria-hidden="true" /></span>
-                    <span className="adm-prog__body">
+                  <Link className="ads-prog__card" to={`/departments/${course.id}`}>
+                    <span className="ads-prog__icon"><Icon aria-hidden="true" /></span>
+                    <span className="ads-prog__body">
                       <strong>{course.name}</strong>
-                      <span className="adm-prog__seats">{course.seats} seats</span>
-                      <span className="adm-prog__bar" aria-hidden="true"><i style={{ width: `${(course.seats / topSeats) * 100}%` }} /></span>
+                      <span className="ads-prog__seats">{course.seats} seats</span>
+                      <span className="ads-prog__bar" aria-hidden="true"><i style={{ width: `${(course.seats / topSeats) * 100}%` }} /></span>
                     </span>
-                    <FiArrowRight className="adm-prog__go" aria-hidden="true" />
+                    <FiArrowRight className="ads-prog__go" aria-hidden="true" />
                   </Link>
                 </li>
               );
@@ -220,53 +220,53 @@ export default function Admissions() {
         </section>
 
         {/* ---- notices, downloads, merit lists ---- */}
-        <section id="adm-notices" className="adm-block" aria-labelledby="adm-docs-title">
-          <header className="adm-head">
-            <span className="adm-eyebrow adm-eyebrow--line">Notices and downloads</span>
-            <h2 id="adm-docs-title">Everything you <span>need to download</span></h2>
+        <section id="ads-notices" className="ads-block" aria-labelledby="ads-docs-title">
+          <header className="ads-head">
+            <span className="ads-eyebrow ads-eyebrow--line">Notices and downloads</span>
+            <h2 id="ads-docs-title">Everything you <span>need to download</span></h2>
           </header>
 
-          <div className="adm-posters">
+          <div className="ads-posters">
             {posters.map((poster) => (
               <Poster key={poster.src} {...poster} />
             ))}
           </div>
 
-          <div className="adm-lists">
-            <div className="adm-list">
+          <div className="ads-lists">
+            <div className="ads-list">
               <h3>Downloads</h3>
               <ul>
                 {documents.map((item) => (
                   <li key={item.label}>
                     <a href={item.href} target="_blank" rel="noopener noreferrer">
-                      <span className="adm-list__icon"><FiFileText aria-hidden="true" /></span>
-                      <span className="adm-list__label">{item.label}</span>
-                      <span className="adm-list__type">{item.type}</span>
-                      <FiDownload className="adm-list__go" aria-hidden="true" />
+                      <span className="ads-list__icon"><FiFileText aria-hidden="true" /></span>
+                      <span className="ads-list__label">{item.label}</span>
+                      <span className="ads-list__type">{item.type}</span>
+                      <FiDownload className="ads-list__go" aria-hidden="true" />
                     </a>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="adm-list">
+            <div className="ads-list">
               <h3>Merit lists and latest notices</h3>
               <ul>
                 {notices.map((item) => (
                   <li key={item.title}>
                     <a href={item.href} target="_blank" rel="noopener noreferrer">
-                      <span className="adm-list__icon"><FiFileText aria-hidden="true" /></span>
-                      <span className="adm-list__label">
+                      <span className="ads-list__icon"><FiFileText aria-hidden="true" /></span>
+                      <span className="ads-list__label">
                         {item.title}
                         <small>{item.date}</small>
                       </span>
-                      <span className="adm-list__type">{item.type}</span>
-                      <FiDownload className="adm-list__go" aria-hidden="true" />
+                      <span className="ads-list__type">{item.type}</span>
+                      <FiDownload className="ads-list__go" aria-hidden="true" />
                     </a>
                   </li>
                 ))}
               </ul>
-              <Link className="adm-list__all" to="/notices">
+              <Link className="ads-list__all" to="/notices">
                 All notices
                 <FiArrowRight aria-hidden="true" />
               </Link>
@@ -275,17 +275,17 @@ export default function Admissions() {
         </section>
 
         {/* ---- questions ---- */}
-        <section className="adm-block" aria-labelledby="adm-faq-title">
-          <header className="adm-head">
-            <span className="adm-eyebrow adm-eyebrow--line">Questions</span>
-            <h2 id="adm-faq-title">Quick <span>answers</span></h2>
+        <section className="ads-block" aria-labelledby="ads-faq-title">
+          <header className="ads-head">
+            <span className="ads-eyebrow ads-eyebrow--line">Questions</span>
+            <h2 id="ads-faq-title">Quick <span>answers</span></h2>
           </header>
-          <div className="adm-faq">
+          <div className="ads-faq">
             {faqs.map((item) => (
-              <details key={item.q} className="adm-faq__item">
+              <details key={item.q} className="ads-faq__item">
                 <summary>
-                  <span className="adm-faq__q"><FiHelpCircle aria-hidden="true" />{item.q}</span>
-                  <FiPlus className="adm-faq__plus" aria-hidden="true" />
+                  <span className="ads-faq__q"><FiHelpCircle aria-hidden="true" />{item.q}</span>
+                  <FiPlus className="ads-faq__plus" aria-hidden="true" />
                 </summary>
                 <p>{item.a}</p>
               </details>
@@ -294,17 +294,17 @@ export default function Admissions() {
         </section>
 
         {/* ---- help strip ---- */}
-        <section className="adm-help" aria-labelledby="adm-help-title">
+        <section className="ads-help" aria-labelledby="ads-help-title">
           <div>
-            <h2 id="adm-help-title">Need help with your admission?</h2>
+            <h2 id="ads-help-title">Need help with your admission?</h2>
             <p>The institute office will guide you with dates, documents and counselling.</p>
           </div>
-          <div className="adm-help__actions">
-            <a className="adm-btn adm-btn--primary" href={`tel:${contact.phones[0].replace(/-/g, "")}`}>
+          <div className="ads-help__actions">
+            <a className="ads-btn ads-btn--primary" href={`tel:${contact.phones[0].replace(/-/g, "")}`}>
               <FiPhone aria-hidden="true" />
               {contact.phones.join(" / ")}
             </a>
-            <a className="adm-btn adm-btn--ghost" href={`mailto:${contact.email}`}>
+            <a className="ads-btn ads-btn--ghost" href={`mailto:${contact.email}`}>
               <FiMail aria-hidden="true" />
               {contact.email}
             </a>

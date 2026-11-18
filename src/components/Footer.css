@@ -1,139 +1,330 @@
 /* footer.css - site footer, plus the two rules that keep it at the bottom of short pages. Colours come from theme.css only. */
 #root {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column
 }
 
 #root>main {
-    flex: 1 0 auto;
+  flex: 1 0 auto
 }
 
 .footer {
-    margin-top: auto;
-    background: linear-gradient(170deg, var(--ink-900), var(--ink-950));
-    color: var(--logo-white);
-    border-top: 3px solid var(--orange-500);
-}
-
-.footer__grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: clamp(28px, 4vw, 64px);
-    padding: clamp(48px, 6vw, 80px) 0 clamp(36px, 4vw, 56px);
-}
-
-.footer__brand img {
-    height: 46px;
-    width: auto;
-}
-
-.footer address {
-    font-style: normal;
-    display: grid;
-    gap: 12px;
-    margin-top: 24px;
-    color: color-mix(in srgb, var(--white) 82%, transparent);
-    font-size: 0.95rem;
-}
-
-.footer address p {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-}
-
-.footer address svg {
-    flex: none;
-    margin-top: 4px;
-    color: var(--sky-400);
+  margin-top: auto;
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid var(--orange-500);
+  color: var(--logo-white);
+  background: radial-gradient(color-mix(in srgb, var(--white) 7%, transparent) 1px, transparent 1.5px) 0 0/22px 22px, linear-gradient(170deg, var(--ink-900), var(--ink-950))
 }
 
 .footer a {
-    transition: color 0.25s;
+  transition: color .25s, background .25s, border-color .25s, transform .25s
 }
 
 .footer a:hover {
-    color: var(--sky-400);
+  color: var(--sky-400)
 }
 
-.footer__map {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 20px;
-    font-weight: 600;
-    color: var(--orange-400);
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.9fr 1fr 1fr 1.1fr .8fr;
+  gap: clamp(24px, 3vw, 44px);
+  padding: clamp(36px, 5vw, 56px) 0 clamp(28px, 4vw, 40px)
+}
+
+/* brand */
+.footer__logo-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 16px
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0
+}
+
+.footer__logo:hover {
+  color: inherit
+}
+
+.footer__logo img {
+  flex: none;
+  height: clamp(76px, 6vw, 96px);
+  width: auto;
+  max-width: 40vw;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  box-shadow: var(--shadow-soft)
+}
+
+.footer__logo-text {
+  display: grid;
+  gap: 2px
+}
+
+.footer__logo-text strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.15;
+  color: var(--white)
+}
+
+.footer__logo-text small {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--orange-400)
+}
+
+.footer__about {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: color-mix(in srgb, var(--white) 70%, transparent)
+}
+
+.footer address {
+  font-style: normal;
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  color: color-mix(in srgb, var(--white) 82%, transparent);
+  font-size: .95rem
+}
+
+.footer address p {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start
+}
+
+.footer address svg {
+  flex: none;
+  margin-top: 4px;
+  color: var(--sky-400)
+}
+
+.footer .footer__map {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 0;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--orange-400)
 }
 
 .footer__map:hover {
-    color: var(--orange-400);
-    text-decoration: underline;
+  color: var(--orange-400);
+  text-decoration: underline
 }
 
-.footer h2 {
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--orange-400);
-    margin-bottom: 16px;
+/* social: round icons only */
+.footer__social {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 8px
+}
+
+.footer__social a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--white) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--white) 22%, transparent);
+  font-size: 1.05rem;
+  color: var(--white)
+}
+
+.footer__social a:hover {
+  background: var(--orange-500);
+  border-color: var(--orange-500);
+  color: var(--white);
+  transform: translateY(-2px)
+}
+
+/* link columns */
+.footer nav h2 {
+  position: relative;
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--orange-400);
+  white-space: normal
+}
+
+.footer nav h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--orange-500)
 }
 
 .footer nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px
 }
 
 .footer nav a {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 5px 0;
-    font-size: 0.95rem;
-    color: color-mix(in srgb, var(--white) 86%, transparent);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 6px 0;
+  font-size: .95rem;
+  color: color-mix(in srgb, var(--white) 86%, transparent)
 }
 
-.footer nav a svg {
-    opacity: 0.7;
-    font-size: 0.9em;
+.footer nav a>svg:first-child {
+  flex: none;
+  width: 0;
+  opacity: 0;
+  color: var(--orange-400);
+  transition: width .25s, opacity .25s
 }
 
+/* hover motion only for real mouse hover, so a tap on a phone does not leave a link shifted */
+@media (hover:hover) {
+  .footer nav a:hover>svg:first-child {
+    width: 1em;
+    opacity: 1
+  }
+
+  .footer nav a:hover {
+    color: var(--white);
+    transform: translateX(2px)
+  }
+}
+
+.footer .footer__ext {
+  opacity: .6;
+  font-size: 0.95rem;
+  margin-left: 4px
+}
+
+/* bottom bar */
 .footer__bar {
-    border-top: 1px solid color-mix(in srgb, var(--white) 12%, transparent);
-    background: var(--ink-950);
+  border-top: 1px solid color-mix(in srgb, var(--white) 12%, transparent);
+  background: var(--ink-950)
 }
 
 .footer__bar-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 8px 24px;
-    padding: 18px 0;
-    font-size: 0.84rem;
-    color: color-mix(in srgb, var(--white) 72%, transparent);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 24px;
+  padding: 14px 0;
+  font-size: 0.95rem;
+  color: color-mix(in srgb, var(--white) 72%, transparent)
 }
 
-@media (max-width: 960px) {
-    .footer__grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .footer__brand {
-        grid-column: 1 / -1;
-    }
+.footer__top-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--white) 25%, transparent);
+  background: transparent;
+  color: var(--white);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer
 }
 
-@media (max-width: 520px) {
-    .footer__grid {
-        grid-template-columns: 1fr;
-    }
+.footer__top-btn:hover {
+  background: var(--orange-500);
+  border-color: var(--orange-500)
+}
 
-    .footer__bar-row {
-        flex-direction: column;
-    }
+.footer :focus-visible {
+  outline: 3px solid var(--focus-on-dark);
+  outline-offset: 3px
+}
+
+/* beside the brand column the two icons stack on the right of the logo row, so the column stays short */
+@media (min-width:1101px) {
+  .footer__social {
+    flex-direction: column
+  }
+}
+
+@media (max-width:1100px) {
+  .footer__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr))
+  }
+
+  .footer__brand {
+    grid-column: 1/-1
+  }
+}
+
+@media (max-width:760px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr
+  }
+}
+
+/* phones: two link columns side by side (brand on its own row above) */
+@media (max-width:760px) {
+  .footer__grid {
+    gap: 28px 18px
+  }
+}
+
+@media (max-width:520px) {
+  .footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 16px
+  }
+
+  .footer__brand {
+    grid-column: 1/-1
+  }
+
+  .footer nav h2 {
+    font-size: .72rem;
+    letter-spacing: .12em;
+    margin-bottom: 12px
+  }
+
+  .footer nav a {
+    padding: 5px 0;
+    font-size: .9rem;
+    line-height: 1.35;
+    align-items: flex-start
+  }
+
+  .footer__bar-row {
+    flex-direction: column;
+    align-items: flex-start
+  }
+}
+
+@media (max-width:360px) {
+  .footer nav a {
+    font-size: .86rem
+  }
 }

@@ -50,7 +50,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
   color: var(--ink-900);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -92,7 +92,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
   color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -107,7 +107,7 @@
 @media (max-width: 900px) {
   .cse-hero { height: auto; aspect-ratio: 5 / 2; }
   .cse-hero__tags { display: none; }
-  .cse-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.78rem; }
+  .cse-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.95rem; }
   .cse-crumbs svg { width: 12px; height: 12px; }
 }
 
@@ -264,23 +264,104 @@ main#main.cse-page .cse-top h1::after {
   box-shadow: var(--shadow-soft);
 }
 
-/* all eight pills in one row; on small screens the row scrolls sideways */
+/* wide screens: all eight pills in one row (they wrap instead of scrolling if the row is ever too narrow) */
 .cse-switch__list {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin: 0;
   padding: 2px;
-  overflow-x: auto;
   list-style: none;
-  scrollbar-width: none;
 }
 
-.cse-switch__list::-webkit-scrollbar {
+/* small screens: a dropdown replaces the pills. A button shows the current department and opens a panel with all eight. */
+.cse-switch__menu {
+  position: relative;
   display: none;
 }
 
-.cse-switch__list li {
+.cse-switch__button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 18px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink-900);
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.cse-switch__button:hover,
+.cse-switch__button[aria-expanded="true"] {
+  border-color: var(--sky-500);
+}
+
+.cse-switch__button:focus-visible {
+  outline: 3px solid var(--sky-700);
+  outline-offset: 3px;
+}
+
+.cse-switch__label {
   flex: none;
+  color: var(--orange-700);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cse-switch__current {
+  flex: 1;
+  min-width: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.cse-switch__button > svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--sky-700);
+  transition: transform 0.25s var(--ease);
+}
+
+.cse-switch__button[aria-expanded="true"] > svg {
+  transform: rotate(180deg);
+}
+
+/* the open list: a rounded card under the button, two columns of the same pills */
+.cse-switch__panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--white);
+  box-shadow: var(--shadow-lift);
+  list-style: none;
+  animation: cse-rise 0.25s var(--ease) both;
+}
+
+.cse-switch__panel .cse-switch__link {
+  justify-content: center;
+  width: 100%;
+  padding: 12px 6px;
+  border-color: var(--line);
+  font-size: 0.95rem;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .cse-switch__link {
@@ -434,7 +515,7 @@ main#main.cse-page .cse-top h1::after {
   border-radius: 999px;
   background: var(--surface-orange);
   color: var(--orange-700);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 800;
   text-align: center;
 }
@@ -550,7 +631,7 @@ main#main.cse-page mark {
 }
 
 .cse-photo__empty span {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -625,7 +706,7 @@ main#main.cse-page .cse-feature h2 {
 
 .cse-tiles span {
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.3;
 }
@@ -795,17 +876,17 @@ main#main.cse-page .cse-block h2 {
   object-fit: cover;
 }
 
+/* name and role sit right under each other at the top of the card */
 .cse-card__body {
   display: grid;
+  align-content: start;
   justify-items: start;
-  gap: 10px;
+  gap: 8px;
   min-width: 0;
 }
 
-/* two lines are always reserved for the name, so the role and qualification start at the same height on every card */
 main#main.cse-page .cse-card h3 {
   margin: 0;
-  min-height: 2.5em;
   color: var(--ink-900);
   font-family: var(--font-display);
   font-size: 1.2rem;
@@ -835,7 +916,7 @@ main#main.cse-page .cse-card h3 {
 
 .cse-card dt {
   color: var(--orange-700);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1005,9 +1086,42 @@ main#main.cse-page .cse-head h2 span {
 }
 
 /* ============ RESPONSIVE ============ */
-@media (max-width: 1100px) {
+/* three staff cards in a row from 1100px up; below that, two */
+@media (max-width: 1099px) {
   .cse-staff {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* 1100-1280px: the three cards are a little narrower, so the photo and name are a little smaller (names stay on one line) */
+@media (min-width: 1100px) and (max-width: 1280px) {
+  .cse-card {
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 14px 16px;
+    padding: 18px 16px;
+  }
+
+  .cse-avatar {
+    width: 104px;
+    height: 150px;
+  }
+
+  main#main.cse-page .cse-card h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .cse-switch {
+    padding: 8px;
+  }
+
+  .cse-switch__list {
+    display: none;
+  }
+
+  .cse-switch__menu {
+    display: block;
   }
 
   .cse-hl {
@@ -1065,6 +1179,33 @@ main#main.cse-page .cse-head h2 span {
   }
 }
 
+/* the quick facts stay in ONE row on small screens: equal tiles, icon above the text */
+@media (max-width: 640px) {
+  .cse-facts {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  .cse-facts li {
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 6px;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .cse-facts svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 @media (max-width: 560px) {
   .cse-hl {
     grid-template-columns: 1fr;
@@ -1090,8 +1231,17 @@ main#main.cse-page .cse-head h2 span {
   }
 }
 
+/* very small phones: "Applied Sciences" may use two lines */
+@media (max-width: 340px) {
+  .cse-switch__panel .cse-switch__link {
+    white-space: normal;
+    line-height: 1.2;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .cse-panel {
+  .cse-panel,
+  .cse-switch__panel {
     animation: none;
   }
 
@@ -1111,5 +1261,20 @@ main#main.cse-page .cse-head h2 span {
 
   .cse-photo:hover img {
     transform: none;
+  }
+}
+
+/* small screens: chips sit in a tidy two-column grid instead of one ragged line each */
+@media (max-width: 560px) {
+  .cse-items--chips {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .cse-items--chips li {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    line-height: 1.35;
   }
 }

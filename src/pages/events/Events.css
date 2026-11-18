@@ -50,7 +50,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
   color: var(--ink-900);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -92,7 +92,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
   color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -107,7 +107,7 @@
 @media (max-width: 900px) {
   .evt-hero { height: auto; aspect-ratio: 5 / 2; }
   .evt-hero__tags { display: none; }
-  .evt-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.78rem; }
+  .evt-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.95rem; }
   .evt-crumbs svg { width: 12px; height: 12px; }
 }
 
@@ -495,7 +495,7 @@ main#main.evt-page .evt-help h2 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  color: color-mix(in srgb, var(--ink-900) 60%, transparent);
+  color: var(--text);
   font-size: 1rem;
   font-weight: 700;
   background:
@@ -637,7 +637,7 @@ main#main.evt-page .evt-featured h2 {
   border-radius: 999px;
   background: var(--orange-100);
   color: var(--orange-700);
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;

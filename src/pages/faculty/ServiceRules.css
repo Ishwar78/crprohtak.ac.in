@@ -48,7 +48,7 @@
     border-radius: 30px;
     background: rgba(239, 247, 252, .92);
     color: var(--ink-900);
-    font-size: .78rem;
+    font-size: 0.8rem;
     font-weight: 750;
     letter-spacing: .04em;
     text-transform: uppercase
@@ -73,7 +73,7 @@
     border-radius: 9px;
     background: rgba(5, 25, 48, .86);
     color: #e8f1f8;
-    font-size: .84rem;
+    font-size: 0.95rem;
     font-weight: 650;
     white-space: nowrap;
     overflow: hidden
@@ -106,7 +106,7 @@
 .pol-kicker {
     display: inline-block;
     color: var(--crp-blue);
-    font-size: .76rem;
+    font-size: 0.8rem;
     font-weight: 850;
     letter-spacing: .13em;
     text-transform: uppercase
@@ -256,7 +256,7 @@
     right: 20px;
     top: 22px;
     color: #b7c9d7;
-    font-size: .78rem;
+    font-size: 0.8rem;
     font-weight: 850;
     letter-spacing: .08em
 }
@@ -270,7 +270,7 @@
 .pol-card p {
     margin: 0;
     color: var(--muted);
-    font-size: .94rem;
+    font-size: 0.95rem;
     line-height: 1.7
 }
 
@@ -358,7 +358,7 @@
     margin: 0;
     color: #586b7b;
     line-height: 1.65;
-    font-size: .94rem
+    font-size: 0.95rem
 }
 
 .pol-bottom {
@@ -374,7 +374,7 @@
 .pol-bottom>span {
     margin-right: auto;
     color: var(--muted);
-    font-size: .9rem;
+    font-size: 0.95rem;
     font-weight: 700
 }
 
@@ -387,7 +387,7 @@
     border-radius: 8px;
     background: #fff;
     color: var(--ink-900);
-    font-size: .86rem;
+    font-size: 0.95rem;
     font-weight: 700;
     transition: .2s
 }
@@ -428,7 +428,7 @@
         bottom: 10px;
         padding: 7px 10px;
         gap: 6px;
-        font-size: .75rem
+        font-size: 0.95rem
     }
 
     .pol-feature {

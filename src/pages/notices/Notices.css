@@ -50,7 +50,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
   color: var(--ink-900);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -92,7 +92,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
   color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -107,7 +107,7 @@
 @media (max-width: 900px) {
   .ntc-hero { height: auto; aspect-ratio: 5 / 2; }
   .ntc-hero__tags { display: none; }
-  .ntc-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.78rem; }
+  .ntc-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.95rem; }
   .ntc-crumbs svg { width: 12px; height: 12px; }
 }
 
@@ -393,13 +393,18 @@ main#main.ntc-page .ntc-glance h2 {
   overflow-wrap: anywhere;
 }
 
+/* "LATEST NOTICE: title" on one line (the title wraps only if it is long) */
 .ntc-glance__latest span {
-  display: block;
-  margin-bottom: 2px;
+  display: inline;
+  margin-right: 6px;
   color: var(--orange-400);
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.ntc-glance__latest span::after {
+  content: ":";
 }
 
 /* ============ TABS, SEARCH, CHIPS ============ */
@@ -596,7 +601,7 @@ main#main.ntc-page .ntc-row h3 {
 .ntc-row__date {
   padding: 3px 12px;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   line-height: 1.4;
 }
@@ -735,5 +740,106 @@ main#main.ntc-page .ntc-row h3 {
   .ntc-open:hover,
   .ntc-more:hover {
     transform: none;
+  }
+}
+
+/* ===== Small screens: "All" outside, the other categories in a dropdown (two per row) ===== */
+.ntc-pick {
+  display: none;
+}
+
+/* below 860px the seven chips no longer fit on one line */
+@media (max-width: 859px) {
+  .ntc-chips {
+    display: none;
+  }
+
+  .ntc-pick {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .ntc-pick__all,
+  .ntc-pick__btn,
+  .ntc-pick__panel button {
+    border: 1.5px solid var(--line);
+    background: var(--white);
+    color: var(--ink-900);
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, border-color 0.25s;
+  }
+
+  .ntc-pick__all {
+    flex: none;
+    padding: 10px 22px;
+    border-radius: 999px;
+  }
+
+  .ntc-pick__btn {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 16px 10px 18px;
+    border-radius: 999px;
+    text-align: left;
+  }
+
+  .ntc-pick__btn svg {
+    flex: none;
+    transition: transform 0.25s;
+  }
+
+  .ntc-pick__btn[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+
+  .ntc-pick__btn:not(.is-set) span {
+    color: var(--muted);
+  }
+
+  .ntc-pick__all[aria-pressed="true"],
+  .ntc-pick__btn.is-set,
+  .ntc-pick__panel button[aria-pressed="true"] {
+    border-color: var(--orange-500);
+    background: var(--orange-100);
+    color: var(--orange-700);
+  }
+
+  .ntc-pick__panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--white);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .ntc-pick__panel button {
+    padding: 11px 10px;
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .ntc-pick__all:focus-visible,
+  .ntc-pick__btn:focus-visible,
+  .ntc-pick__panel button:focus-visible {
+    outline: 3px solid var(--sky-700);
+    outline-offset: 3px;
   }
 }

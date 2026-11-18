@@ -60,7 +60,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
   color: var(--ink-900);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -102,7 +102,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
   color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -117,7 +117,7 @@
 @media (max-width: 900px) {
   .gal-hero { height: auto; aspect-ratio: 5 / 2; }
   .gal-hero__tags { display: none; }
-  .gal-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.78rem; }
+  .gal-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.95rem; }
   .gal-crumbs svg { width: 12px; height: 12px; }
 }
 
@@ -210,7 +210,7 @@ main#main.gal-page .gal-intro h1::after {
 
 .gal-stats > div {
   display: grid;
-  align-content: center;
+  align-content: start; /* the three numbers always line up on the same top edge, even when one label wraps to two lines */
   gap: 6px;
   padding: clamp(20px, 2.8vw, 32px) clamp(14px, 2vw, 24px);
   border-right: 1px solid color-mix(in srgb, var(--surface-blue-light) 14%, transparent);
@@ -230,7 +230,7 @@ main#main.gal-page .gal-intro h1::after {
 
 .gal-stats dd {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.35;
   color: color-mix(in srgb, var(--surface-blue-light) 86%, transparent);
 }
@@ -312,15 +312,17 @@ main#main.gal-page .gal-intro h1::after {
 
 .gal-filters {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto;
 }
 
 .gal-chip {
   display: inline-flex;
+  flex: none;
   align-items: center;
-  gap: 10px;
-  padding: 9px 12px 9px 18px;
+  gap: 8px;
+  padding: 9px 8px 9px 12px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: linear-gradient(180deg, var(--surface-blue-light), color-mix(in srgb, var(--sky-100) 28%, var(--surface-blue-light)));
@@ -338,7 +340,7 @@ main#main.gal-page .gal-intro h1::after {
   border-radius: 999px;
   background: var(--surface-orange);
   color: var(--orange-700);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 800;
   text-align: center;
 }
@@ -441,7 +443,7 @@ main#main.gal-page .gal-intro h1::after {
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   color: var(--ink-900);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -529,7 +531,7 @@ main#main.gal-page .gal-intro h1::after {
 }
 
 .gal-empty span {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -545,7 +547,7 @@ main#main.gal-page .gal-intro h1::after {
 
 .gal-more > span {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .gal-btn {
@@ -740,7 +742,7 @@ main#main.gal-page .gal-none h2 {
 .gal-viewer__title small {
   color: var(--orange-400);
   font-family: inherit;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -829,9 +831,19 @@ main#main.gal-page .gal-none h2 {
     gap: 22px;
   }
 
+  /* phones: one photo per row */
   .gal-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  /* the last stat has the longest label, so it gets more room */
+  .gal-stats {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1.35fr);
+  }
+
+  .gal-stats > div {
+    padding-inline: 14px;
   }
 
   .gal-tile {
@@ -842,7 +854,7 @@ main#main.gal-page .gal-none h2 {
     top: 10px;
     left: 10px;
     padding: 5px 10px;
-    font-size: 0.72rem;
+    font-size: 0.95rem;
   }
 
   .gal-tile__caption {
@@ -868,7 +880,7 @@ main#main.gal-page .gal-none h2 {
   }
 
   .gal-stats dd {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
 
   .gal-thumb {

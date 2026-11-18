@@ -13,7 +13,7 @@ html {
 body {
   margin: 0;
   font-family: var(--font-body);
-  color: var(--ink);
+  color: var(--text);
   background: var(--cream);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -100,7 +100,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;

@@ -60,7 +60,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
   color: var(--ink-900);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -102,7 +102,7 @@
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
   color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -117,7 +117,7 @@
 @media (max-width: 900px) {
   .soc-hero { height: auto; aspect-ratio: 5 / 2; }
   .soc-hero__tags { display: none; }
-  .soc-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.78rem; }
+  .soc-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.95rem; }
   .soc-crumbs svg { width: 12px; height: 12px; }
 }
 
@@ -254,7 +254,7 @@ main#main.soc-page .soc-reach h2 {
 
 .soc-reach__label {
   color: var(--orange-400);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -274,7 +274,7 @@ main#main.soc-page .soc-reach h2 {
   gap: 6px;
   margin-top: 4px;
   color: color-mix(in srgb, var(--surface-blue-light) 85%, transparent);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 700;
   transition: color 0.2s;
 }
@@ -403,7 +403,7 @@ main#main.soc-page .soc-head h2 span {
   border: 1px solid color-mix(in srgb, var(--surface-blue-light) 26%, transparent);
   border-radius: 999px;
   background: color-mix(in srgb, var(--surface-blue-light) 10%, transparent);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
 }
 

@@ -1,8 +1,8 @@
 // Gallery.jsx - Media > Photos (route: /media/photos).
 // Page order: hero -> title + stat card -> search and category bar -> photo grid -> "show more" -> full-screen viewer.
 //
-// ADDING PHOTOS: put the file in public/images/gallery/ and add ONE line to the `photos` list below.
-//   src       path of the photo, for example "/images/gallery/campus-1.jpg"
+// ADDING PHOTOS: use an existing image under public/ with its root-relative URL.
+//   src       path of the photo, for example "/images/campus-2.jpg"
 //   title     short caption
 //   category  groups photos under a filter chip - a new category name creates a new chip by itself
 // The wall shows 12 photos first and a "Show more" button loads 12 more each time, so the list can grow to hundreds.
@@ -25,21 +25,18 @@ const intro = {
 };
 
 // ---------------------------------------------------------------------------
-// KEEP YOUR OWN LIST HERE: replace everything between these two lines with the `photos` list from your current file.
-// ---------------------------------------------------------------------------
 const photos = [
-  { src: "/images/gallery/campus-1.jpg", title: "Main building", category: "Campus" },
-  { src: "/images/gallery/campus-2.jpg", title: "Campus grounds", category: "Campus" },
-  { src: "/images/gallery/hostels-1.jpg", title: "Hostel premises", category: "Hostels" },
-  { src: "/images/gallery/labs-1.jpg", title: "Computer lab", category: "Labs" },
-  { src: "/images/gallery/library-1.jpg", title: "Library", category: "Library" },
-  { src: "/images/gallery/events-1.jpg", title: "Annual function", category: "Events" },
-  { src: "/images/gallery/events-2.jpg", title: "Celebration on campus", category: "Events" },
-  { src: "/images/gallery/sports-1.jpg", title: "Athletic meet", category: "Sports" },
-  { src: "/images/gallery/workshop-1.jpg", title: "Workshop session", category: "Workshop" },
-  { src: "/images/gallery/people-1.jpg", title: "Students and faculty", category: "People" },
+  { src: "/images/campus-2.jpg", title: "Main campus", category: "Campus" },
+  { src: "/images/campus-3.jpg", title: "Campus grounds", category: "Campus" },
+  { src: "/images/campus-workshop.jpg", title: "Workshop session", category: "Workshop" },
+  { src: "/images/events.jpg", title: "College events", category: "Events" },
+  { src: "/images/facilities/communication-lab-1.jpg", title: "Communication lab", category: "Labs" },
+  { src: "/images/facilities/facility-computer-labs.jpg", title: "Computer lab", category: "Labs" },
+  { src: "/images/facilities/library-2.jpg", title: "Library", category: "Library" },
+  { src: "/images/facilities/facility-hostels.jpg", title: "Hostel premises", category: "Hostels" },
+  { src: "/images/facilities/facility-sports.jpg", title: "Sports facilities", category: "Sports" },
+  { src: "/images/placement-activities.jpg", title: "Placement activities", category: "Placements" },
 ];
-// ---------------------------------------------------------------------------
 
 const categories = [...new Set(photos.map((photo) => photo.category))];
 const countOf = (name) => photos.filter((photo) => photo.category === name).length;
