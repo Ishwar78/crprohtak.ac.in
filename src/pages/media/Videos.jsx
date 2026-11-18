@@ -84,7 +84,7 @@ export default function Videos() {
         <div className="vid-hero__tags">
           <span className="vid-hero__tag vid-hero__tag--left">
             <span className="vid-hero__tag-icon"><FaGraduationCap aria-hidden="true" /></span>
-            C.R. Polytechnic
+            Government Polytechnic
           </span>
           <span className="vid-hero__tag vid-hero__tag--right">
             <span className="vid-hero__tag-icon"><FiMapPin aria-hidden="true" /></span>

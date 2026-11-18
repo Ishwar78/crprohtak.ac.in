@@ -13,9 +13,13 @@ const pillars = [
 export default function IQAC() {
   return (
     <main id="main" className="svc-page svc-iqac">
-      <section className="svc-hero" style={{ "--svc-img": 'url("/images/pages-banner.png")' }}>
-        <div className="svc-hero__tags"><span><FaGraduationCap /> Government Polytechnic</span><span><FiMapPin /> Rohtak (Haryana)</span></div>
-        <nav className="svc-crumbs" aria-label="Breadcrumb"><Link to="/">Home</Link><FiChevronRight /><span>Faculty</span><FiChevronRight /><span aria-current="page">IQAC</span></nav>
+      <section className="svc-hero" aria-label="IQAC" style={{ "--svc-img": 'url("/images/pages-banner.png")' }}>
+        <div className="svc-hero__photo" />
+        <div className="svc-hero__tags">
+          <span className="svc-hero__tag svc-hero__tag--left"><span className="svc-hero__tag-icon"><FaGraduationCap aria-hidden="true" /></span>Government Polytechnic</span>
+          <span className="svc-hero__tag svc-hero__tag--right"><span className="svc-hero__tag-icon"><FiMapPin aria-hidden="true" /></span>Rohtak (Haryana)</span>
+        </div>
+        <nav className="svc-crumbs" aria-label="Breadcrumb"><Link to="/">Home</Link><FiChevronRight aria-hidden="true" /><span>Faculty</span><FiChevronRight aria-hidden="true" /><span aria-current="page">IQAC</span></nav>
       </section>
       <div className="container svc-wrap">
         <header className="svc-intro"><span className="svc-eyebrow">Faculty · Services</span><h1>Internal Quality <em>Assurance Cell</em></h1><p>A focus on reviewing institutional practices, encouraging feedback and supporting continuous improvement.</p></header>

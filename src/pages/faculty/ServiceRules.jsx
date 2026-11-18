@@ -12,7 +12,14 @@ const topics=[
 const reminders=["Check the rule set applicable to the employee's post and service category", "Refer to the latest government notification or amendment", "Confirm interpretation with the competent administrative authority"];
 
 export default function ServiceRules(){return <main id="main" className="pol-page pol-service">
- <section className="pol-hero" style={{"--pol-img":'url("/images/pages-banner.png")'}}><div className="pol-hero__tags"><span><FaGraduationCap/> Government Polytechnic</span><span><FiMapPin/> Rohtak (Haryana)</span></div><nav className="pol-crumbs" aria-label="Breadcrumb"><Link to="/">Home</Link><FiChevronRight/><span>Faculty</span><FiChevronRight/><span aria-current="page">Service Rules</span></nav></section>
+ <section className="pol-hero" aria-label="Service Rules" style={{"--pol-img":'url("/images/pages-banner.png")'}}>
+  <div className="pol-hero__photo" />
+  <div className="pol-hero__tags">
+   <span className="pol-hero__tag pol-hero__tag--left"><span className="pol-hero__tag-icon"><FaGraduationCap aria-hidden="true" /></span>Government Polytechnic</span>
+   <span className="pol-hero__tag pol-hero__tag--right"><span className="pol-hero__tag-icon"><FiMapPin aria-hidden="true" /></span>Rohtak (Haryana)</span>
+  </div>
+  <nav className="pol-crumbs" aria-label="Breadcrumb"><Link to="/">Home</Link><FiChevronRight aria-hidden="true" /><span>Faculty</span><FiChevronRight aria-hidden="true" /><span aria-current="page">Service Rules</span></nav>
+ </section>
  <div className="container pol-wrap">
   <header className="pol-intro"><span className="pol-eyebrow">Faculty · Policies &amp; Rules</span><h1>Service <em>Rules</em></h1><p>Reference information for understanding the service rules and government instructions applicable to institute employees.</p></header>
   <section className="pol-feature"><div className="pol-feature__mark"><FiFileText/></div><div><span className="pol-kicker">Official framework</span><h2>Refer to the rules that apply to your service</h2><p>The institute's website links to Haryana Government service rules. The applicable provisions may depend on the employee's post, service group and subsequent government amendments.</p></div><span className="pol-feature__number">04</span></section>

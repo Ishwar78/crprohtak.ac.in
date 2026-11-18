@@ -40,7 +40,7 @@ const dept = {
     { icon: FiBriefcase, text: "Office administration" },
     { icon: FiFileText, text: "Institutional support" },
   ],
-  image: `${IMG}/hero.jpg`,
+  image: `${IMG}/administrative-hero.jpg`,
   imageAlt: "Administrative office at Chhotu Ram Polytechnic",
 };
 
@@ -62,9 +62,9 @@ const currentLabel = switcher.find((item) => item.to === CURRENT)?.label;
 
 // Two small pictures on top, one wide picture below (the layout of the About card).
 const collage = [
-  { src: `${IMG}/about-1.jpg`, alt: "Administrative office - picture 1" },
-  { src: `${IMG}/about-2.jpg`, alt: "Administrative office - picture 2" },
-  { src: `${IMG}/about-3.jpg`, alt: "Administrative office - picture 3" },
+  { src: `${IMG}/administrative-about-1.jpg`, alt: "Administrative office - picture 1" },
+  { src: `${IMG}/administrative-about-2.jpg`, alt: "Administrative office - picture 2" },
+  { src: `${IMG}/administrative-about-3.jpg`, alt: "Administrative office - picture 3" },
 ];
 
 const aboutTiles = [

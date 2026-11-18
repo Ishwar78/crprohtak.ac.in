@@ -15,33 +15,22 @@ main#main.prj-page h3 {
 }
 
 /* ============ HERO (shorter than the Home banner on purpose) ============ */
+
 .prj-hero {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  height: clamp(220px, 24vw, 320px);
-  background: linear-gradient(135deg, var(--ink-700, #0b3d6b), var(--ink-950, #031a2e));
+  height: clamp(320px, 27vw, 364px);
+  background: linear-gradient(135deg, var(--ink-700), var(--ink-950));
 }
 
-/* photo fills the whole banner; if the file is missing the navy gradient stays */
 .prj-hero__photo {
   position: absolute;
   inset: 0;
-  background-image: var(--img), linear-gradient(135deg, var(--ink-700, #0b3d6b), var(--ink-950, #031a2e));
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* soft fade at the bottom so the breadcrumb always reads */
-.prj-hero::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 45%;
-  background: linear-gradient(transparent, color-mix(in srgb, var(--ink-950, #031a2e) 38%, transparent));
-  z-index: 1;
-  pointer-events: none;
+  background-image: var(--img), linear-gradient(135deg, var(--ink-700), var(--ink-950));
+  background-size: cover, auto;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
 }
 
 .prj-hero__tags {
@@ -58,20 +47,22 @@ main#main.prj-page h3 {
   align-items: center;
   gap: 10px;
   padding: 6px 18px 6px 6px;
-  border: 1px solid color-mix(in srgb, var(--white, #fff) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--surface-blue-light) 70%, transparent);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--white, #fff) 92%, transparent);
+  background: color-mix(in srgb, var(--surface-blue-light) 92%, transparent);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950, #031a2e) 28%, transparent);
-  color: var(--ink-900, #07294a);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
+  color: var(--ink-900);
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   white-space: nowrap;
-  pointer-events: auto;
 }
+
+.prj-hero__tag--left { left: 16px; }
+.prj-hero__tag--right { right: 16px; }
 
 .prj-hero__tag-icon {
   flex: none;
@@ -80,31 +71,13 @@ main#main.prj-page h3 {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  color: var(--white, #fff);
+  color: var(--surface-blue-light);
 }
 
-.prj-hero__tag-icon svg {
-  width: 15px;
-  height: 15px;
-}
+.prj-hero__tag-icon svg { width: 15px; height: 15px; }
+.prj-hero__tag--left .prj-hero__tag-icon { background: var(--orange-500); }
+.prj-hero__tag--right .prj-hero__tag-icon { background: var(--sky-500); }
 
-.prj-hero__tag--left {
-  left: 16px;
-}
-
-.prj-hero__tag--left .prj-hero__tag-icon {
-  background: var(--orange-500, #f28c28);
-}
-
-.prj-hero__tag--right {
-  right: 16px;
-}
-
-.prj-hero__tag--right .prj-hero__tag-icon {
-  background: var(--sky-500, #1aa3d9);
-}
-
-/* breadcrumb pill, bottom-left of the photo */
 .prj-crumbs {
   position: absolute;
   left: 16px;
@@ -115,40 +88,65 @@ main#main.prj-page h3 {
   gap: 8px;
   max-width: calc(100% - 32px);
   padding: 9px 16px;
-  border-left: 3px solid var(--orange-500, #f28c28);
+  border-left: 3px solid var(--orange-500);
   border-radius: 10px;
-  background: color-mix(in srgb, var(--ink-950, #031a2e) 82%, transparent);
+  background: color-mix(in srgb, var(--ink-950) 84%, transparent);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950, #031a2e) 35%, transparent);
-  color: color-mix(in srgb, var(--white, #fff) 78%, transparent);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
+  color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
   font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
 }
 
-.prj-crumbs a {
-  color: inherit;
+.prj-crumbs a { color: inherit; transition: color 0.2s; }
+.prj-crumbs a:hover { color: var(--orange-400); }
+.prj-crumbs svg { flex: none; width: 14px; height: 14px; opacity: 0.7; }
+.prj-crumbs [aria-current] { color: var(--orange-400); font-weight: 700; }
+
+@media (max-width: 900px) {
+  .prj-hero { height: auto; aspect-ratio: 7 / 3; }
+  .prj-hero__photo { background-size: contain, auto; }
+  .prj-hero__tags { display: none; }
+  .prj-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.95rem; }
+  .prj-crumbs svg { width: 12px; height: 12px; }
 }
 
-.prj-crumbs a:hover {
-  color: var(--orange-400, #f7a65a);
-}
 
-.prj-crumbs svg {
-  flex: none;
-  width: 14px;
-  height: 14px;
-  opacity: 0.7;
-}
+/* photo fills the whole banner; if the file is missing the navy gradient stays */
 
-.prj-crumbs [aria-current] {
-  color: var(--orange-400, #f7a65a);
-  font-weight: 700;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* breadcrumb pill, bottom-left of the photo */
+
+
+
+
+
+
+
+
+
 
 /* ============ TITLE BLOCK (under the hero) ============ */
 .prj-intro {
@@ -532,30 +530,8 @@ main#main.prj-page .prj-cards h3 {
   }
 }
 
-/* phones and tablets: a fixed wide shape (5:2), no top pills, a small breadcrumb */
-@media (max-width: 900px) {
-  .prj-hero {
-    height: auto;
-    aspect-ratio: 5 / 2;
-  }
 
-  .prj-hero__tags {
-    display: none;
-  }
 
-  .prj-crumbs {
-    left: 10px;
-    bottom: 10px;
-    padding: 6px 12px;
-    gap: 6px;
-    font-size: 0.95rem;
-  }
-
-  .prj-crumbs svg {
-    width: 12px;
-    height: 12px;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .prj-side a {

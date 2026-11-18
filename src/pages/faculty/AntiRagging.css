@@ -7,91 +7,101 @@
 }
 
 .pol-hero {
-    position: relative;
-    height: clamp(210px, 23vw, 300px);
-    overflow: hidden;
-    background: linear-gradient(125deg, var(--ink-700), var(--ink-950))
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  height: clamp(320px, 27vw, 364px);
+  background: linear-gradient(135deg, var(--ink-700), var(--ink-950));
 }
 
-.pol-hero:before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: var(--pol-img), linear-gradient(125deg, transparent 30%, color-mix(in srgb, var(--sky-500) 24%, transparent)), radial-gradient(circle, color-mix(in srgb, var(--surface-blue-light) 18%, transparent) 1px, transparent 1.7px);
-    background-size: cover, auto, 24px 24px;
-    background-position: center;
-    background-repeat: no-repeat
-}
-
-.pol-hero:after {
-    content: "";
-    position: absolute;
-    inset: 45% 0 0;
-    background: linear-gradient(transparent, color-mix(in srgb, var(--ink-950) 48%, transparent));
-    pointer-events: none
+.pol-hero__photo {
+  position: absolute;
+  inset: 0;
+  background-image: var(--pol-img), linear-gradient(135deg, var(--ink-700), var(--ink-950));
+  background-size: cover, auto;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
 }
 
 .pol-hero__tags {
-    position: absolute;
-    z-index: 1;
-    inset: 16px 16px auto;
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    pointer-events: none
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.pol-hero__tags span {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    padding: 8px 14px;
-    border: 1px solid rgba(255, 255, 255, .35);
-    border-radius: 30px;
-    background: rgba(239, 247, 252, .92);
-    color: var(--ink-900);
-    font-size: 0.8rem;
-    font-weight: 750;
-    letter-spacing: .04em;
-    text-transform: uppercase
+.pol-hero__tag {
+  position: absolute;
+  top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px 6px 6px;
+  border: 1px solid color-mix(in srgb, var(--surface-blue-light) 70%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-blue-light) 92%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--ink-950) 28%, transparent);
+  color: var(--ink-900);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.pol-hero__tags svg {
-    color: var(--crp-blue);
-    font-size: 1.1rem
+.pol-hero__tag--left { left: 16px; }
+.pol-hero__tag--right { right: 16px; }
+
+.pol-hero__tag-icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--surface-blue-light);
 }
+
+.pol-hero__tag-icon svg { width: 15px; height: 15px; }
+.pol-hero__tag--left .pol-hero__tag-icon { background: var(--orange-500); }
+.pol-hero__tag--right .pol-hero__tag-icon { background: var(--sky-500); }
 
 .pol-crumbs {
-    position: absolute;
-    z-index: 2;
-    left: max(16px, calc((100% - 1200px)/2));
-    bottom: 17px;
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    max-width: calc(100% - 32px);
-    padding: 9px 15px;
-    border-left: 3px solid var(--orange-500);
-    border-radius: 9px;
-    background: rgba(5, 25, 48, .86);
-    color: #e8f1f8;
-    font-size: 0.95rem;
-    font-weight: 650;
-    white-space: nowrap;
-    overflow: hidden
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 32px);
+  padding: 9px 16px;
+  border-left: 3px solid var(--orange-500);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ink-950) 84%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--ink-950) 35%, transparent);
+  color: color-mix(in srgb, var(--surface-blue-light) 82%, transparent);
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.pol-crumbs a {
-    color: inherit
-}
+.pol-crumbs a { color: inherit; transition: color 0.2s; }
+.pol-crumbs a:hover { color: var(--orange-400); }
+.pol-crumbs svg { flex: none; width: 14px; height: 14px; opacity: 0.7; }
+.pol-crumbs [aria-current] { color: var(--orange-400); font-weight: 700; }
 
-.pol-crumbs svg {
-    flex: none;
-    opacity: .7
-}
-
-.pol-crumbs [aria-current] {
-    color: var(--orange-400)
+@media (max-width: 900px) {
+  .pol-hero { height: auto; aspect-ratio: 7 / 3; }
+  .pol-hero__photo { background-size: contain, auto; }
+  .pol-hero__tags { display: none; }
+  .pol-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.95rem; }
+  .pol-crumbs svg { width: 12px; height: 12px; }
 }
 
 .pol-wrap {
@@ -415,23 +425,6 @@
 }
 
 @media(max-width:600px) {
-    .pol-hero {
-        height: auto;
-        aspect-ratio: 5/2;
-        min-height: 170px
-    }
-
-    .pol-hero__tags {
-        display: none
-    }
-
-    .pol-crumbs {
-        left: 10px;
-        bottom: 10px;
-        padding: 7px 10px;
-        gap: 6px;
-        font-size: 0.95rem
-    }
 
     .pol-feature {
         grid-template-columns: 1fr;
@@ -662,9 +655,6 @@
         justify-content: space-between;
     }
 
-    .pol-crumbs {
-        font-size: 0.95rem;
-    }
 }
 
 @media (max-width: 380px) {
@@ -684,94 +674,6 @@
     color: var(--ink-900)
 }
 
-.pol-hero {
-    position: relative;
-    height: clamp(210px, 23vw, 300px);
-    overflow: hidden;
-    background: linear-gradient(125deg, var(--ink-700), var(--ink-950))
-}
-
-.pol-hero:before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: var(--pol-img), linear-gradient(125deg, transparent 30%, color-mix(in srgb, var(--sky-500) 24%, transparent)), radial-gradient(circle, color-mix(in srgb, var(--surface-blue-light) 18%, transparent) 1px, transparent 1.7px);
-    background-size: cover, auto, 24px 24px;
-    background-position: center;
-    background-repeat: no-repeat
-}
-
-.pol-hero:after {
-    content: "";
-    position: absolute;
-    inset: 45% 0 0;
-    background: linear-gradient(transparent, color-mix(in srgb, var(--ink-950) 48%, transparent));
-    pointer-events: none
-}
-
-.pol-hero__tags {
-    position: absolute;
-    z-index: 1;
-    inset: 16px 16px auto;
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    pointer-events: none
-}
-
-.pol-hero__tags span {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    padding: 8px 14px;
-    border: 1px solid rgba(255, 255, 255, .35);
-    border-radius: 30px;
-    background: rgba(239, 247, 252, .92);
-    color: var(--ink-900);
-    font-size: 0.8rem;
-    font-weight: 750;
-    letter-spacing: .04em;
-    text-transform: uppercase
-}
-
-.pol-hero__tags svg {
-    color: var(--crp-blue);
-    font-size: 1.1rem
-}
-
-.pol-crumbs {
-    position: absolute;
-    z-index: 2;
-    left: max(16px, calc((100% - 1200px)/2));
-    bottom: 17px;
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    max-width: calc(100% - 32px);
-    padding: 9px 15px;
-    border-left: 3px solid var(--orange-500);
-    border-radius: 9px;
-    background: rgba(5, 25, 48, .86);
-    color: #e8f1f8;
-    font-size: 0.95rem;
-    font-weight: 650;
-    white-space: nowrap;
-    overflow: hidden
-}
-
-.pol-crumbs a {
-    color: inherit
-}
-
-.pol-crumbs svg {
-    flex: none;
-    opacity: .7
-}
-
-.pol-crumbs [aria-current] {
-    color: var(--orange-400)
-}
-
 .pol-wrap {
     padding-top: clamp(38px, 5vw, 66px);
     padding-bottom: clamp(52px, 7vw, 90px)
@@ -1093,23 +995,6 @@
 }
 
 @media(max-width:600px) {
-    .pol-hero {
-        height: auto;
-        aspect-ratio: 5/2;
-        min-height: 170px
-    }
-
-    .pol-hero__tags {
-        display: none
-    }
-
-    .pol-crumbs {
-        left: 10px;
-        bottom: 10px;
-        padding: 7px 10px;
-        gap: 6px;
-        font-size: 0.95rem
-    }
 
     .pol-feature {
         grid-template-columns: 1fr;
@@ -1340,9 +1225,6 @@
         justify-content: space-between;
     }
 
-    .pol-crumbs {
-        font-size: 0.95rem;
-    }
 }
 
 @media (max-width: 380px) {

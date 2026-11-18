@@ -4,7 +4,7 @@
 import { Link } from "react-router-dom";
 import { FaGraduationCap } from "react-icons/fa";
 import { FiMapPin, FiChevronRight, FiFileText, FiDownload, FiTool, FiBriefcase, FiUsers } from "react-icons/fi";
-import "./principal-message.css";
+import "./Principal-message.css";
 
 const img = (file) => `/images/${file}`;
 

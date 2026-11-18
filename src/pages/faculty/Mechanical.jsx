@@ -10,17 +10,16 @@
 //   staff        one object per person: name, role, photo, and OPTIONAL qualification / interest / email
 //                (empty fields are simply not shown - add them whenever they are available)
 //   highlights   the four visual cards at the bottom
-// All pictures live in public/images/departments/mechanical/ - nothing is loaded from the old website.
+// Department and collage photos use /images/faculty/mechanical-engineering/; staff photos remain under /images/departments/mechanical/staff/.
 // A missing picture shows a clean placeholder, a missing staff photo shows the person's initials.
 //
 // CONTENT SOURCE: live page https://crprohtak.ac.in/mec and staff list https://crprohtak.ac.in/faculty_mechanical.
 // The About text follows the live page (condensed where it was long). To use the exact live wording, paste it into the lists below.
-// The live page gives no established year, so that fact is left out. It has no department picture:
-// mechanical-hero.jpg needs a photo from the college (a placeholder shows until then).
+// The live page gives no established year, so that fact is left out.
 // "48+" = 22 + 10 + 10 + 6 students named on the live page, plus "etc." (others not counted).
 // FILES TO COPY from the old website (old path -> new path):
 //   /media/teachers/<file>   -> public/images/departments/mechanical/staff/<file>   (photo file names used in the staff list below)
-//   mechanical-hero.jpg, mechanical-about-1.jpg, mechanical-about-2.jpg, mechanical-about-3.jpg  -> department pictures (frame beside the title + the About collage)
+//   hero.jpg, about-1.jpg, about-2.jpg, about-3.jpg -> /images/faculty/mechanical-engineering/ (department picture and About collage)
 //   mechanical-highlight-*.jpg (4 files named in the highlights list) -> backgrounds of the highlight cards
 // The banner /images/pages-banner.png is the same one the About / Facilities pages use.
 import { useEffect, useRef, useState } from "react";
@@ -33,6 +32,7 @@ import {
 import "./Mechanical.css";
 
 const IMG = "/images/departments/mechanical";
+const DEPT_IMG = "/images/faculty/mechanical-engineering";
 
 // Same banner as the About / Facilities pages (a patterned navy banner shows if it is missing).
 const banner = "/images/pages-banner.png";
@@ -45,7 +45,7 @@ const dept = {
     { icon: FiUsers, text: "60 seats" },
     { icon: FiMonitor, text: "8 laboratories" },
   ],
-  image: `${IMG}/mechanical-hero.jpg`,
+  image: `${DEPT_IMG}/hero.jpg`,
   imageAlt: "Mechanical Engineering department",
 };
 
@@ -67,9 +67,9 @@ const currentLabel = switcher.find((item) => item.to === CURRENT)?.label;
 
 // Two small pictures on top, one wide picture below (the layout of the About card).
 const collage = [
-  { src: `${IMG}/mechanical-about-1.jpg`, alt: "Mechanical Engineering department - picture 1" },
-  { src: `${IMG}/mechanical-about-2.jpg`, alt: "Mechanical Engineering department - picture 2" },
-  { src: `${IMG}/mechanical-about-3.jpg`, alt: "Mechanical Engineering department - picture 3" },
+  { src: `${DEPT_IMG}/about-1.jpg`, alt: "Mechanical Engineering department - picture 1" },
+  { src: `${DEPT_IMG}/about-2.jpg`, alt: "Mechanical Engineering department - picture 2" },
+  { src: `${DEPT_IMG}/about-3.jpg`, alt: "Mechanical Engineering department - picture 3" },
 ];
 
 // The three small tiles in the About card.

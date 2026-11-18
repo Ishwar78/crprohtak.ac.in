@@ -4,7 +4,7 @@
 import { Link } from "react-router-dom";
 import { FaGraduationCap } from "react-icons/fa";
 import { FiMapPin, FiChevronRight, FiFileText, FiDownload, FiExternalLink, FiAward, FiArrowUpRight } from "react-icons/fi";
-import "./results.css";
+import "./Results.css";
 
 const hero = { image: "/images/pages-banner.png" };
 

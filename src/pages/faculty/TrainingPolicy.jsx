@@ -14,9 +14,13 @@ const stages = ["Understand the training requirement", "Identify a suitable prog
 export default function TrainingPolicy() {
   return (
     <main id="main" className="pol-page pol-training">
-      <section className="pol-hero" style={{ "--pol-img": 'url("/images/pages-banner.png")' }}>
-        <div className="pol-hero__tags"><span><FaGraduationCap /> Government Polytechnic</span><span><FiMapPin /> Rohtak (Haryana)</span></div>
-        <nav className="pol-crumbs" aria-label="Breadcrumb"><Link to="/">Home</Link><FiChevronRight /><span>Faculty</span><FiChevronRight /><span aria-current="page">Training Policy</span></nav>
+      <section className="pol-hero" aria-label="Training Policy" style={{ "--pol-img": 'url("/images/pages-banner.png")' }}>
+        <div className="pol-hero__photo" />
+        <div className="pol-hero__tags">
+          <span className="pol-hero__tag pol-hero__tag--left"><span className="pol-hero__tag-icon"><FaGraduationCap aria-hidden="true" /></span>Government Polytechnic</span>
+          <span className="pol-hero__tag pol-hero__tag--right"><span className="pol-hero__tag-icon"><FiMapPin aria-hidden="true" /></span>Rohtak (Haryana)</span>
+        </div>
+        <nav className="pol-crumbs" aria-label="Breadcrumb"><Link to="/">Home</Link><FiChevronRight aria-hidden="true" /><span>Faculty</span><FiChevronRight aria-hidden="true" /><span aria-current="page">Training Policy</span></nav>
       </section>
       <div className="container pol-wrap">
         <header className="pol-intro"><span className="pol-eyebrow">Faculty · Policies &amp; Rules</span><h1>Training <em>Policy</em></h1><p>Supporting continuous learning, professional development and the sharing of knowledge across the institute.</p></header>

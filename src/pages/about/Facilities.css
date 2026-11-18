@@ -17,41 +17,22 @@ main#main.fac-page h4 {
 }
 
 /* ============ HERO ============ */
+
 .fac-hero {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  height: clamp(220px, 24vw, 320px);
-  background:
-    radial-gradient(65% 125% at 82% 0%, color-mix(in srgb, var(--sky-500) 30%, transparent), transparent 68%),
-    radial-gradient(42% 100% at 4% 100%, color-mix(in srgb, var(--orange-500) 20%, transparent), transparent 72%),
-    linear-gradient(135deg, var(--ink-700), var(--ink-950));
+  height: clamp(320px, 27vw, 364px);
+  background: linear-gradient(135deg, var(--ink-700), var(--ink-950));
 }
 
-/* The real photo sits on top. If the file is missing, the glow layers and dot grid underneath show instead. */
 .fac-hero__photo {
   position: absolute;
   inset: 0;
-  background-image:
-    var(--img),
-    radial-gradient(55% 130% at 88% 0%, color-mix(in srgb, var(--sky-500) 40%, transparent), transparent 66%),
-    radial-gradient(38% 100% at 0% 100%, color-mix(in srgb, var(--orange-500) 24%, transparent), transparent 70%),
-    radial-gradient(circle, color-mix(in srgb, var(--surface-blue-light) 17%, transparent) 1.2px, transparent 1.7px),
-    linear-gradient(135deg, var(--ink-700), var(--ink-950));
-  background-size: cover, auto, auto, 26px 26px, auto;
-  background-position: center, 0 0, 0 0, 0 0, 0 0;
-  background-repeat: no-repeat, no-repeat, no-repeat, repeat, no-repeat;
-}
-
-/* soft fade at the bottom so the breadcrumb always reads */
-.fac-hero::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 50%;
-  background: linear-gradient(transparent, color-mix(in srgb, var(--ink-950) 45%, transparent));
-  z-index: 1;
-  pointer-events: none;
+  background-image: var(--img), linear-gradient(135deg, var(--ink-700), var(--ink-950));
+  background-size: cover, auto;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
 }
 
 .fac-hero__tags {
@@ -80,8 +61,10 @@ main#main.fac-page h4 {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   white-space: nowrap;
-  pointer-events: auto;
 }
+
+.fac-hero__tag--left { left: 16px; }
+.fac-hero__tag--right { right: 16px; }
 
 .fac-hero__tag-icon {
   flex: none;
@@ -93,28 +76,10 @@ main#main.fac-page h4 {
   color: var(--surface-blue-light);
 }
 
-.fac-hero__tag-icon svg {
-  width: 15px;
-  height: 15px;
-}
+.fac-hero__tag-icon svg { width: 15px; height: 15px; }
+.fac-hero__tag--left .fac-hero__tag-icon { background: var(--orange-500); }
+.fac-hero__tag--right .fac-hero__tag-icon { background: var(--sky-500); }
 
-.fac-hero__tag--left {
-  left: 16px;
-}
-
-.fac-hero__tag--left .fac-hero__tag-icon {
-  background: var(--orange-500);
-}
-
-.fac-hero__tag--right {
-  right: 16px;
-}
-
-.fac-hero__tag--right .fac-hero__tag-icon {
-  background: var(--sky-500);
-}
-
-/* breadcrumb pill, bottom-left of the photo */
 .fac-crumbs {
   position: absolute;
   left: 16px;
@@ -138,28 +103,52 @@ main#main.fac-page h4 {
   overflow: hidden;
 }
 
-.fac-crumbs a {
-  color: inherit;
-  transition: color 0.2s;
+.fac-crumbs a { color: inherit; transition: color 0.2s; }
+.fac-crumbs a:hover { color: var(--orange-400); }
+.fac-crumbs svg { flex: none; width: 14px; height: 14px; opacity: 0.7; }
+.fac-crumbs [aria-current] { color: var(--orange-400); font-weight: 700; }
+
+@media (max-width: 900px) {
+  .fac-hero { height: auto; aspect-ratio: 7 / 3; }
+  .fac-hero__photo { background-size: contain, auto; }
+  .fac-hero__tags { display: none; }
+  .fac-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.95rem; }
+  .fac-crumbs svg { width: 12px; height: 12px; }
 }
 
-.fac-crumbs a:hover {
-  color: var(--orange-400);
-}
 
-.fac-crumbs svg {
-  flex: none;
-  width: 14px;
-  height: 14px;
-  opacity: 0.7;
-}
 
-.fac-crumbs [aria-current] {
-  color: var(--orange-400);
-  font-weight: 700;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* breadcrumb pill, bottom-left of the photo */
+
+
+
+
+
+
+
+
+
 
 /* ============ PAGE WRAPPER ============ */
 .fac-wrap {
@@ -806,30 +795,8 @@ main#main.fac-page .fac-subhead::before {
   }
 }
 
-/* phones and tablets: a fixed wide hero (5:2), no top pills, a small breadcrumb */
-@media (max-width: 900px) {
-  .fac-hero {
-    height: auto;
-    aspect-ratio: 5 / 2;
-  }
 
-  .fac-hero__tags {
-    display: none;
-  }
 
-  .fac-crumbs {
-    left: 10px;
-    bottom: 10px;
-    padding: 6px 12px;
-    gap: 6px;
-    font-size: 0.95rem;
-  }
-
-  .fac-crumbs svg {
-    width: 12px;
-    height: 12px;
-  }
-}
 
 /* phones: the 16 tabs become one swipeable row of chips instead of eight tall rows */
 @media (max-width: 560px) {

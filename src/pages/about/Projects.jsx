@@ -6,7 +6,7 @@ import { FaGraduationCap } from "react-icons/fa";
 import { FiMapPin, FiChevronRight, FiFileText, FiDownload, FiUsers, FiCpu, FiTool, FiBox, FiAward, FiCalendar } from "react-icons/fi";
 import "./Projects.css";
 
-const hero = { image: "/images/about-projects.jpg" };
+const hero = { image: "/images/pages-banner.png" };
 
 const intro = {
   eyebrow: "About us",

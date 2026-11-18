@@ -102,7 +102,7 @@ export default function SocialLinks() {
         <div className="soc-hero__tags">
           <span className="soc-hero__tag soc-hero__tag--left">
             <span className="soc-hero__tag-icon"><FaGraduationCap aria-hidden="true" /></span>
-            Chhotu Ram Polytechnic
+            Government Polytechnic
           </span>
           <span className="soc-hero__tag soc-hero__tag--right">
             <span className="soc-hero__tag-icon"><FiMapPin aria-hidden="true" /></span>

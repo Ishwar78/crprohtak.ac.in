@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Preloader from "./components/Preloader";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop"; 
 import Home from "./pages/home/Home";
 import Placeholder from "./pages/placeholder/Placeholder";
 import History from "./pages/about/History";
@@ -69,6 +70,7 @@ export default function App() {
     <>
       <Preloader />
       <Navbar />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about/history" element={<History />} />

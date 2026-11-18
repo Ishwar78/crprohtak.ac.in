@@ -3,30 +3,22 @@
    The hero block below is identical to the About us / Facilities hero. Type rule: body text 16px or more, small text never under 12px. */
 
 /* ============ HERO ============ */
+
 .pla-hero {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  height: clamp(220px, 24vw, 320px);
-  background:
-    radial-gradient(65% 125% at 82% 0%, color-mix(in srgb, var(--sky-500) 30%, transparent), transparent 68%),
-    radial-gradient(42% 100% at 4% 100%, color-mix(in srgb, var(--orange-500) 20%, transparent), transparent 72%),
-    linear-gradient(135deg, var(--ink-700), var(--ink-950));
+  height: clamp(320px, 27vw, 364px);
+  background: linear-gradient(135deg, var(--ink-700), var(--ink-950));
 }
 
-/* the real photo is shown as it is (no tint or overlay on top of it); only if the file is missing do the navy glows and dot grid underneath show */
 .pla-hero__photo {
   position: absolute;
   inset: 0;
-  background-image:
-    var(--img),
-    radial-gradient(55% 130% at 88% 0%, color-mix(in srgb, var(--sky-500) 40%, transparent), transparent 66%),
-    radial-gradient(38% 100% at 0% 100%, color-mix(in srgb, var(--orange-500) 24%, transparent), transparent 70%),
-    radial-gradient(circle, color-mix(in srgb, var(--surface-blue-light) 17%, transparent) 1.2px, transparent 1.7px),
-    linear-gradient(135deg, var(--ink-700), var(--ink-950));
-  background-size: cover, auto, auto, 26px 26px, auto;
-  background-position: center, 0 0, 0 0, 0 0, 0 0;
-  background-repeat: no-repeat, no-repeat, no-repeat, repeat, no-repeat;
+  background-image: var(--img), linear-gradient(135deg, var(--ink-700), var(--ink-950));
+  background-size: cover, auto;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
 }
 
 .pla-hero__tags {
@@ -74,7 +66,6 @@
 .pla-hero__tag--left .pla-hero__tag-icon { background: var(--orange-500); }
 .pla-hero__tag--right .pla-hero__tag-icon { background: var(--sky-500); }
 
-/* breadcrumb pill, bottom-left of the banner */
 .pla-crumbs {
   position: absolute;
   left: 16px;
@@ -103,13 +94,41 @@
 .pla-crumbs svg { flex: none; width: 14px; height: 14px; opacity: 0.7; }
 .pla-crumbs [aria-current] { color: var(--orange-400); font-weight: 700; }
 
-/* phones and tablets: a fixed wide banner (5:2), no top pills, a small breadcrumb */
 @media (max-width: 900px) {
-  .pla-hero { height: auto; aspect-ratio: 5 / 2; }
+  .pla-hero { height: auto; aspect-ratio: 7 / 3; }
+  .pla-hero__photo { background-size: contain, auto; }
   .pla-hero__tags { display: none; }
   .pla-crumbs { left: 10px; bottom: 10px; padding: 6px 12px; gap: 6px; font-size: 0.95rem; }
   .pla-crumbs svg { width: 12px; height: 12px; }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* breadcrumb pill, bottom-left of the banner */
+
+
+
+
+
+
+
+
+
 
 main#main.pla-page {
   background:

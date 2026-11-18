@@ -10,14 +10,13 @@
 //   staff        one object per person: name, role, photo, and OPTIONAL qualification / interest
 //                (empty fields are simply not shown - add them whenever they are available)
 //   highlights   the four visual cards at the bottom
-// All pictures live in public/images/departments/applied-sciences/ - copy the listed staff photos from the old website; other unavailable images use placeholders.
+// Department and collage photos use /images/faculty/applied-sciences/; staff photos remain under /images/departments/applied-sciences/staff/.
 // The hero shows /images/pages-banner.png exactly as it is (no tint over it).
 // A missing picture shows a clean placeholder, a missing staff photo shows the person's initials.
 //
 // FILES TO COPY from the old website (old path -> new path):
-//   /media/Departments/WhatsApp_Image_2023-09-28_at_11.25.26.jpg -> public/images/departments/applied-sciences/hero.jpg   (the department picture)
+//   hero.jpg, about-1.jpg, about-2.jpg, about-3.jpg -> department picture and About collage under /images/faculty/applied-sciences/
 //   /media/teachers/ashok-deswal.jpeg, neelam-malik.jpeg, saveen.jpeg, dinesh-chander.jpeg, Manisha_Hooda.jpg -> manisha-hooda.jpg; ijja.jpg; rinku-rani.jpeg; seema-rani.jpeg; vijeta.png -> matching files under public/images/departments/applied-sciences/staff/
-//   about-1.jpg, about-2.jpg, about-3.jpg     -> three Applied Sciences pictures for the About collage
 //   highlight-foundation.jpg, highlight-labs.jpg, highlight-language.jpg, highlight-learning.jpg -> backgrounds of the highlight cards
 // The banner /images/pages-banner.png is the same one the About / Facilities pages use.
 import { useEffect, useRef, useState } from "react";
@@ -30,6 +29,7 @@ import {
 import "./AppliedSciences.css";
 
 const IMG = "/images/departments/applied-sciences";
+const DEPT_IMG = "/images/faculty/applied-sciences";
 
 // Same banner as the About / Facilities pages (a patterned navy banner shows if it is missing).
 const banner = "/images/pages-banner.png";
@@ -42,7 +42,7 @@ const dept = {
     { icon: FiLayers, text: "3 department laboratories" },
     { icon: FiUsers, text: "English Language Lab" },
   ],
-  image: `${IMG}/hero.jpg`,
+  image: `${DEPT_IMG}/hero.jpg`,
   imageAlt: "Applied Sciences department",
 };
 
@@ -62,9 +62,9 @@ const CURRENT = "/departments/applied-science";
 
 // Two small pictures on top, one wide picture below (the layout of the About card).
 const collage = [
-  { src: `${IMG}/about-1.jpg`, alt: "Applied Sciences department - picture 1" },
-  { src: `${IMG}/about-2.jpg`, alt: "Applied Sciences department - picture 2" },
-  { src: `${IMG}/about-3.jpg`, alt: "Applied Sciences department - picture 3" },
+  { src: `${DEPT_IMG}/about-1.jpg`, alt: "Applied Sciences department - picture 1" },
+  { src: `${DEPT_IMG}/about-2.jpg`, alt: "Applied Sciences department - picture 2" },
+  { src: `${DEPT_IMG}/about-3.jpg`, alt: "Applied Sciences department - picture 3" },
 ];
 
 // The three small tiles in the About card.

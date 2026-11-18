@@ -10,16 +10,15 @@
 //   staff        one object per person: name, role, photo, and OPTIONAL qualification / interest / email
 //                (empty fields are simply not shown - add them whenever they are available)
 //   highlights   the four visual cards at the bottom
-// All pictures live in public/images/departments/electronics/ - nothing is loaded from the old website.
+// Department and collage photos use /images/faculty/electronics-communication/; staff photos remain under /images/departments/electronics/staff/.
 // A missing picture shows a clean placeholder, a missing staff photo shows the person's initials.
 //
 // CONTENT SOURCE: live page https://crprohtak.ac.in/ece and staff list https://crprohtak.ac.in/faculty_electronics.
 // The About text follows the live page (condensed where it was long). To use the exact live wording, paste it into the lists below.
-// The live page names no laboratories and no established year, so those sections/facts are left out. It has no department picture:
-// electronics-hero.jpg needs a photo from the college (a placeholder shows until then).
+// The live page names no laboratories and no established year, so those sections/facts are left out.
 // FILES TO COPY from the old website (old path -> new path):
 //   /media/teachers/<file>   -> public/images/departments/electronics/staff/<file>   (photo file names used in the staff list below)
-//   electronics-hero.jpg, electronics-about-1.jpg, electronics-about-2.jpg, electronics-about-3.jpg  -> department pictures (frame beside the title + the About collage)
+//   hero.jpg, about-1.jpg, about-2.jpg, about-3.jpg -> /images/faculty/electronics-communication/ (department picture and About collage)
 //   electronics-highlight-*.jpg (4 files named in the highlights list) -> backgrounds of the highlight cards
 // The banner /images/pages-banner.png is the same one the About / Facilities pages use.
 import { useEffect, useRef, useState } from "react";
@@ -32,6 +31,7 @@ import {
 import "./Electronics.css";
 
 const IMG = "/images/departments/electronics";
+const DEPT_IMG = "/images/faculty/electronics-communication";
 
 // Same banner as the About / Facilities pages (a patterned navy banner shows if it is missing).
 const banner = "/images/pages-banner.png";
@@ -44,7 +44,7 @@ const dept = {
     { icon: FiUsers, text: "54 seats" },
     { icon: FiCalendar, text: "Annual placement drive" },
   ],
-  image: `${IMG}/electronics-hero.jpg`,
+  image: `${DEPT_IMG}/hero.jpg`,
   imageAlt: "Electronics & Communication Engineering department",
 };
 
@@ -66,9 +66,9 @@ const currentLabel = switcher.find((item) => item.to === CURRENT)?.label;
 
 // Two small pictures on top, one wide picture below (the layout of the About card).
 const collage = [
-  { src: `${IMG}/electronics-about-1.jpg`, alt: "Electronics & Communication Engineering department - picture 1" },
-  { src: `${IMG}/electronics-about-2.jpg`, alt: "Electronics & Communication Engineering department - picture 2" },
-  { src: `${IMG}/electronics-about-3.jpg`, alt: "Electronics & Communication Engineering department - picture 3" },
+  { src: `${DEPT_IMG}/about-1.jpg`, alt: "Electronics & Communication Engineering department - picture 1" },
+  { src: `${DEPT_IMG}/about-2.jpg`, alt: "Electronics & Communication Engineering department - picture 2" },
+  { src: `${DEPT_IMG}/about-3.jpg`, alt: "Electronics & Communication Engineering department - picture 3" },
 ];
 
 // The three small tiles in the About card.

@@ -9,7 +9,7 @@ import "./Luminaries.css";
 
 const img = (file) => `/images/${file}`;
 
-const hero = { image: "/images/about-luminaries.jpg" };
+const hero = { image: "/images/pages-banner.png" };
 
 const intro = {
   eyebrow: "About us",

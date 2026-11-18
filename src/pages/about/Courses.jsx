@@ -7,7 +7,7 @@ import {
   FiMapPin, FiChevronRight, FiFileText, FiDownload, FiBox, FiCpu, FiZap, FiRadio, FiSettings, FiDroplet, FiBookOpen,
   FiTool, FiArrowRight, FiExternalLink,
 } from "react-icons/fi";
-import "./courses.css";
+import "./Courses.css";
 
 const hero = { image: "/images/pages-banner.png" };
 

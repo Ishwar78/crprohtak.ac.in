@@ -4,7 +4,7 @@
 import { Link } from "react-router-dom";
 import { FaGraduationCap } from "react-icons/fa";
 import { FiMapPin, FiChevronRight, FiFileText, FiDownload, FiAward, FiShield, FiCheckCircle, FiClock } from "react-icons/fi";
-import "./rank-accreditation.css";
+import "./Rank-accreditation.css";
 
 const hero = { image: "/images/pages-banner.png" };
 

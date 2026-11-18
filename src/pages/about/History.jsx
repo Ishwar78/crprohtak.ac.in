@@ -4,7 +4,7 @@
 import { Link } from "react-router-dom";
 import { FaGraduationCap } from "react-icons/fa";
 import { FiMapPin, FiChevronRight, FiFileText, FiDownload } from "react-icons/fi";
-import "./history.css";
+import "./History.css";
 
 const hero = { image: "/images/pages-banner.png" }; // if it is missing a navy gradient shows instead
 

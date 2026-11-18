@@ -7,7 +7,7 @@ import { FaGraduationCap } from "react-icons/fa";
 import { FiMapPin, FiChevronRight, FiFileText, FiDownload, FiFlag, FiActivity, FiMusic, FiAward, FiCalendar } from "react-icons/fi";
 import "./Extracurricular.css";
 
-const hero = { image: "/images/about-extracurricular.jpg" };
+const hero = { image: "/images/pages-banner.png" };
 
 const intro = {
   eyebrow: "About us",

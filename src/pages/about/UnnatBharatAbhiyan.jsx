@@ -7,7 +7,7 @@ import { FaGraduationCap } from "react-icons/fa";
 import { FiMapPin, FiChevronRight, FiFileText, FiDownload, FiHome, FiClipboard, FiTool, FiHeart, FiUsers } from "react-icons/fi";
 import "./UnnatBharatAbhiyan.css";
 
-const hero = { image: "/images/about-unnat-bharat-abhiyan.jpg" };
+const hero = { image: "/images/pages-banner.png" };
 
 const intro = {
   eyebrow: "About us",

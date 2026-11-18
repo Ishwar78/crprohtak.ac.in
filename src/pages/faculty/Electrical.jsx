@@ -10,16 +10,15 @@
 //   staff        one object per person: name, role, photo, and OPTIONAL qualification / interest / email
 //                (empty fields are simply not shown - add them whenever they are available)
 //   highlights   the four visual cards at the bottom
-// All pictures live in public/images/departments/electrical/ - nothing is loaded from the old website.
+// Department and collage photos use /images/faculty/electrical-engineering/; staff photos remain under /images/departments/electrical/staff/.
 // A missing picture shows a clean placeholder, a missing staff photo shows the person's initials.
 //
 // CONTENT SOURCE: the live page https://crprohtak.ac.in/ele and the staff list https://crprohtak.ac.in/faculty_electrical.
 // The About text follows the live page (condensed where it was long). To use the exact live wording, paste it into the lists below.
 //
 // FILES TO COPY from the old website (old path -> new path):
-//   The live Electrical page has NO department picture, so electrical-hero.jpg needs a photo from the college (it shows a placeholder until then).
 //   /media/teachers/<file>                    -> public/images/departments/electrical/staff/<file>   (7 photos, file names used below)
-//   electrical-hero.jpg, electrical-about-1.jpg, electrical-about-2.jpg, electrical-about-3.jpg  -> department pictures (frame beside the title + the About collage)
+//   hero.jpg, about-1.jpg, about-2.jpg, about-3.jpg -> /images/faculty/electrical-engineering/ (department picture and About collage)
 //   electrical-highlight-labs.jpg, electrical-highlight-since.jpg, electrical-highlight-results.jpg, electrical-highlight-placements.jpg -> backgrounds of the highlight cards
 // The banner /images/pages-banner.png is the same one the About / Facilities pages use.
 import { useEffect, useRef, useState } from "react";
@@ -32,6 +31,7 @@ import {
 import "./Electrical.css";
 
 const IMG = "/images/departments/electrical";
+const DEPT_IMG = "/images/faculty/electrical-engineering";
 
 // Same banner as the About / Facilities pages (a patterned navy banner shows if it is missing).
 const banner = "/images/pages-banner.png";
@@ -44,7 +44,7 @@ const dept = {
     { icon: FiBookOpen, text: "3-year diploma" },
     { icon: FiUsers, text: "60 seats" },
   ],
-  image: `${IMG}/electrical-hero.jpg`,
+  image: `${DEPT_IMG}/hero.jpg`,
   imageAlt: "Electrical Engineering department",
 };
 
@@ -66,9 +66,9 @@ const currentLabel = switcher.find((item) => item.to === CURRENT)?.label;
 
 // Two small pictures on top, one wide picture below (the layout of the About card).
 const collage = [
-  { src: `${IMG}/electrical-about-1.jpg`, alt: "Electrical Engineering department - picture 1" },
-  { src: `${IMG}/electrical-about-2.jpg`, alt: "Electrical Engineering department - picture 2" },
-  { src: `${IMG}/electrical-about-3.jpg`, alt: "Electrical Engineering department - picture 3" },
+  { src: `${DEPT_IMG}/about-1.jpg`, alt: "Electrical Engineering department - picture 1" },
+  { src: `${DEPT_IMG}/about-2.jpg`, alt: "Electrical Engineering department - picture 2" },
+  { src: `${DEPT_IMG}/about-3.jpg`, alt: "Electrical Engineering department - picture 3" },
 ];
 
 // The three small tiles in the About card.

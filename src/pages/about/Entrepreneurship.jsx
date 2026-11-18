@@ -7,7 +7,7 @@ import { FaGraduationCap } from "react-icons/fa";
 import {
   FiMapPin, FiChevronRight, FiFileText, FiDownload, FiZap, FiLayers, FiCode, FiUserCheck, FiArrowRight, FiStar,
 } from "react-icons/fi";
-import "./entrepreneurship.css";
+import "./Entrepreneurship.css";
 
 const hero = { image: "/images/pages-banner.png" };
 

@@ -168,7 +168,7 @@ export default function Gallery() {
         <div className="gal-hero__tags">
           <span className="gal-hero__tag gal-hero__tag--left">
             <span className="gal-hero__tag-icon"><FaGraduationCap aria-hidden="true" /></span>
-            Chhotu Ram Polytechnic
+            Government Polytechnic
           </span>
           <span className="gal-hero__tag gal-hero__tag--right">
             <span className="gal-hero__tag-icon"><FiMapPin aria-hidden="true" /></span>

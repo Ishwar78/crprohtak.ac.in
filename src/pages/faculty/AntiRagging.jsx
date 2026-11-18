@@ -31,14 +31,21 @@ export default function AntiRagging() {
 
   return (
     <main id="main" className="pol-page pol-ragging">
-      <section className="pol-hero" style={{ "--pol-img": 'url("/images/pages-banner.png")' }}>
+      <section className="pol-hero" aria-label="Anti Ragging" style={{ "--pol-img": 'url("/images/pages-banner.png")' }}>
+        <div className="pol-hero__photo" />
         <div className="pol-hero__tags">
-          <span><FaGraduationCap /> Government Polytechnic</span>
-          <span><FiMapPin /> Rohtak (Haryana)</span>
+          <span className="pol-hero__tag pol-hero__tag--left">
+            <span className="pol-hero__tag-icon"><FaGraduationCap aria-hidden="true" /></span>
+            Government Polytechnic
+          </span>
+          <span className="pol-hero__tag pol-hero__tag--right">
+            <span className="pol-hero__tag-icon"><FiMapPin aria-hidden="true" /></span>
+            Rohtak (Haryana)
+          </span>
         </div>
         <nav className="pol-crumbs" aria-label="Breadcrumb">
-          <Link to="/">Home</Link><FiChevronRight />
-          <span>Faculty</span><FiChevronRight />
+          <Link to="/">Home</Link><FiChevronRight aria-hidden="true" />
+          <span>Faculty</span><FiChevronRight aria-hidden="true" />
           <span aria-current="page">Anti Ragging</span>
         </nav>
       </section>

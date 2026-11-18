@@ -7,7 +7,7 @@ import {
   FiMapPin, FiChevronRight, FiFileText, FiDownload, FiBriefcase, FiMonitor, FiUsers, FiGlobe, FiLayers, FiCalendar,
   FiUser,
 } from "react-icons/fi";
-import "./placements.css";
+import "./Placements.css";
 
 const img = (file) => `/images/${file}`;
 

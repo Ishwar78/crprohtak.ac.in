@@ -40,9 +40,9 @@ const contact = { phones: ["01262-274667", "01262-285667"], email: "crprohtak@hr
 
 // REAL - the live Events page. Add new events at the top; fill `date`, `place` and `text` when you have them.
 const events = [
-  { id: 1, title: "Orientation Program 2025", kind: "Event", date: "", place: "", text: "", photo: "/images/events/orientation-2025.jpg" },
-  { id: 2, title: "Rangoli Competition", kind: "Activity", date: "", place: "", text: "", photo: "/images/events/rangoli.jpg" },
-  { id: 3, title: "एनसीसी प्रथम वर्ष के लिए चयन प्रक्रिया", kind: "Activity", date: "", place: "", text: "", photo: "/images/events/ncc-selection.jpg" },
+  { id: 1, title: "Orientation Program 2025", kind: "Event", date: "", place: "", text: "", photo: "/images/orientation-2025.jpg" },
+  { id: 2, title: "Rangoli Competition", kind: "Activity", date: "", place: "", text: "", photo: "/images/rangoli.jpg" },
+  { id: 3, title: "एनसीसी प्रथम वर्ष के लिए चयन प्रक्रिया", kind: "Activity", date: "", place: "", text: "", photo: "/images/ncc-selection.jpg" },
 ];
 
 const related = [

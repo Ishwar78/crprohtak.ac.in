@@ -10,16 +10,15 @@
 //   staff        one object per person: name, role, photo, and OPTIONAL qualification / interest / email
 //                (empty fields are simply not shown - add them whenever they are available)
 //   highlights   the four visual cards at the bottom
-// All pictures live in public/images/departments/plastic/ - nothing is loaded from the old website.
+// Department and collage photos use /images/faculty/plastic-engineering/; staff photos remain under /images/departments/plastic/staff/.
 // A missing picture shows a clean placeholder, a missing staff photo shows the person's initials.
 //
 // CONTENT SOURCE: live page https://crprohtak.ac.in/pla and staff list https://crprohtak.ac.in/faculty_Plastic.
 // The About text follows the live page (condensed where it was long). To use the exact live wording, paste it into the lists below.
-// The live page names no laboratories, so there is no laboratories section. It has no department picture:
-// plastic-hero.jpg needs a photo from the college (a placeholder shows until then).
+// The live page names no laboratories, so there is no laboratories section.
 // FILES TO COPY from the old website (old path -> new path):
 //   /media/teachers/<file>   -> public/images/departments/plastic/staff/<file>   (photo file names used in the staff list below)
-//   plastic-hero.jpg, plastic-about-1.jpg, plastic-about-2.jpg, plastic-about-3.jpg  -> department pictures (frame beside the title + the About collage)
+//   hero.jpg, about-1.jpg, about-2.jpg, about-3.jpg -> /images/faculty/plastic-engineering/ (department picture and About collage)
 //   plastic-highlight-*.jpg (4 files named in the highlights list) -> backgrounds of the highlight cards
 // The banner /images/pages-banner.png is the same one the About / Facilities pages use.
 import { useEffect, useRef, useState } from "react";
@@ -32,6 +31,7 @@ import {
 import "./Plastic.css";
 
 const IMG = "/images/departments/plastic";
+const DEPT_IMG = "/images/faculty/plastic-engineering";
 
 // Same banner as the About / Facilities pages (a patterned navy banner shows if it is missing).
 const banner = "/images/pages-banner.png";
@@ -44,7 +44,7 @@ const dept = {
     { icon: FiBookOpen, text: "3-year diploma" },
     { icon: FiUsers, text: "54 seats" },
   ],
-  image: `${IMG}/plastic-hero.jpg`,
+  image: `${DEPT_IMG}/hero.jpg`,
   imageAlt: "Plastic Technology department",
 };
 
@@ -66,9 +66,9 @@ const currentLabel = switcher.find((item) => item.to === CURRENT)?.label;
 
 // Two small pictures on top, one wide picture below (the layout of the About card).
 const collage = [
-  { src: `${IMG}/plastic-about-1.jpg`, alt: "Plastic Technology department - picture 1" },
-  { src: `${IMG}/plastic-about-2.jpg`, alt: "Plastic Technology department - picture 2" },
-  { src: `${IMG}/plastic-about-3.jpg`, alt: "Plastic Technology department - picture 3" },
+  { src: `${DEPT_IMG}/about-1.jpg`, alt: "Plastic Technology department - picture 1" },
+  { src: `${DEPT_IMG}/about-2.jpg`, alt: "Plastic Technology department - picture 2" },
+  { src: `${DEPT_IMG}/about-3.jpg`, alt: "Plastic Technology department - picture 3" },
 ];
 
 // The three small tiles in the About card.
