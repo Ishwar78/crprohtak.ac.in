@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import * as Fi from "react-icons/fi";
 import { FaGraduationCap } from "react-icons/fa";
 import { FiMapPin, FiArrowRight, FiBell, FiArrowUpRight, FiBookOpen, FiBriefcase, FiUsers, FiAward } from "react-icons/fi";
-import "./home.css";
+import "./Home.css";
 
 const img = (file) => `/images/${file}`;
 
