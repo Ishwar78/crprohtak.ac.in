@@ -1727,3 +1727,37 @@
 .drawer__foot .drawer__social a:not(.btn):not(.pay-fee):hover svg {
   color: var(--crp-navy-deep);
 }
+
+/* ===== About us / Students / Faculty menus: open right under their own button, columns sized to their content ===== */
+@media (min-width: 1100px) {
+  .menu__group--mega {
+    position: relative;
+  }
+
+  .menu__group--mega .menu-panel {
+    top: calc(100% + 11px);
+    left: 0 !important;
+    width: max-content !important;
+    min-width: 0;
+    max-width: min(94vw, 980px) !important;
+    transform: translate(var(--mega-shift, 0px), 8px) !important;
+  }
+
+  .menu__group--mega.is-open .menu-panel {
+    transform: translate(var(--mega-shift, 0px), 0) !important;
+  }
+
+  .menu__group--mega .menu-panel > .container.menu-panel__grid {
+    width: auto !important;
+    grid-template-columns: repeat(3, auto) !important;
+    padding: 18px 12px !important;
+  }
+
+  .menu__group--mega .menu-panel__grid > div {
+    padding: 2px 26px !important;
+  }
+
+  .menu__group--mega .menu-panel__grid a {
+    white-space: nowrap;
+  }
+}

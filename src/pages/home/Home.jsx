@@ -18,6 +18,14 @@ const hero = {
   ncc: 1949,
 };
 
+// "Latest news" strip under the banner. Add or remove rows freely - the strip scrolls by itself.
+//   text  the headline (any language)      lang  "hi" for Hindi, "en" for English
+//   to    optional page to open when the headline is clicked (leave "" for plain text)
+// REAL: the one headline the live home page shows (an exhibition at the institute). It has no link there.
+const latestNews = [
+  { id: 1, text: "छोटू राम पॉलीटेक्निक में प्रदर्शनी, प्रधान गुलाब दिमाना व प्राचार्य सितेंद्र पावड़िया ने बढ़ाया छात्रों का हौसला", lang: "hi", to: "" },
+];
+
 const principal = {
   eyebrow: "From the Principal's desk",
   quote: "We do not only teach a trade - we help young people become confident, employable engineers.",
@@ -154,6 +162,53 @@ const dignitaries = [
     initials: "SK",
   },
 ];
+
+// Auto-moving "Latest news" strip. Pauses on hover/focus; stands still if the visitor prefers less motion.
+function LatestNews() {
+  const groupRef = useRef(null);
+  const [seconds, setSeconds] = useState(30);
+
+  // keep the speed the same (about 70px a second) whatever the screen width
+  useLayoutEffect(() => {
+    const measure = () => {
+      const width = groupRef.current?.offsetWidth || 0;
+      if (width) setSeconds(Math.min(Math.max(width / 70, 15), 180));
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  if (latestNews.length === 0) return null;
+
+  const items = (hidden) => (
+    <ul className="tick__group" ref={hidden ? undefined : groupRef} aria-hidden={hidden || undefined}>
+      {latestNews.map((item) => (
+        <li key={item.id}>
+          {item.to ? (
+            <Link to={item.to} lang={item.lang} tabIndex={hidden ? -1 : undefined}>{item.text}</Link>
+          ) : (
+            <span lang={item.lang}>{item.text}</span>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+
+  return (
+    <section className={"tick"} aria-label="Latest news">
+      <div className="container tick__row">
+        <span className="tick__label"><FiBell aria-hidden="true" />Latest news</span>
+        <div className="tick__view">
+          <div className="tick__track" style={{ "--tick-seconds": `${seconds}s` }}>
+            {items(false)}
+            {items(true)}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function Hero() {
   const ref = useRef(null);
@@ -619,6 +674,7 @@ export default function Home() {
   return (
     <main id="main">
       <Hero />
+      <LatestNews />
       <StatsBand />
       <WhyChooseUs />
       <PrincipalMessage />

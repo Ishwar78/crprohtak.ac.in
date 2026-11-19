@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   FiChevronDown,
@@ -299,6 +299,18 @@ export default function Navbar() {
     setOpen(null);
     setDrawer(false);
   }, [pathname]);
+
+  // keep an open mega menu inside the screen: it starts under its own button and only slides left if it would run off the right edge
+  useLayoutEffect(() => {
+    const panel = document.querySelector(".menu__group--mega.is-open .menu-panel");
+    if (!panel) return;
+    panel.style.setProperty("--mega-shift", "0px");
+    const box = panel.getBoundingClientRect();
+    const edge = document.documentElement.clientWidth - 16;
+    const shift = box.right > edge ? edge - box.right : 0;
+    const left = box.left + shift;
+    panel.style.setProperty("--mega-shift", `${left < 16 ? shift + (16 - left) : shift}px`);
+  }, [open]);
 
   useEffect(() => {
     if (!drawer) return;

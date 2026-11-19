@@ -1627,3 +1627,150 @@ main#main .leader-card__body h3 {
     height: 250px;
   }
 }
+
+/* ============ LATEST NEWS STRIP (right under the banner) ============ */
+.tick {
+  position: relative;
+  color: var(--white);
+  background:
+    radial-gradient(40% 200% at 0% 50%, color-mix(in srgb, var(--sky-500) 28%, transparent), transparent 70%),
+    linear-gradient(90deg, var(--ink-950), var(--ink-800) 50%, var(--ink-950));
+  border-bottom: 3px solid var(--orange-500);
+}
+
+.tick__row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 52px;
+  padding-block: 7px;
+}
+
+.tick__label {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px 7px 12px;
+  border-radius: 999px;
+  background: var(--orange-500);
+  color: var(--ink-950);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tick__view {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  container-type: inline-size;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 28px, #000 calc(100% - 28px), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 28px, #000 calc(100% - 28px), transparent);
+}
+
+.tick__track {
+  display: flex;
+  width: max-content;
+  animation: tick-move var(--tick-seconds, 30s) linear infinite;
+}
+
+/* two identical groups, each at least as wide as the strip, so the loop never shows a gap */
+.tick__group {
+  flex: none;
+  display: flex;
+  align-items: center;
+  min-width: 100cqw;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tick__group li {
+  display: flex;
+  align-items: center;
+  padding-right: 56px;
+  white-space: nowrap;
+}
+
+.tick__group li::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-left: 56px;
+  border-radius: 50%;
+  background: var(--orange-400);
+}
+
+.tick__group li:only-child::after {
+  display: none;
+}
+
+.tick__group a,
+.tick__group span {
+  color: var(--white);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.tick__group a:hover {
+  color: var(--sky-400);
+  text-decoration: underline;
+}
+
+.tick__group a:focus-visible {
+  outline: 3px solid var(--sky-400);
+  outline-offset: 3px;
+}
+
+.tick:hover .tick__track,
+.tick:focus-within .tick__track {
+  animation-play-state: paused;
+}
+
+@keyframes tick-move {
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 640px) {
+  .tick__row {
+    gap: 10px;
+    min-height: 36px;
+    padding-block: 3px;
+  }
+
+  /* small screens: no label, the headline gets the whole strip */
+  .tick__label {
+    display: none;
+  }
+
+  .tick {
+    border-bottom-width: 2px;
+  }
+
+  .tick__group a,
+  .tick__group span {
+    font-size: 0.9rem;
+  }
+}
+
+/* less motion: no scrolling; the headline can be swiped sideways instead */
+@media (prefers-reduced-motion: reduce) {
+  .tick__track {
+    animation: none;
+  }
+
+  .tick__view {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .tick__group[aria-hidden="true"] {
+    display: none;
+  }
+}
